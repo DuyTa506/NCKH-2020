@@ -1,0 +1,38 @@
+\thispagestyle{empty}
+\chapter*{Mở đầu}
+\addcontentsline{toc}{chapter}{\bf Mở đầu}
+\noindent 
+{\bf 1. Tổng quan tình hình nghiên cứu thuộc lĩnh vực đề tài:}
+
+Vào năm 1970, mô hình ARIMA được nghiên cứu và phát hiện bởi hai nhà thống kê học \textit{G. E. P. Box và G. M. Jenkins}. Vì vậy, loại mô hình này còn được biết đến với tên gọi là phương pháp Box-Jenkins. Có thể hiểu, ARIMA là mô hình được sử dụng để dự đoán và khai phá dữ liệu trong nhiều lĩnh vực khác nhau như trong lĩnh vực giáo dục để dự báo số sinh viên nhập học của một trường đại học; hay trong lĩnh vực khác như dự báo nhu cầu sử dụng điện, hay dự báo khí tượng thủy văn, ... Đây là một phương pháp nghiên cứu độc lập thông qua việc dự báo theo các chuỗi thời gian. Mô hình ARIMA được nghiên cứu ở đây là một công cụ mạnh, nó thích ứng hầu hết cho chuỗi thời gian có tính dừng và tuyến tính. Sau đó, các nhà nghiên cứu sẽ sử dụng các thuật toán dự báo độ trễ để đưa ra mô hình phù hợp. 
+
+Trên thực tế, phân tích chuỗi thời gian từ tập dữ liệu được thống kê về sự lây lan của các bệnh có yếu tố dịch tễ rất hữu ích trong việc phát triển các giả thuyết để giải thích và dự báo về sự lây lan của nó. Có rất nhiều nghiên cứu đã sử dụng mô hình ARIMA để dự báo xu hướng của các bệnh có yếu tố dịch tễ. L.LIU và các cộng sự của mình đã sử dụng mô hình ARIMA để dự báo tỷ lệ mắc bệnh tay, chân, miệng ở tỉnh Tứ Xuyên, Trung Quốc \cite{1}. Hay Li và các cộng sự đã áp dụng mô hình ARIMA để dự báo tỷ lệ mắc bệnh sốt xuất huyết tại tỉnh Lâm Nghi, Trung Quốc \cite{2}. Gần hơn với đại dịch COVID-19 là Earnest cùng các cộng sự đã dùng mô hình ARIMA như một công cụ hữu ích cho quản trị viên và các bác sỹ trong việc lập kế hoạch phân bố giường bệnh cho các bệnh nhân trong đợt dịch SARS bùng phát \cite{3}. Vì vậy, chúng tôi thấy rằng mô hình ARIMA là một công cụ hữu ích trong việc theo dõi và dự báo xu hướng thay đổi trong các bệnh truyền nhiễm.
+
+Hơn nữa, mô hình ARIMA theo mùa được sử dụng rộng rãi để dự báo khí tượng thủy văn. Rahman và các cộng sự đã có một bài nghiên cứu đánh giá giữa 2 mô hình ARIMA và ANFIS để dự báo thời tiết cho thành phố Dhaka, kết quả cho thấy mô hình ARIMA thực hiện tốt hơn ANFIS \cite{4}. Dizon công bố kết quả nghiên cứu về ARIMA theo mùa là một mô hình rất tốt cho dự báo chuỗi thời gian có tính mùa vụ mạnh \cite{5}. Momani sử dụng thành công mô hình ARIMA để dự báo xu hướng lượng mưa của Jordan \cite{6}. Tại Việt Nam, Nguyễn Hữu Quyền đã có một bài luận văn thạc sĩ khoa học về ứng dụng mô hình động thái ARIMAX để dự báo lượng mưa vụ đông xuân ở một số tỉnh vùng đồng bằng Bắc Bộ \cite{7}. Chính vì vậy, mô hình ARIMA theo mùa có thể được xem là một công cụ hữu ích để dự báo hiện tượng khí tượng thủy văn, đặc biệt là lượng mưa.
+
+Để đơn giản cho việc tính toán và đồ thị hóa, chúng ta cần có sự hỗ trợ của các công cụ phần mềm thống kê hiện đại. Trong nước, hầu hết các bài toán dự báo chuỗi thời gian đều sử dụng các phần mềm thương mại đắt tiền như SPSS, Eviews,... Trong khi đó, R là một công cụ hoàn toàn miễn phí và hỗ trợ đầy đủ các tính năng mà các phần mềm thương mại hiện có. Tuy nhiên, nó chưa được sử dụng rộng rãi tại các trường đại học tại Việt Nam. Chính vì vậy, chúng tôi quyết định cho R như là một công cụ đắc lực cho bài nghiên cứu.
+
+
+\noindent 
+{\bf 2. Lý do chọn đề tài :}
+
+Sử dụng mô hình ARIMA để tiến hành dự báo là một phương pháp hiệu quả và phổ biến. Bên cạnh đó, tính năng và ưu điểm vượt trội của phần mềm R đã và đang thu hút sự quan tâm của các nhà nghiên cứu khi vận dụng vào bài toán thực tiễn ngày càng phức tạp. Vì vậy, việc kết hợp mô hình ARIMA với phần mềm R có rất nhiều ý nghĩa, đó là động lực thúc đẩy nhóm sinh viên lựa chọn và thực hiện đề tài này. 
+
+\noindent 
+{\bf 3. Mục tiêu đề tài :}
+
+- Về lý thuyết: tìm hiểu lý thuyết cơ bản về chuỗi thời gian và mô hình ARIMA; nắm vững quy trình dự báo bằng mô hình ARIMA gồm 5 bước sau: kiểm tra tính dừng của chuỗi thời gian; chuyển một chuỗi không dừng thành dừng; xác định bậc p, q, P và Q; kiểm tra độ chính xác của mô hình; bước cuối cùng là, dự báo.
+
+- Về thực hành: Nắm vững quy trình xây dựng mô hình ARIMA (với 5 bước nêu trên) bằng phần mềm R  cho các dữ liệu thời gian thực trong những lĩnh vực khác nhau như là: khí tượng thủy văn; dịch tễ học; giáo dục; tài chính; chứng khoán.
+
+\noindent 
+{\bf 4. Phương pháp nghiên cứu:}
+
+Sinh viên đọc hiểu các tài liệu tham khảo về lý thuyết dự báo, phân tích chuỗi thời gian và tài liệu hướng dẫn sử dụng R; trực tiếp thực hành xây dựng mô hình trên R cho các bộ dữ liệu khác nhau.
+
+\noindent 
+{\bf 5. Đối tượng và phạm vi nghiên cứu:}
+
+- Đối tượng nghiên cứu: Phương pháp/công cụ dùng trong phân tích chuỗi thời gian, có hỗ trợ của phần mềm thống kê. 
+
+- Phạm vi nghiên cứu:  Mô hình ARIMA trên phần mềm R.

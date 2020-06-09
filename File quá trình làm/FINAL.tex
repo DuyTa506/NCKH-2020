@@ -1,0 +1,264 @@
+\documentclass[12pt, a4paper,oneside]{book}
+\usepackage{amsmath, amssymb, latexsym, amscd, amsthm,amstext}  % Typical maths resource packages
+\usepackage{graphics}                                           % Packages to allow inclusion of graphics
+\usepackage{color} 
+\usepackage{varwidth}                                             % For creating coloured text and background
+\usepackage{hyperref}                                           % For creating hyperlinks in cross references
+\usepackage[utf8]{vietnam}									%For writting Vietnamese
+\usepackage{anysize}											% to set the margin size 
+\marginsize{3cm}{2cm}{2cm}{2cm}				%\marginsize{left}{right}{top}{bottom}
+%\papersize{width}{height}										% sets the paper size
+ \usepackage{multicol}
+ \usepackage{wrapfig}  
+\usepackage{enumerate}
+\usepackage{dsfont}
+\usepackage{commath}
+%
+%
+%\parindent 1cm
+%\parskip 0.2cm
+%\topmargin 0.2cm
+%\oddsidemargin 1cm
+%\evensidemargin 0.5cm
+%\textwidth 15cm
+%\textheight 21cm
+\renewcommand{\baselinestretch}{1.3} 
+\renewcommand{\figurename}{\bf Hình}
+
+%%========================================
+\newtheorem{theo}{\bf Định lý}[section]
+\newtheorem{coro}[theo]{\bf Corollary}
+\newtheorem{lemm}[theo]{\bf Bổ đề}
+\newtheorem{prop}[theo]{\bf Mệnh đề}
+\newtheorem{algo}[theo]{\bf Algorithm}
+\newtheorem{conj}[theo]{\bf Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{defi}[theo]{Định nghĩa}
+\newtheorem{vd}[theo]{\it Ví dụ}
+\newtheorem{cy}[theo]{\it Chú ý}
+\newtheorem{nx}[theo]{\it Nhận xét}
+\newtheorem{pt}{\it Phân tích}
+
+
+
+\def\R{\mathbb{ R}}
+\def\C{\mathbb{ C}}
+\def\N{\mathbb{ N}}
+\def\Z{\mathbb{ Z}}
+\def\Q{\mathbb{ Q}}
+\def\K{\mathbb{ K}}
+\def\Sy{\mathbb{ S}}
+\def\H{\mathbb{ H}}
+\def\T{\mathbb{ T}}
+\def\K{\mathbb{ K}}
+\def\E{\mathbb{ E}}
+\def\Po{\mathbb{ P}}
+\def\L{\mathbb{ L}}
+\def\qfun{\textsf{q}}
+%=========================================
+\def\rk{\mbox{\rm \texttt{rank}}}
+\def\tr{\mbox{\rm \texttt{Tr}}}  
+\def\diag{\mbox{\rm \texttt{diag}}}
+\def\re{\mbox{\rm \texttt{Re}}}
+\def\im{\mbox{\rm \texttt{Im}}}
+\def\face{\mbox{\rm \texttt{face}}}
+\def\ran{\mbox{\rm \texttt{Ran}}}
+\def\nul{\mbox{\rm \texttt{Nul}}}   
+\def\vect{\mbox{\rm \texttt{vec}}}
+\def\svec{\mbox{\rm \texttt{svec}}}
+\def\sp{\mbox{\rm \texttt{Span}}}
+
+
+% ding nghia lai kieu enumerate cho dep
+\newcommand{\seq}[1]{\left<#1\right>}
+\makeatletter
+\def\ps@myheadings{%
+\def\@evenhead{\hfil\thepage\hfil}
+\def\@oddhead{\hfil\thepage\hfil}}
+\makeatother 
+\usepackage{anysize}
+\marginsize{3cm}{2.5cm}{2cm}{2cm}
+\marginsize{3cm}{2.5cm}{2cm}{2cm}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\rank}{rank}
+\pagestyle{myheadings}
+
+
+
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+
+
+%=======================
+
+
+
+
+%\fancyhf{}
+%\renewcommand{\headrulewidth}{0pt}
+%\fancyhead[C]{\thepage}
+%\pagestyle{fancy}
+%
+%%
+%%%% redefine the plain pagestyle
+%\fancypagestyle{plain}{%
+%\fancyhf{} % clear all header and footer fields
+%\fancyhead[C]{\thepage} % except the center
+%}
+\DeclareUnicodeCharacter{2212}{-}
+\setlength{\parindent}{1 cm}
+\usepackage{cases}
+\usepackage{graphicx}
+\begin{document}
+%	\input{Biachinh}
+%\thispagestyle{empty}
+%\begin{tabular}{||l||}\hline \hline
+%\centerline{\bf BỘ GIÁO DỤC VÀ ĐÀO TẠO}
+%\centerline{\bf TRƯỜNG ĐẠI HỌC QUY NHƠN
+%\\
+%\\
+%\\
+%\\
+%\\
+%\\
+%\centerline{\bf \Large BÁO CÁO TỔNG KẾT}
+%\\
+%\\
+%\\
+%\centerline{\bf ĐỀ TÀI NGHIÊN CỨU KHOA HỌC CỦA SINH VIÊN}
+%\\
+%\\
+%\centerline{\bf ĐỀ TÀI THAM GIA XÉT GIẢI THƯỞNG}
+%\\
+%\centerline{\bf `` SINH VIÊN NGHIÊN CỨU KHOA HỌC '' NĂM 2019}
+%\\
+%\centerline{\bf DÀNH CHO SINH VIÊN}
+%\\
+%\\
+%\\
+%\\
+%\\
+%\centerline{\bf Tên đề tài:}
+%\\
+%\centerline{\large\bf \ VỀ MỘT SỐ BẤT ĐẲNG THỨC CHO KỲ VỌNG} 
+%\\
+%\centerline{\large \bf CỦA BIẾN NGẪU NHIÊN VÀ ỨNG DỤNG}
+%\\
+%\centerline{\large \bf TRONG CHỨNG MINH CÁC BẤT ĐẲNG THỨC SƠ CẤP}
+%\\
+%\centerline{\bf Mã số}
+%\\
+%\centerline{\large \bf S2018.479.02}
+%\\
+%\centerline{Thuộc lĩnh vực khoa học và công nghệ:  Khoa học tự nhiên }
+%\\
+%\centerline{(Chuyên ngành Toán học và Thống kê)}
+%\\
+%\\
+%\\
+%\\
+%\\
+%\\
+%\\
+%\\
+%\\
+%\\
+%\centerline{\large \bf{bình định, 4/2019}}
+%\\ \hline  \hline
+%\end{tabular}
+%======Het Bia Chinh
+
+
+%================== Bìa Phụ
+%
+%======Het Bia Phụ
+%\newpage
+%\thispagestyle{empty}
+%$\ $
+
+
+%\clearpage
+%\setcounter{page}{1}
+%\pagenumbering{roman}% Arabic page numbers (and reset to 1)
+%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+\input{TTKQ}
+
+\input{TTSV}
+
+\chapter*{Mở đầu}
+\addcontentsline{toc}{chapter}{\bf Mở đầu}
+
+\noindent 
+{\bf 1. Tổng quan tình hình nghiên cứu thuộc lĩnh vực đề tài:}
+
+Ngày nay nền kinh tế quốc gia đang ngày càng phát triển các lĩnh vực như ngân hàng, dịch vụ, tài chính, chứng khoán … nhưng luôn có thể gặp rủi ro, khó khăn do ảnh hưởng từ những biến động, khủng hoảng khó lường của thị trường tài chính toàn cầu. Trong khi đó, nhu cầu về đầu tư và mở rộng quy mô sản xuất, kinh doanh cũng không ngừng tăng lên. Điều này dẫn đến nhu cầu về phân tích dự báo các đại lượng kinh tế để làm cơ sở hoạch định chính sách, kế hoạch đầu tư trong tương lai nhằm tránh được hoặc hạn chế các rủi ro.
+
+Các mô hình kinh tế lượng ngày càng được ứng dụng rộng rãi trong thực tế. Mô hình hồi quy đơn, hồi quy bội, … phân tích tác động của các yếu tố tới biến số kinh tế nào đó và dự báo sự thay đổi khi các biến độc lập thay đổi. Và một mô hình được sử dụng rất nhiều trong lĩnh vực, tài chính chứng khoán, …, có khả năng dự báo rất tốt đó là mô hình ARIMA. 
+
+Mô hình ARIMA được nghiên cứu và phát hiện bởi George Box và Gwilym Jenkins. Vì vậy, loại mô hình này còn được biết đến với tên gọi là phương pháp Box-Jenkins. Có thể hiểu, ARIMA là mô hình được sử dụng để dự đoán và khai phá dữ liệu trong ngành tài chính và chứng khoán. Đây là một phương pháp nghiên cứu độc lập thông qua việc dự đoán theo các chuỗi thời gian. Sau đó, các nhà nghiên cứu sẽ sử dụng các thuật toán dự báo độ trễ để đưa ra mô hình phù hợp. 
+Chuỗi thời gian đang được sử dụng như một công cụ hữu hiệu để phân tích trong kinh tế, xã hội, cũng như trong nghiên cứu khoa học. Do tầm quan trọng của phân tích chuỗi thời gian mà nhiều tác giả đã đề xuất nhiều công cụ khác nhau để thực hiện. Trước đây, phân tích chuỗi thời gian chủ yếu sử dụng công cụ thống kê như phân tích hồi qui và một số công cụ khác. Nhưng có lẽ mô hình ARIMA của Box-Jenkins là hiệu quả nhất. Hiện nay mô hình này đang được sử dụng để dự báo rất nhiều lĩnh vực trong kinh tế xã hội như trong lĩnh vực giáo dục để dự báo số sinh viên nhập học của một trường đại học; hay trong linh vực khác như dự báo nhu cầu sử dụng điện, hay dự báo nhiệt độ của thời tiết …
+Nghiên cứu chuỗi thời gian luôn là một bài toán gây được sự chú ý của các nhà toán học, kinh tế học, xã hội học … Các quan sát trong thực tế thường được thu thập dưới dạng chuỗi số liệu. Từ những chuỗi số liệu này, người ta có thể rút ra được những quy luật của một quá trình mà được mô tả thông qua chuỗi số liệu đó. Nhưng ứng dụng quan trọng nhất là dự báo, đánh giá được khả năng xảy ra khi cho một chuỗi số liệu.  Như đã nói ở trên, mô hình ARIMA được nghiên cứu ở đây là một công cụ mạnh, nó thích ứng hầu hết cho chuỗi thời gian dừng và tuyến tính.
+
+Về việc tại sao chọn sử dụng phần mềm thống kê R? Trong khoảng hơn một thập niên qua thì R đã trở nên cực kỳ phổ biến trong các trường đại học trên thế giới và được dùng như một công cụ hữu hiệu trong khoa học thống kê. Vì R hoàn toàn miễn phí nhưng có năng lực phân tích dữ liệu không hề thua kém, thậm chí hơn hẳn, các phần mềm thương mại khác (như SPSS, SAS, EVIEW …). Có những phương pháp phân tích các phần mềm thương mại không thể thực hiện được, nhưng R có thể thực hiện. Tất cả các phương pháp thống kê mới luôn được cập nhật trên R. Do đó chúng ta cần phải học và “làm quen” với R qua việc sử dụng nó trong thực hiện phân tích dữ liệu để kịp thời cập nhật hóa những phát triển về tính toán và phân tích thống kê trên thế giới.
+
+Xuất phát từ thực tế ứng dụng to lớn của mô hình ARIMA và tính hiệu quả cao của R mà chúng tôi quyết định chọn đề tài nghiên cứu “Phân tích chuỗi thời gian bằng mô hình ARIMA với phần mềm R”.
+
+
+
+\noindent 
+{\bf 2. Lý do chọn đề tài :}
+
+Updating.....
+
+\noindent 
+{\bf 3. Mục tiêu đề tài :}
+
+Đề tài này đặt ra hai mục tiêu cụ thể sau:
+\begin{itemize}
+	\item \textit{Về lý thuyết:} tìm hiểu lý thuyết cơ bản về chuỗi thời gian và mô hình ARIMA; nắm vững quy trình dự báo bằng mô hình ARIMA gồm 04 bước sau: xác nhận mô hình thử nghiệm; ước lượng tham số; kiểm định bằng chẩn đoán và, cuối cùng là, dự báo.
+	
+	\item \textit{Về thực hành:} nắm vững quy trình xây dựng mô hình ARIMA bằng phần mềm R cho các dữ liệu thời gian thực trong những lĩnh vực khác nhau như là: giáo dục; tài chính; chứng khoán.
+\end{itemize}
+
+
+\noindent 
+{\bf 4. Phương pháp nghiên cứu:}
+
+Sinh viên đọc hiểu các tài liệu tham khảo về lý thuyết dự báo, phân tích chuỗi thời gian và tài liệu hướng dẫn sử dụng R; trực tiếp thực hành xây dựng mô hình trên máy tính cho các bộ dữ liệu khác nhau.
+
+\noindent 
+{\bf 5. Đối tượng và phạm vi nghiên cứu:}
+
+Phương pháp/công cụ dùng trong phân tích chuỗi thời gian, có hỗ trợ của phần mềm thống kê. Phạm vi nghiên cứu:  Mô hình ARIMA trên phần mềm R.
+
+\chapter{Lý thuyết phân tích chuỗi thời gian và dự báo}
+\input{section1}
+
+\chapter{Ứng dụng thực hành dự báo với hỗ trợ phần mềm R}
+Nội dung chính của báo cáo này là chúng tôi ...... Trong chương này, chúng tôi sẽ trình bày cụ thể ........Ngoài ra, ở cuối chương này chúng tôi đưa vào.....
+\section{Lượng mưa}
+\subsection{AbcXyz gì đó....}
+\section{TNGT}
+
+
+\chapter*{Kết luận và kiến nghị} 
+
+Trong đề tài này chúng tôi đã đạt đước các kết quả sau:
+\begin{enumerate}[(1)]
+	\item
+	Ý 1 NQD
+	\item
+     Ý 2 NQD
+	
+\end{enumerate} 
+
+Chúng tôi sẽ tiếp tục.....
+\begin{thebibliography}{99}
+	\addcontentsline{toc}{section}{{\bf Tài liệu tham khảo}\rm }
+	\bibitem{1} Tên tác giả, \textbf{\textit{Tên sách}}, NXB Hà Nội, Hà Nội (1999).
+	\bibitem{2} Tên tác giả, \textbf{\textit{Tên sách}}, NXB Hà Nội, Hà Nội (1999).
+	
+\end{thebibliography} 
+\end{document}

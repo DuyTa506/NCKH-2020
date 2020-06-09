@@ -1,0 +1,254 @@
+\author{Nguyễn Quốc Dương, Lê Phương Thảo, Đinh Thị Quỳnh Như, Cao Thị Ái Loan, Phùng Thị Hồng Diễm, GVHD: TS. Lê Thanh Bính.}
+\documentclass[12pt, a4paper,oneside]{book}
+\usepackage{amsmath, amssymb, latexsym, amscd, amsthm,amstext}
+\usepackage{graphics}
+\usepackage{color, colortbl}            % Màu trong bảng
+\usepackage{varwidth}               
+
+
+\usepackage{hyperref}    
+\usepackage[utf8]{vietnam}
+\usepackage{anysize}							
+\marginsize{3cm}{2cm}{2cm}{2cm}				%\marginsize{left}{right}{top}{bottom}
+%\papersize{width}{height}	
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{longtable}                  % Tạo bảng dài
+\usepackage{tocbibind}
+\usepackage[toc,page]{appendix}         % Tô màu khung - nền - chữ
+\usepackage{graphicx}
+\usepackage{longfbox}		          	% Tạo hộp văn bản - box	
+\title{Sections and Chapters}
+\usepackage{multicol}
+\usepackage{wrapfig}  
+\usepackage{enumerate}
+\usepackage{dsfont}
+\usepackage{commath}
+\renewcommand{\baselinestretch}{1.3} 
+\renewcommand{\figurename}{\bf Hình}
+%%========================================
+\newtheorem{theo}{\bf Định lý}[section]
+\newtheorem{coro}[theo]{\bf Corollary}
+\newtheorem{lemm}[theo]{\bf Bổ đề}
+\newtheorem{prop}[theo]{\bf Mệnh đề}
+\newtheorem{algo}[theo]{\bf Thuật toán}
+\newtheorem{conj}[theo]{\bf Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{dn}[theo]{Định nghĩa}
+\newtheorem{dl}[theo]{Định lý}
+\newtheorem{tc}[theo]{Tính chất}
+\newtheorem{vd}[theo]{\it Ví dụ}
+\newtheorem{cy}[theo]{\it Chú ý}
+\newtheorem{nx}[theo]{\it Nhận xét}
+\newtheorem{pt}{\it Phân tích}
+%\def\R{\mathbb{ R}}                        %Các kí hiệu tập hợp
+%\def\re{\mbox{\rm \texttt{Re}}}            %Định nghĩa từ viết tắt
+%\def\im{\mbox{\rm \texttt{Im}}}
+%=========================================
+
+\newcommand{\seq}[1]{\left<#1\right>}
+\makeatletter
+\def\ps@myheadings{%
+	\def\@evenhead{\hfil\thepage\hfil}
+	\def\@oddhead{\hfil\thepage\hfil}}
+\makeatother 
+\marginsize{3cm}{2.5cm}{2cm}{2cm}
+\marginsize{3cm}{2.5cm}{2cm}{2cm}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\rank}{rank}
+\pagestyle{myheadings}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+%=======================
+
+\DeclareUnicodeCharacter{2212}{-}
+\setlength{\parindent}{1 cm}
+\usepackage{cases}
+%=======================
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}             % Môi trường chứa code
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+	language=R,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3}
+%=============================
+\begin{document}
+	\tableofcontents
+	\input{TTKQ}
+	\input{TTSV}
+	\input{MD}
+	\chapter{Tổng quan về lý thuyết chuỗi thời gian và mô hình ARIMA}
+
+Trong Chương 1, chúng tôi giới thiệu tổng quan một số kiến thức về lý thuyết chuỗi thời gian, hồi quy cổ điển của chuỗi thời gian bao gồm các định nghĩa về \textit{hàm trung bình}, \textit{hàm tự hiệp phương sai mẫu}, \textit{hàm tự tương quan mẫu} và tính chất \textit{phân phối mẫu lớn của ACF} (Auto-Correlation Function). Chi tiết các định nghĩa được chúng tôi trình bày trong bản báo cáo tổng kết. Từ các khái niệm và tính chất này, chúng tôi tiến hành xây dựng mô hình ARIMA.
+
+\section{Mô hình ARIMA}
+\textit{Mô hình tự hồi quy tích hợp trung bình trượt} (ARIMA - Autoregressive Integrated Moving Average) là một lớp mô hình tuyến tính có khả năng biểu diễn cả chuỗi thời gian dừng lẫn không dừng. Mô hình ARIMA dựa vào các mẫu tự tương quan trong bản thân của chuỗi thời gian để sinh ra dự báo. Hệ thống các phương pháp dùng để xác định, kiểm tra và cải tiến mô hình ARIMA có sự đóng góp rất lớn của hai nhà thống kê \textit{G. E. P. Box và G. M. Jenkins (1970)}. Do đó, việc mô hình hóa và dự báo dựa trên mô hình ARIMA còn được gọi là \textit{phương pháp luận Box-Jenkins}. Mô hình ARIMA là sự kết hợp giữa 3 quá trình: \textit{quá trình tự hồi quy, quá trình trung bình trượt và sai phân bậc d}. Quy trình xây dựng mô hình ARIMA, các định nghĩa và phương trình tổng quát được chúng tôi trình bày chi tiết trong bản tổng kết. 
+
+\section{Các bước để xây dựng mô hình ARIMA} 
+\textbf{Bước 1: Kiểm tra tính dừng của chuỗi thời gian:} Quan sát biểu đồ chuỗi thời gian, quan sát đồ thị ACF, \textit{kiểm định Dickey-Fuller mở rộng}.\\
+\textbf{Bước 2: Chuyển một chuỗi không có tính dừng về chuỗi có tính dừng}  giúp ta chọn được tham số $d$ của mô hình.\\
+\textbf{Bước 3: Chọn mô hình phù hợp nhất}
+\begin{itemize}
+	\item Quan sát đồ thị ACF và PACF, chúng ta chọn được tham số $p$ và $q$ hoặc dùng \textit{thuật toán Hyndman-Khandakar (2008)} để xác định các tham số $p$, $d$, $q$ một cách tự động.
+	\item Chúng tôi dùng các tiêu chí thông tin AIC, AICc, BIC để chọn mô hình phù hợp nhất.
+\end{itemize}
+\textbf{Bước 4: Kiểm định độ chính xác của mô hình.}
+\begin{itemize}
+	\item Dựa vào các \textit{thước đo sai số RMSE, MAE, MAPE}, chúng tôi đánh giá được sai số của dự báo từ mô hình.
+	\item Ta kiểm tra xem các phần dư ước lượng từ mô hình có tính dừng hay không. Nếu phần dư có tính dừng với giá trị trung bình bằng 0 và phương sai là 1 thì mô hình là phù hợp; còn nếu không ta lặp lại các bước ở trên cho đến khi tìm được mô hình tốt nhất.
+\end{itemize}
+\textbf{Bước 5: Dự báo.}
+
+\section{Mô hình ARIMA theo mùa}
+Đối với dữ liệu có tính mùa vụ, \textit{mô hình ARIMA theo mùa (SARIMA - Seasonal Autoregressive Integrated Moving Average)} là một lựa chọn hợp lý. Mô hình ARIMA theo mùa có cấu trúc tương tự như mô hình ARIMA, được hình thành từ các quá trình AR, MA và quá trình tích hợp để đưa chuỗi dữ liệu về chuỗi có tính dừng. Định nghĩa và phương trình tổng quát của mô hình ARIMA theo mùa được chúng tôi trình bày chi tiết trong bản báo cáo tổng kết.
+
+Trong toàn bộ Chương 1, chúng tôi đã trình bày lý thuyết cơ sở của chuỗi thời gian, hồi quy cổ điển của chuỗi thời gian và mô hình ARIMA. Trong chương tiếp theo, chúng tôi sẽ áp dụng kiến thức lý thuyết của mô hình đã giới thiệu để phân tích dữ liệu chuỗi thời gian với sự hỗ trợ của phần mềm R.
+	
+\chapter{Phân tích chuỗi thời gian bằng mô hình ARIMA với phần mềm R}
+Trong chương này, chúng tôi trình bày tổng quan về lịch sử của R, các gói lệnh chính được sử dụng trong bài báo cáo và chức năng của chúng, thực hành phân tích dữ liệu chuỗi thời gian bằng mô hình ARIMA với sự hỗ trợ của phần mềm R. Trên mỗi tập dữ liệu được phân tích, chúng tôi không chỉ thực hiện xây dựng mô hình ARIMA và phân tích kết quả đầu ra thu được, mà còn sử dụng phần mềm vào việc vẽ các đồ thị cần thiết nhằm trực quan hóa các kết quả phân tích. 
+\section{Phân tích và dự báo trên tập dữ liệu COVID-19}
+Trong phần này, chúng tôi trình bày các bước xử lý số liệu thô, phân tích tình hình COVID-19 trên toàn thế giới bằng các hình ảnh được chúng tôi vẽ được. Áp dụng mô hình ARIMA để dự báo số ca nhiễm mới tại Mỹ và số ca tử vong mới tại Ý. Xuyên suốt bài báo cáo này, code dùng để vẽ hình và xây dựng mô hình ARIMA được tìm thấy tại \url{https://github.com/nguyenquocduongqnu/NCKH-2020}. Qua mỗi đồ thị, chúng tôi rút ra một số nhận xét được trình bày chi tiết trong bản báo cáo tổng kết.
+
+Chúng tôi lấy dữ liệu toàn cầu dưới dạng thô được thống kê hàng ngày của đại học Johns Hopkins tại \url{https://github.com/CSSEGISandData/COVID-19}. Phần lớn các nhà thống kê học, dịch tễ học và các nhà nghiên cứu đều dùng bộ dữ liệu này để phân tích.
+\subsection{Dự báo số ca nhiễm mới COVID-19 tại nước Mỹ}
+Trong phần này, chúng tôi sẽ phân tích tình hình diễn biến dịch bệnh tại Mỹ và dự báo số ca nhiễm mới của quốc gia này trong 7 ngày tiếp theo. Dữ liệu được trích xuất từ ngày 22/1/2020 đến ngày 4/4/2020. Các bước đào tạo và xây dựng mô hình được chúng tôi trình bày chi tiết trong bản báo cáo tổng kết.
+\begin{table}[!h]	
+	\caption{Đánh giá sai số từ mô hình ARIMA(0,2,3)}
+	\label{u1}
+	\centering 
+	\fontsize{8}{10} \selectfont
+	\begin{tabular}[t]{rrrrr}
+		\toprule
+		Date &Actual & Forecast & Error & Error\_Percent\\
+		\midrule
+		\rowcolor{gray!6} 2020-04-01 &25200 & 26711 & 1511 & 6\%\\
+		2020-04-02 &30390 & 27733 & -2657 & -9\%\\
+		\rowcolor{gray!6} 2020-04-03 &31824 & 29476 & -2348 & -7\%\\
+	    2020-04-04 &33267 & 31219 & -2048 & -6\%\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+Bảng \ref{u1} đánh giá sai số từ mô hình ARIMA(0, 2, 3), chúng tôi rút ra một số nhận xét như sau:
+\begin{itemize}
+	\item[(i)] Phần trăm sai số giữa các giá trị dự báo và giá trị thực tế tương đối nhỏ.
+	\item[(ii)] Giá trị dự báo thấp hơn so với giá trị thực tế. Điều này cho chúng ta thấy rằng số ca nhiễm mới tại Mỹ đang tăng rất nhanh và có nguy cơ sẽ dẫn đến khủng hoảng trên diện rộng trong vài ngày tới. Vì vậy các giá trị dự báo được đánh giá là phù hợp và có ý nghĩa.
+\end{itemize}
+Do đó, mô hình này có thể là mô hình có ích để đưa ra một cảnh báo cấp thiết để các cấp chính quyền và người dân có hành động cao hơn nữa nhằm kiểm soát tốt dịch bệnh trong thời gian tới. Số ca nhiễm mới và đồ thị dự báo tại Mỹ trong 7 ngày tiếp theo được chúng tôi trình bày chi tiết trong bản báo cáo tổng kết. Từ kết quả dự báo, chúng tôi sẽ đưa ra một cảnh báo cho 7 ngày tiếp theo (5/4/2020 - 11/4/2020) rằng số ca nhiễm tại nước Mỹ vẫn tiếp tục tăng cao, thậm chí vượt khỏi giới hạn trên của khoảng dự báo 95\% nếu Mỹ không đưa ra các biện mạnh hơn để kiểm soát.
+\subsection{Dự báo số ca tử vong mới theo ngày do COVID-19 gây ra ở Italy}
+Phân tích nguyên nhân dẫn đến số ca tử vong tăng vọt tại Ý được chúng tôi trình bày chi tiết trong bản báo cáo tổng kết. Tiếp theo, chúng tôi sẽ dự báo số ca tử vong mới tại quốc gia này trong 7 ngày tiếp theo bằng mô hình ARIMA.
+
+Dữ liệu được phân tích từ ngày 22/01/2020 đến ngày 07/04/2020. Các bước đào tạo và xây dựng mô hình được chúng tôi trình bày chi tiết trong bản báo cáo tổng kết.
+\begin{table}[!h]	
+	\caption{Đánh giá sai số dự báo số ca tử vong mới tại Italy}
+    \label{Italy}
+	\centering
+	\fontsize{6}{8}\selectfont
+	\begin{tabular}[t]{rrrrr}
+		\toprule
+		Date & Actual & Forecast & Error & Error\_Percent\\
+		\midrule
+		\rowcolor{gray!6}  2020-04-03 & 766 & 770 & 4 & 1\%\\
+		2020-04-04 & 681 & 735 & 54 & 8\%\\
+		\rowcolor{gray!6}  2020-04-05 & 525 & 720 & 195 & 37\%\\
+		2020-04-06 & 636 & 694 & 58 & 9\%\\
+		\rowcolor{gray!6}  2020-04-07 & 604 & 681 & 77 & 13\%\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+Quan sát bảng \ref{Italy}, chúng ta thấy được phần trăm sai số từ mô hình ARIMA(3, 1, 3) rất nhỏ. Vì vậy mô hình này có thể dùng để dự báo tổng quan cho 7 ngày tiếp theo tại Italy. Số ca tử vong mới và đồ thị dự báo tại Italy trong 7 ngày tiếp theo được chúng tôi trình bày chi tiết trong bản báo cáo tổng kết. Từ kết quả dự báo, chúng ta thấy số ca tử vong mới ở Italy có xu hướng giảm trong tuần tới. Tuy nhiên con số tử vong vẫn còn rất cao. Do đó, chính phủ Italy không nên chủ quan mà cần nỗ lực hơn nữa để đưa ra kịch bản kiểm soát dịch và phác đồ điều trị tối ưu nhất.
+
+\section{Dự báo lượng mưa hàng tháng tại trạm quan trắc Quy Nhơn}
+Trong phần này, chúng tôi sẽ phân tích tổng quan lượng mưa tại trạm quan trắc Quy Nhơn và dự báo lượng mưa trung bình hàng tháng cho 2 năm tiếp theo (2019-2020) bằng \textit{mô hình mô hình tự hồi quy tích hợp trung bình trượt theo mùa} (SARIMA).
+
+Chúng tôi lấy dữ liệu của trạm quan trắc Quy Nhơn từ \textit{Trung tâm dữ liệu khí tượng thủy văn quốc gia} (\url{http://cmh.com.vn/}). Dữ liệu được thống kê từ tháng 1/2000 đến tháng 12/2018. Các bước xây dựng mô hình ARIMA theo mùa được chúng tôi trình bày chi tiết trong bài báo cáo tổng kết. Sai số từ mô hình ARIMA(1,0,0)(2,1,1)$_{12}$ được mô tả trong bảng \ref{test_fc}.
+\begin{table}[!h]	
+	\caption{Đối sánh giữa kết quả dự báo và tập test cho lượng mưa}
+	\label{test_fc}
+	\centering
+	\fontsize{6}{7}\selectfont
+	\begin{tabular}[t]{lrrrrrrr}
+		\toprule
+		&Point Actual(A) & Point Forecast (F)& Lo 80 & Hi 80 & Lo 95 & Hi 95& $\dfrac{A-F}{A}.100\%$\\
+		\midrule
+		\rowcolor{gray!6}  Jan 2018 & 128.6 & 81.81485 & -112.37714 & 276.0068 & -215.17616 & 378.8059 & 36\%\\
+		Feb 2018 & 2.8 & 32.32366 & -162.30622 & 226.9535 & -265.33706 & 329.9844 & -1054\%\\
+		\rowcolor{gray!6}  Mar 2018 & 1.6 & 34.07819 & -160.55367 & 228.7101 & -263.58555 & 331.7419 & -2029\%\\
+		Apr 2018 & 20.0 & 46.95980 & -147.67208 & 241.5917 & -250.70397 & 344.6236 & -134\%\\
+		\rowcolor{gray!6}  May 2018 & 9.4 & 82.40952 & -112.22235 & 277.0414 & -215.25424 & 380.0733 & -776\%\\
+		\addlinespace
+		Jun 2018 & 103.7 & 44.63459 & -149.99728 & 239.2665 & -253.02917 & 342.2984 & 56\%\\
+		\rowcolor{gray!6}  Jul 2018 & 14.0 & 57.38414 & -137.24773 & 252.0160 & -240.27962 & 355.0479 & -309\%\\
+		Aug 2018 & 51.1 & 122.92861 & -71.70327 & 317.5605 & -174.73515 & 420.5924 & -140\%\\
+		\rowcolor{gray!6}  Sep 2018 & 235.5 & 209.18078 & 14.54891 & 403.8127 & -88.48298 & 506.8445 & 11\%\\
+		Oct 2018 & 476.7 & 420.49951 & 225.86764 & 615.1314 & 122.83575 & 718.1633 & 11\%\\
+		\addlinespace
+		\rowcolor{gray!6}  Nov 2018 & 462.0 & 574.92124 & 380.28937 & 769.5531 & 277.25748 & 872.5850 & -24\%\\
+		Dec 2018 & 337.9 & 321.89014 & 127.25849 & 516.5218 & 24.22672 & 619.5536 & 4\%\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Các giá trị dự báo cho mùa mưa (tháng 9 đến tháng 12) cho kết quả sai số rất thấp. Điều này phù hợp với đặc điểm lượng mưa tại Quy Nhơn. Do đó, mô hình ARIMA(1, 0, 0)(2, 1, 1)$_{12}$ có thể dùng dự báo lượng mưa tại Quy Nhơn. Vì vậy, chúng tôi sử dụng mô hình ARIMA(1, 0, 0)(2, 1, 1)$_{12}$ để dự báo lượng mưa hàng tháng cho 2 năm tiếp theo. Từ kết quả dự báo này, chúng tôi hy vọng sẽ giúp ích trong việc hoạch định và điều tiết hệ thống tài nguyên nước.
+\section{Webstie Dashboard COVID-19}
+Nhằm góp phần vào việc kiểm soát dịch, chúng tôi đã tạo ra một website hỗ trợ quan sát xu hướng dịch bệnh COVID-19 cho từng quốc gia bằng mô hình ARIMA với package "shiny" trong R. Link: \url{https://nguyenquocduong.shinyapps.io/NCKH}.
+\section{So sánh mô hình ARIMA với mô hình NNAR}
+Tập dữ liệu được chúng tôi sử dụng để đánh giá mô hình là dữ liệu lượng mưa tại trạm quan trắc Quy Nhơn. Đối với tập dữ liệu này, mô hình ARIMA thể hiện khả năng dự báo tốt hơn mô hình NNAR (Neural Network Auto-Regression). Chi tiết quy trình thực hiện so sánh được chúng tôi trình bày trong bản báo cáo tổng kết. Vì lí do thời gian còn hạn chế, chúng tôi chỉ so sánh giữa ARIMA và NNAR. Trong thời gian tới, chúng tôi sẽ mở rộng so sánh thêm với một số mô hình hiện đại như LSTM (Long Short Term Memory), ARIMA-LSTM, ARIMA-ANN, \dots
+\section*{Kết luận chương 2}
+Trong Chương 2, chúng tôi đã sử dụng các gói lệnh trong R để phân tích tổng quan dữ liệu COVID-19, dự báo số ca nhiễm mới tại Mỹ, dự báo số ca tử vong mới ở Italy và dự báo lượng mưa hàng tháng tại trạm quan trắc Quy Nhơn. Qua từng bộ dữ liệu được phân tích, chúng tôi thấy được mô hình ARIMA đã cho khả năng dự báo rất tốt. Hơn nữa, chúng tôi đã khai thác rất hiệu quả tính năng của R để xây dựng được website Dashboard COVID-19 nhằm góp phần vào công cuộc chống đại dịch toàn cầu.
+\chapter*{Thảo luận}
+\section*{Những mặt thuận lợi và hạn chế của mô hình ARIMA}
+Dự báo chính xác là một nhiệm vụ quan trọng nhưng thường là khó khăn đối với các nhà hoạch định chính sách trong nhiều lĩnh vực. Mặc dù có rất nhiều mô hình được ứng dụng trong việc dự báo nhưng mỗi mô hình đều có thuận lợi và hạn chế riêng. Do đó, chúng ta cần nắm bắt được những điểm thuận lợi và hạn chế của mô hình được đưa ra.
+\subsection*{Những điểm thuận lợi khi sử dụng ARIMA}
+\begin{itemize}
+	\item ARIMA là một trong những mô hình tuyến tính phổ biến nhất trong dự báo chuỗi thời gian đã được áp dụng rộng rãi trong thập kỷ qua.
+	\item ARIMA phát huy thế mạnh trong việc sử dụng để dự báo tài chính, chứng khoán, kinh tế lượng, khí tượng thủy văn, ...
+	\item ARIMA thích hợp cho các bài toán dự báo ngắn hạn.
+	\item Hơn nữa, ARIMA còn là nền tảng để xây dựng các mô hình lai phù hợp với từng loại dữ liệu cụ thể và cho kết quả chính xác hơn như ARIMA-ANN, ARIMA-LSTM, ARIMAX,...
+\end{itemize}
+\subsection*{Những mặt hạn chế khi sử dụng ARIMA}
+\begin{itemize}
+	\item Trong ARIMA, một cấu trúc tương quan tuyến tính được giả định giữa các giá trị trong chuỗi thời gian. Do đó, đối với dữ liệu có tính chất phi tuyến thì mô hình ARIMA không phát hiện được. 
+	\item Các giá trị trong tương lai được dự báo phụ thuộc vào quá khứ nên đối với bài toán dự báo dài hạn, việc lựa chọn ARIMA là không phù hợp.
+\end{itemize}
+\chapter*{Kết luận và kiến nghị}
+Trong đề tài này, chúng tôi đã đạt được một số kết quả sau: 
+\begin{itemize}
+	\item[(1)] Tìm hiểu lý thuyết căn bản, quan trọng về chuỗi thời gian, hồi quy cổ điển với chuỗi thời gian và mô hình ARIMA.
+	\item[(2)] Bước đầu đã nắm vững cách sử dụng các lệnh trong R để xây dựng mô hình ARIMA; hiểu và giải thích được kết quả đầu ra của mô hình ARIMA, cũng như nắm được kỹ năng về xử lý số liệu thô và kỹ năng vẽ hình, biểu đồ bằng phần mềm R.
+	\item[(3)] Hơn nữa, chúng tôi đã xây dựng một website Dashboard COVID-19 nhằm theo dõi xu hướng dịch bệnh cho mỗi quốc gia bằng mô hình ARIMA với phần mềm R.
+	\item[(4)] Đồng thời, trong quá trình làm phần ví dụ thực hành với R, chúng tôi đã có điều kiện tìm hiểu thêm nhiều kiến thức mới ở các lĩnh vực khác nhau như: dịch tễ học, y tế cộng đồng, khí tượng thủy văn, \dots.
+\end{itemize}
+Trong thời gian tới, chúng tôi mong muốn thực hiện các nghiên cứu về khoa học dữ liệu với R (data science, mô hình phân tích sống sót) trên số liệu thực gắn với lĩnh vực Y sinh, sức khỏe cộng đồng và đời sống kinh tế-xã hội của địa phương, trong nhiều lĩnh vực khác nhau, để có thể mang lại những ứng dụng thiết thực cho tỉnh Bình Định.
+\begin{thebibliography}{99}
+	\bibitem{1} Luz PM, Mendes BV, Codeco CT, Struchiner CJ and Galvani AP, \textbf{\textit{Time series analysis of dengue incidence in Rio de Janeiro}}, , Am J Trop Med Hyg, Brazil(2008), 79 (6): 933-939.
+    \bibitem{2} Earnest A, Chen MI, Ng D and Leo YS, \textbf{\textit{Using autoregressive integrated moving average(ARIMA) models to predict and monitor the number of beds occupied during a SARS outbreak in a tertiary hospital in Singapore}}, BMC Health Services Research, (2005), 5: 36-10.
+    \bibitem{3}  Li XJ, Kang DM, Cao J and Wang JZ, \textbf{\textit{A time series model in incidence forecasting of hemorrhagic fever with renal syndrome}}, Journal of Shandong University (Health Sciences), (2008), 46 (5): 547-549.
+    \bibitem{4} M. Rahman, Islam AHMS, Nadvi SYM, R. M. Rahman, \textit{\textbf{Comparative study of ANFIS and ARIMA model for weather forecasting in Dhaka}}. Informatics, Electronics \& Vision (ICIEV), 2013 International Conference on, Dhaka; 2013. p. 1-6.
+    \bibitem{5} Dizon CQ, \textit{\textbf{ARIMA modeling of a stochastic process appropriate for the angat reservoir}}. Philipp. Eng. J. 2007;28:1-20
+    \bibitem{6} Momani PENM, \textit{\textbf{Time series analysis model for  rainfall data in Jordan: Case study for using time series analysis}}, Am. J. Environ. Sci. 2009;5:599-604.
+    \bibitem{7} Nguyễn Hữu Quyền, \textit{\textbf{Nghiên cứu ứng dụng mô hình ARIMA để dự báo lượng mưa vụ đông xuân ở một số tỉnh vùng Đồng bằng Bắc Bộ}}, Luận văn thạc sĩ khoa học, 2013.	
+	\bibitem{8} R. H. Shumway and D. S. Stoffer, \textbf{\textit{Time Series Analysis and Its Applications}}, Springer Publisher, USA(2006).
+	\bibitem{9} G. E. P. Box, G. M. Jenkins, G. C. Reinsel and G. M. Liung, \textbf{\textit{Time Series Analysis: Forecasting and Control, $5^{th}$ edition}}, Publisher Wiley, Canada(2016).
+	\bibitem{10} R. J. Hyndman and G. Athanasopoulos, \textbf{\textit{Forecasting: Principles and Practice, $2^{nd}$ edition}}, OTexts Publisher, USA(2018).
+	\bibitem{11} R. Krispin,  \textbf{\textit{Hands-On Time Series Analysis with R}}, Packt Publisher, UK(2019). 	
+	\bibitem{12} Website:\newblock{\textcolor{blue}{\url{https://nguyenquocduong.shinyapps.io/NCKH/}}}.
+	
+
+		
+\end{thebibliography}	
+\end{document}

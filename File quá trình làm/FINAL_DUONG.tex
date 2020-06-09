@@ -1,0 +1,1576 @@
+\documentclass[12pt, a4paper,oneside]{book}
+\usepackage{amsmath, amssymb, latexsym, amscd, amsthm,amstext}  % Typical maths resource packages
+\usepackage{graphics}                                           % Packages to allow inclusion of graphics
+\usepackage{color} 
+\usepackage{varwidth}                                             % For creating coloured text and background
+\usepackage{hyperref}                                           % For creating hyperlinks in cross references
+\usepackage[utf8]{vietnam}									%For writting Vietnamese
+\usepackage{anysize}											% to set the margin size 
+\marginsize{3cm}{2cm}{2cm}{2cm}				%\marginsize{left}{right}{top}{bottom}
+%\papersize{width}{height}										% sets the paper size
+\title{Sections and Chapters}
+ \usepackage{multicol}
+ \usepackage{wrapfig}  
+\usepackage{enumerate}
+\usepackage{dsfont}
+\usepackage{commath}
+
+\renewcommand{\baselinestretch}{1.3} 
+\renewcommand{\figurename}{\bf Hình}
+
+%%========================================
+\newtheorem{theo}{\bf Định lý}[section]
+\newtheorem{coro}[theo]{\bf Corollary}
+\newtheorem{lemm}[theo]{\bf Bổ đề}
+\newtheorem{prop}[theo]{\bf Mệnh đề}
+\newtheorem{algo}[theo]{\bf Algorithm}
+\newtheorem{conj}[theo]{\bf Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{dn}[theo]{Định nghĩa}
+\newtheorem{dl}[theo]{Định lý}
+\newtheorem{tc}[theo]{Tính chất}
+\newtheorem{vd}[theo]{\it Ví dụ}
+\newtheorem{cy}[theo]{\it Chú ý}
+\newtheorem{nx}[theo]{\it Nhận xét}
+\newtheorem{pt}{\it Phân tích}
+
+
+
+\def\R{\mathbb{ R}}
+\def\C{\mathbb{ C}}
+\def\N{\mathbb{ N}}
+\def\Z{\mathbb{ Z}}
+\def\Q{\mathbb{ Q}}
+\def\K{\mathbb{ K}}
+\def\Sy{\mathbb{ S}}
+\def\H{\mathbb{ H}}
+\def\T{\mathbb{ T}}
+\def\K{\mathbb{ K}}
+\def\E{\mathbb{ E}}
+\def\Po{\mathbb{ P}}
+\def\L{\mathbb{ L}}
+\def\qfun{\textsf{q}}
+%=========================================
+\def\rk{\mbox{\rm \texttt{rank}}}
+\def\tr{\mbox{\rm \texttt{Tr}}}  
+\def\diag{\mbox{\rm \texttt{diag}}}
+\def\re{\mbox{\rm \texttt{Re}}}
+\def\im{\mbox{\rm \texttt{Im}}}
+\def\face{\mbox{\rm \texttt{face}}}
+\def\ran{\mbox{\rm \texttt{Ran}}}
+\def\nul{\mbox{\rm \texttt{Nul}}}   
+\def\vect{\mbox{\rm \texttt{vec}}}
+\def\svec{\mbox{\rm \texttt{svec}}}
+\def\sp{\mbox{\rm \texttt{Span}}}
+\newcommand{\seq}[1]{\left<#1\right>}
+\makeatletter
+\def\ps@myheadings{%
+\def\@evenhead{\hfil\thepage\hfil}
+\def\@oddhead{\hfil\thepage\hfil}}
+\makeatother 
+\usepackage{anysize}
+\marginsize{3cm}{2.5cm}{2cm}{2cm}
+\marginsize{3cm}{2.5cm}{2cm}{2cm}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\rank}{rank}
+\pagestyle{myheadings}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+%=======================
+
+\DeclareUnicodeCharacter{2212}{-}
+\setlength{\parindent}{1 cm}
+\usepackage{cases}
+\usepackage{graphicx}
+%=======================
+
+\begin{document}
+\begin{center}
+	\textbf{{\normalsize KHOA TOÁN VÀ THỐNG KÊ}}\\
+	\vspace{3cm}
+	\textbf{{\LARGE DEMO}}\\
+	\vspace{2.5cm}
+	\textbf{{\normalsize BÁO CÁO TỔNG KẾT\\
+			ĐỀ TÀI NGHIÊN CỨU KHOA HỌC SINH VIÊN\\
+			THAM GIA XÉT GIẢI THƯỞNG\\
+			SINH VIÊN NGHIÊN CỨU KHOA HỌC CẤP TRƯỜNG}}
+		
+		
+		\vspace{2.5cm}
+\textbf{{\large NGHIÊN CỨU VỀ PHÂN TÍCH CHUỖI THỜI GIAN BẰNG MÔ HÌNH ARIMA VỚI PHẦN MỀM R}}\\
+\vspace{2.5cm}
+
+           \textbf{	{\normalsize CAO THỊ ÁI LOAN\\
+           		PHÙNG THỊ HỒNG DIỄM\\
+           		NGUYỄN QUỐC DƯƠNG\\      
+           		LÊ PHƯƠNG THẢO\\
+           		ĐINH THỊ QUỲNH NHƯ}}\\
+           \vspace{1cm}
+            \textbf{ Người hướng dẫn: TS. Lê Thanh Bính}                 
+\end{center}
+\tableofcontents
+\listoffigures
+\listoftables
+\chapter{Tổng quan về lý thuyết chuỗi thời gian và mô hình ARIMA}
+
+Trong chương 1, chúng tôi sẽ...
+
+\section{Các vấn đề về chuỗi thời gian}
+
+Chuỗi thời gian (tiếng Anh: time series) trong thống kê, xử lý tín hiệu, kinh tế lượng và toán tài chính là một chuỗi các điểm dữ liệu, được đo theo từng khoảng khắc thời gian liền nhau theo một tần suất thời gian thống nhất. Nghiên cứu chuỗi thời gian luôn là một bài toán gây được sự chú ý của các nhà toán học, kinh tế học, xã hội học, khí tượng và khí hậu học, … Các quan sát trong thực tế thường được thu thập dưới dạng chuỗi số liệu. Từ những chuỗi số liệu này, người ta có thể trích xuất ra được các thuộc tính thống kê có ý nghĩa và các đặc điểm của dữ liệu. Nhưng ứng dụng quan trọng nhất là dự báo, đánh giá được khả năng xảy ra khi cho một chuỗi số liệu. 
+\subsection{\label{ytph}Các yếu tố phụ thuộc: Tương quan và Tương quan chéo}
+
+Mô tả đầy đủ của một chuỗi thời gian, được quan sát như một tập hợp của n biến ngẫu nhiên tại các thời điểm tùy ý $t_{1},t_{2},...t_{n}$ (với n là số nguyên dương bất kỳ), được cho bởi hàm phân phối đồng thời, là xác suất mà mọi biến ngẫu nhiên trong chuỗi đều nhận giá trị nhỏ hơn các hằng số $c_{1},c_{2},..c_{n},$ tức là:
+\begin{equation}
+	F(c_{1},c_{2},...,c_{n})= P(x_{t_{1}}\leq c_{1},x_{t_{2}}\leq c_{2},...,x_{t_{n}}\leq c_{n}). \label{ct1.1}
+\end{equation}
+Tuy nhiên, hàm phân phối nhiều chiều thường không được biểu diễn một cách dễ dàng, trừ khi mọi biến ngẫu nhiên đều đạt chuẩn chung, trong trường hợp đó, biểu thức (\ref{ct1.1}) thường xuất phát từ phân phối chuẩn nhiều chiều (xem Anderson, 1984,hoặc Johnson và Wicotta, 1992). Trong một trường hợp cụ thể, hàm phân phối nhiều chiều được biểu diễn dễ dàng nếu các biến ngẫu nhiên là độc lập và có phân phối chuẩn tắc giống hệt nhau, do đó hàm phân phối đồng thời có thể được biểu thị là tích các giá trị trên biên, tức là
+\begin{equation}
+	F(c_{1},c_{2},...,c_{n})=  \prod_{t=1}^{n}\Phi(c_{t}), \label{ct1.2}
+\end{equation}
+với mọi 
+\begin{equation}
+\Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} exp \left\lbrace -\dfrac{z^2}{2}\right\rbrace  dz \label{ct1.3}
+\end{equation}
+là hàm phân phối tích lũy của phân phối chuẩn tắc.
+
+Mặc dù hàm phân phối nhiều chiều có thể mô tả đầy đủ các dữ liệu, nhưng nó là một công cụ khó sử dụng để hiển thị và phân tích dữ liệu chuỗi thời gian. Hàm phân phối (\ref{ct1.1}) phải được đánh giá là hàm của n đối số, vì vậy mọi biểu đồ của hàm mật độ nhiều chiều tương ứng hầu như không khả thi. Hàm phân phối một chiều
+\begin{equation}
+	{F}_{t}(x)= {P}\{x_{t}\leq x\} \label{ct1.4}
+\end{equation}
+hoặc các hàm mật độ một chiều tương ứng tồn tại
+\begin{equation}
+{f}_{t}(x)= \dfrac{\partial{F}_{t}(x)}{\partial(x)}, \label{ct1.5}
+\end{equation}
+thường cung cấp thông tin để xác định xem một toạ độ cụ thể của chuỗi thời gian có hàm mật độ chuẩn tắc, ví dụ như hàm phân phối chuẩn (Gaussian).
+\begin{dn}\textbf{Hàm trung bình} được định nghĩa là
+   \begin{equation}
+	\mu_{xt} = E(x_{t}) =  \int_{-\infty}^{\infty} xf_{t}(x) dx, \label{ct1.6}
+   \end{equation}
+trong đó $E$ thường là kỳ vọng. Khi không có sự nhầm lẫn nào về chuỗi thời gian mà chúng ta đang xét, chúng ta sẽ bỏ đi chỉ số dưới và viết tắt $\mu_{xt}$ là $\mu_{t}$.
+\end{dn}
+
+Tìm ra giá trị $\mu_{t}$ có ý nghĩa quan trọng về mặt lý thuyết chuỗi vào một thời điểm cụ thể, giá trị trung bình có thể áp dụng được cho tất cả các giá trị $x_{t}$. Sự thiếu độc lập giữa hai giá trị liền kề $x_{s}$ và $x_{t}$ có thể được đánh giá bằng số, như trong thống kê cổ điển, sử dụng các khái niệm hiệp phương saivà tương quan. Giả sử phương sai của $x_{t}$ là hữu hạn, chúng ta có định nghĩa sau
+\begin{dn}\textbf{Hàm tự hiệp phương sai} được định nghĩa là tích số mômen cấp hai
+	\begin{equation}
+		\gamma_{x}(s,t) = E [(x_{s} - \mu_{t})]=E[(x_{s}-\mu_{s})(x_{t}-\mu_{t})], \label{ct1.11}
+	\end{equation}
+cho tất cả s và t. Khi không có sự nhầm lẫn nào về chuỗi thời gian chúng ta đang xét, chúng ta sẽ bỏ chỉ số dưới và viết $\gamma_{x}(s,t)$ là $ \gamma_{s,t}.$
+\end{dn}
+
+Lưu ý rằng $\gamma_{x}(s,t) =\gamma_{x}(t,s)$ được áp dụng cho tất cả các điểm thời gian s và t. Độ đo của hàm tự hiệp phương sai là sự phụ thuộc tuyến tính giữa hai điểm trên cùng một chuỗi được quan sát tại thời điểm khác nhau. Với mọi chuỗi trơn, hàm tự hiệp phương sai vẫn đạt giá trị lớn ngay cả khi t và s cách xa nhau, trong khi các chuỗi thay đổi không xác định có xu hướng có hàm tự hiệp phương sai  gần như bằng 0 đối với các khoảng cách lớn. Tự hiệp phương sai (\ref{ct1.11}) là trung bình tích chéo tương ứng so với mật độ đồng thời $F=(x_{s}, x_{t})$. Nhớ lại từ thống kê cổ điển rằng nếu $\gamma_{x} (s,t)= 0$, $x_{s}$ và $x_{t}$ là không tuyến tính, nhưng vẫn có thể có một số cấu trúc phụ thuộc giữa chúng. Tuy nhiên, nếu $x_{s}$ và $x_{t}$ có phân phối chuẩn hai biến, $\gamma_{x}(s,t) = 0$ đảm bảo sự độc lập giữa chúng. Rõ ràng là, với $s = t$, tự hiệp phương sai được đưa về phương sai (giả định hữu hạn), bởi vì
+	\begin{equation}
+		\gamma_{x}(t,t) = E [(x_{t}- \mu_{t})^2]. \label{ct1.12}
+	\end{equation}
+
+Phép toán làm trơn đưa vào hàm hiệp phương sai giảm khi khoảng cách giữa hai điểm thời gian tăng và biến mất hoàn toàn khi các điểm thời gian được phân tách bằng ba hoặc nhiều điểm thời gian. Tự hiệp phương sai rất thú vị vì nó chỉ phụ thuộc vào sự phân tách thời gian hoặc độ trễ chứ không phụ thuộc vào sự tuyệt đối về vị trí của các điểm dọc theo chuỗi. Sau này chúng ta sẽ thấy rằng sự phụ thuộc này cho thấy một mô hình toán học cho các khái niệm về tính dừng yếu.
+\begin{dn}\textbf{Hàm tự tương quan (ACF)} được định nghĩa là
+	\begin{equation}
+	\rho(s,t) = \dfrac{\gamma(s,t)}{\sqrt{\gamma(s,s)\gamma(t,t)}}. \label{ct1.13}
+	\end{equation}
+\end{dn}
+ACF đo lường khả năng dự đoán tuyến tính của chuỗi tại thời điểm t, $x_t$, nếu chỉ sử dụng giá trị $x_s$. Chúng ta có thể dễ dàng chỉ ra rằng $-1 \le \rho(s,t)\le 1$ bằng cách sử dụng bất đẳng thức Cauchy-Schwar $\left| \gamma(s,t)\right|^{2}\leq\gamma(s,s)\gamma(t,t).$ Nếu chúng ta có thể dự đoán $x_t$ chính xác từ $x_s$ thông qua quan hệ tuyến tính, $x_t=\beta_0+\beta_1 x_s$, thì tương quan sẽ là 1 khi $\beta_1>0$ và $-1$ khi $\beta_1<0$. Do đó, chúng tôi có một thước đo đánh giá sơ bộ về khả năng dự báo chuỗi tại thời điểm $t$ từ giá trị tại thời điểm $s$. 
+
+Thông thường, chúng tôi muốn đo lường khả năng dự đoán của một chuỗi $y_t$ khác từ chuỗi $x_s$. Giả sử cả hai chuỗi có phương sai hữu hạn, chúng ta có định nghĩa sau:
+\begin{dn}\textbf{Hàm hiệp phương sai chéo} giữa hai chuỗi $x_{t}$ và $y_{t}$ là
+	\begin{equation}
+	\gamma_{xy}(s,t) = E[(x_{s}- \mu_{xs})(y_{t}- \mu_{yt})]. \label{ct1.14}
+	\end{equation}
+\end{dn}
+Phiên bản thu nhỏ của hàm hiệp phương sai chéo được gọi là
+\begin{dn}\textbf{Hàm tương quan chéo (CCF)}
+	\begin{equation}
+	\rho_{xy}(s,t) = \dfrac{\gamma_{xy}(s,t)}{\sqrt{\gamma_{x}(s,s)\gamma_{y}(t,t)}}. \label{ct1.15}
+	\end{equation}
+\end{dn}
+	
+Chúng tôi có thể dễ dàng mở rộng các khái niệm trên với trường hợp nhiều hơn hai chuỗi, giả sử, $x_{t1}$, $x_{t2}$,..., $x_{tr}$; đó là, chuỗi thời gian đa biến với các thành phần $r$. Ví dụ, phần mở rộng của (\ref{ct1.13}) trong trường hợp này là
+	\begin{equation}
+		\gamma_{jk}(s,t) = E [(x_{sj}-\mu_{sj})(x_{tk}-\mu_{tk})] \hspace{2cm}   j,k= 1,2,...,r \label{ct1.16}
+	\end{equation}
+
+Trong các định nghĩa ở trên, các hàm tự hiệp phương sai và hàm hiệp phương sai chéo có thể thay đổi khi một bước trượt dọc theo chuỗi vì các giá trị phụ thuộc vào cả $s$ và $t$, vị trí của các điểm theo thời gian. Hàm tự hiệp phương sai phụ thuộc vào độ chênh lệch của $x_{s}$ và $x_{t}$, giả sử, $h= \lvert s-t\lvert$, và không phụ thuộc vào vị trí của các điểm trong thời gian. Miễn là các điểm được phân tách bằng đơn vị h, vị trí của hai điểm không quan trọng. Khái niệm này, được gọi là tính dừng yếu. Khi giá trị trung bình không đổi, là nền tảng trong việc cho phép chúng tôi phân tích dữ liệu chuỗi thời gian mẫu khi chỉ có một chuỗi duy nhất.
+
+\subsection{Chuỗi dừng}
+
+Các định nghĩa trước của hàm trung bình và hàm tự hiệp phương sai hoàn toàn chung. Mặc dù chúng tôi chưa đưa ra bất kỳ giả thiết đặc biệt nào về dáng điệu của chuỗi thời gian,tuy nhiên một loạt tính chất đều đặn có thể tồn tại theo thời gian trong dáng điệu của chuỗi thời gian. Chúng tôi giới thiệu khái niệm về tính đều đặn bằng cách sử dụng một khái niệm gọi là tính dừng. 
+\begin{dn}\label{dn1.6}Một \textbf{chuỗi dừng ngặt} là một chuỗi trong đó dáng điệu xác suất của mỗi tập hợp các giá trị
+	$$\left\lbrace x_{t_{1}}, x_{t_{2}},..., x_{t_{k}}\right\rbrace$$
+là giống hệt với bộ thời gian thay đổi
+$$\left\lbrace x_{t_{1}+h}, x_{t_{2}+h},..., x_{t_{k}+h}\right\rbrace.$$
+Đó là 
+	\begin{equation}
+	P\left\lbrace x_{t_{1}}\le c_{1},...,x_{t_{k}}\le c_{k}\right\rbrace = P\left\lbrace x_{t_{1}+h}\le c_{1},...,x_{t_{k}+h}\le c_{k}\right\rbrace \label{ct1.19}
+	\end{equation}
+với mọi $k=1,2,...$, mọi điểm thời gian $t_{1},t_{2},...,t_{k}$, mọi hằng số $c_{1},c_{2},...,c_{k}$ và độ chênh lệch thời gian $h=0,\pm1,\pm2,...$.
+\end{dn}
+
+Nếu một chuỗi thời gian là dừng ngặt, thì tất cả các hàm phân phối đa biến cho các tập hợp con của biến đó phải phù hợp với các thành phần tương ứng của chúng trong tập dịch chuyển với tất cả các giá trị của tham số dịch chuyển $h$. Ví dụ: khi $k = 1$, (\ref{ct1.19}) ngụ ý rằng
+\begin{equation}
+	P\left\lbrace x_{s} \le  c \right\rbrace = P\left\lbrace x_{t} \le  c \right\rbrace \label{ct1.20}
+\end{equation} 
+với mọi thời điểm $s$ và $t$. Ngoài ra, nếu tồn tại hàm trung bình $\mu_{t}$ của chuỗi $x_{t}$ (\ref{ct1.20}) thì $\mu_{}$ = $\mu_{t}$ cho tất cả $s$ và $t$, và do đó $t$ phải là hằng số. Lưu ý, ví dụ, quy trình bước ngẫu nhiên với hằng số là không dừng ngặt vì hàm trung bình của nó thay đổi theo thời gian.
+
+Khi $k=2$ chúng ta có thể viết (\ref{ct1.19})là
+\begin{equation}
+P\left\lbrace x_{s}\le c_{1},x_{t}\le c_{2}\right\rbrace = P\left\lbrace x_{s+h}\le c_{1},x_{t+h}\le c_{2}\right\rbrace \label{ct1.21}
+\end{equation}
+cho mọi thời điểm của $ s $ và $ t $ với độ chệnh lệch $ h $. Do đó, nếu hàm phương sai của quá trình tồn tại, (\ref{ct1.21})ngụ ý rằng hàm tự hiệp phương sai của chuỗi $x_{t}$ thỏa mãn :
+	$$\gamma(s,t)=\gamma(s+h,t+h)$$
+với mọi $s$ và $t$ và $h$. Chúng tôi có thể giải thích kết quả này bằng cách nói hàm tự hiệp phương sai của quá trình chỉ phụ thuộc vào chênh lệch thời gian giữa $s$ và $t$, chứ không dựa trên thời gian thực tế.
+
+Phiên bản của tính dừng trong (\ref{ct1.19}) quá mạnh đối với hầu hết các ứng dụng. Hơn nữa, rất khó để đánh giá tính dừng ngặt từ một tập dữ liệu duy nhất. Thay vì áp đặt các điều kiện cho tất cả các phân phối có thể có của một chuỗi thời gian, chúng tôi sẽ sử dụng một phiên bản nhẹ hơn, chỉ áp dụng các điều kiện lên hai thời điểm đầu tiên của chuỗi. Bây giờ chúng ta có định nghĩa sau
+\begin{dn}Một \textbf{chuỗi thời gian có tính dừng yếu},$x_{t}$, là một quá trình phương sai hữu hạn sao cho
+	
+	(i) hàm giá trị trung bình, $\mu_{t}$, được xác định trong (\ref{ct1.6}) là hằng số và không phụ thuộc vào thời gian $t$, và
+	
+	(ii) hàm hiệp phương sai, $ \gamma(s, t)$, được xác định trong (\ref{ct1.11}) chỉ phụ thuộc vào $s$ và $t$ thông qua độ sai khác của $ \abs{s-t}.$\\	
+Do đó, chúng tôi sẽ sử dụng thuật ngữ tính dừng có nghĩa là tính dừng yếu; nếu một quá trình dừng theo nghĩa chặt chẽ, chúng tôi sẽ sử dụng thuật ngữ tính dừng ngặt.
+\end{dn}
+
+Cần phải rõ ràng trong thảo luận về tính dừng ngặt theo định nghĩa \ref{dn1.6} rằng nếu một phương sai là hữu hạn thì chuỗi thời gian sẽ dừng. Điều ngược lại là không đúng trừ khi có thêm điều kiện. Một trường hợp quan trọng, tính dừng là tính dừng ngặt nếu chuỗi thời gian là chuỗi Gaussian [nghĩa là tất cả các bản phân phối hữu hạn,(\ref{ct1.19}), của chuỗi là Gaussian]. Chúng tôi sẽ làm cho khái niệm này chính xác hơn vào cuối phần này
+
+Vì hàm trung bình, $E(x_{t})=\mu_{t}$, của chuỗi dừng là độc lập với thời gian $t$, chúng tôi sẽ viết
+\begin{equation}
+	\mu_{t}=\mu \label{ct1.23}
+\end{equation}
+Ngoài ra, vì hàm hiệp phương sai  $ \gamma(s, t)$ của một chuỗi thời gian dừng, chỉ phụ thuộc vào $s$ và $t$, thông qua sự sai khác $ \abs{s-t} $, chúng tôi có thể đơn giản hóa việc ký hiệu. Đặt $s = t + h$, trong đó $h$ đại diện cho sự thay đổi thời gian hoặc độ trễ, khi đó
+\begin{align*}
+\gamma(s, t)&= E[(x_{t+h}-\mu)(x_{t}-\mu)]\\
+&=E[(x_{h}-\mu)(x_{0}-\mu)]\\
+&=\gamma(h,0)
+\end{align*}
+không phụ thuộc vào đối số thời gian $t$; chúng tôi đã giả sử rằng $var(x_{t}) =\gamma(0,0) < \infty $. Do đó, để thuận tiện, chúng tôi sẽ bỏ đối số thứ hai của $\gamma(h,0)$.
+
+\begin{dn}\textbf{Hàm tự hiệp phương sai của chuỗi dừng} sẽ được viết dưới dạng: 
+	\begin{equation}
+	\gamma(h)= E[(x_{t+h}-\mu)(x_{t}-\mu)] \label{ct1.24}
+	\end{equation}	
+\end{dn}
+\begin{dn} \textbf{Hàm tự tương quan (ACF) của chuỗi dừng} sẽ được viết bằng cách sử dụng (\ref{ct1.13}) như sau
+	\begin{equation}
+		\rho(h)=\frac{\gamma(t+h,t)}{\sqrt{\gamma(t+h,t+h)\gamma(t,t)}}=\dfrac{\gamma(h)}{\gamma(0)}. \label{ct1.25}
+	\end{equation}
+\end{dn}
+
+Bất đẳng thức Cauchy Schwarz một lần nữa cho thấy rằng $−1\leqslant \rho(h) \leqslant 1$ với mọi $h$, cho phép đánh giá tương đối tầm quan trọng của một giá trị tự tương quan nhất định bằng cách so sánh với các giá trị cực trị −1 và 1.
+
+Hàm tự hiệp phương sai của một quá trình dừng có một số tính chất hữu ích. Đầu tiên, giá trị tại $h = 0$, cụ thể là
+\begin{equation}
+	\gamma(0)=E[(x_{t}-\mu)^{2}] \label{ct1.26}
+\end{equation}
+là phương sai của chuỗi thời gian; lưu ý rằng bất đẳng thức Cauchy Schwarz ngụ ý
+\begin{equation}
+	\abs{\gamma(h)}\leqslant \gamma(0) \label{ct1.27}
+\end{equation}
+Một tính chất hữu ích cuối cùng, được lưu ý trong ví dụ trước, là hàm tự hiệp phương sai của một chuỗi dừng là đối xứng xung quanh gốc, nghĩa là,
+\begin{equation}
+\gamma(h)=\gamma(-h) \label{ct1.28}
+\end{equation}
+với tất cả $h$. Bởi vì,
+\begin{align*}
+\gamma(h)&=\gamma(t+h-t) \\
+&=E[(x_{t+h}-\mu)(x_{t}-\mu)]\\
+&=E[(x_{t}-\mu)(x_{t+h}-\mu)]\\
+&=\gamma(t-(t+h))\\
+&=\gamma(-h). 
+\end{align*}
+
+Khi tồn tại một vài chuỗi thời gian, khái niệm về tính dừng vẫn được áp dụng với điều kiện bổ sung
+
+\begin{dn} Hai chuỗi thời gian, giả sử, $x_{t}$ và $y_{t}$, được cho là \textbf{cùng dừng đồng thời} nếu mỗi chuỗi là chuỗi dừng và hàm hiệp phương sai chéo
+	\begin{equation}
+		\gamma_{xy}(h)=E[(x_{t+h}-\mu_{x})(y_{t}-\mu_{y})] \label{ct1.30}
+	\end{equation}
+là hàm duy nhất của độ trễ $h$. 
+\end{dn}
+\begin{dn}\textbf{Hàm tương quan chéo (CCF)} của chuỗi dừng đồng thời $x_{t}$ và $y_{t}$ được định nghĩa là
+	\begin{equation}
+		\rho_{xy}(h)=\dfrac{\gamma_{xy}(h)}{\sqrt{\gamma_{x}(0)\gamma_{y}(0)}} \label{ct1.31}
+	\end{equation}	
+\end{dn}
+
+Một lần nữa, chúng ta có kết quả $−1\leqslant \rho_{xy}(h) \leqslant 1$ cho phép so sánh với các giá trị cực trị −1 và 1 khi xem xét mối quan hệ giữa $x_{t+h}$ và $y_{t}$. Hàm tương quan chéo thỏa mãn 
+\begin{equation}
+	\rho_{xy}(h)=\rho_{xy}(-h), \label{ct1.32}
+\end{equation}
+có thể được hiển thị bằng các thao tác tương tự như các thao tác được sử dụng để hiển thị (\ref{ct1.28}).
+
+Khái niệm về tính dừng yếu là cơ sở cho hầu hết các phân tích thực hiện với chuỗi thời gian. Các tính chất cơ bản của giá trị trung bình và hàm tự hiệp phương sai (\ref{ct1.23}) và (\ref{ct1.24}) được thỏa mãn bởi nhiều mô hình lý thuyết có vẻ như tạo ra mẫu thực hiện hợp lý.
+\begin{dn}\textbf{Một quá trình tuyến tính}, $x_{t}$, được định nghĩa là sự kết hợp tuyến tính của các biến nhiễu trắng $w_{t}$ và được đưa ra bởi
+	\begin{equation}
+	x_{t}=\mu+\sum_{j=-\infty}^{\infty}\psi_{j}\omega_{t-j}  \label{ct1.33}	
+	\end{equation}
+	với các hệ số thỏa mãn
+	\begin{equation}
+		\sum_{j=-\infty}^{\infty}\abs{\psi_{j}}<\infty \label{ct1.34}
+	\end{equation}	
+\end{dn}
+
+Đối với quá trình tuyến tính, chúng tôi có thể chỉ ra rằng hàm tự hiệp phương sai được đưa ra bởi
+\begin{equation}
+\gamma(h)=\sigma_{\omega}^2 \sum_{j=-\infty}^{\infty}\psi_{j}+h\psi_{j} \label{ct1.35}
+\end{equation}
+cho $ h\geqslant0 $, nhớ lại rằng $\gamma(h)=\gamma(-h)$. Phương pháp này thể hiện hàm tự hiệp phương sai của quá trình theo các tích độ trễ của các hệ số.
+
+Một trường hợp quan trọng trong đó một loạt chuỗi dừng yếu cũng như chuỗi dừng ngặt là chuỗi chuẩn hoặc Gaussian.
+\begin{dn} Một quá trình $ \left\lbrace x_{t}\right\rbrace  $ được gọi là \textbf{quá trình Gaussian} nếu các vectơ $ k $ chiều $ x=\left\lbrace x_{t_{1}}, x_{t_{2}}, ..., x_{t_{k}}\right\rbrace^{'} $ cho mọi tập hợp các thời điểm $t_{1},t_{2},...,t_{k}$ và mọi số nguyên dương $ k $, có phân phối chuẩn nhiều chiều.
+\end{dn}
+
+Xác định vectơ trung bình, $E(x)\equiv\mu=\left\lbrace \mu_{t_{1}}, \mu_{t_{2}}, ..., \mu_{t_{k}}\right\rbrace^{'}$ và ma trận hiệp phương sai $ k \times k $ , như là $ cov(x)\equiv\Gamma=\left\lbrace \gamma(t_{i},t_{j});i.j=1,...,k\right\rbrace $, hàm mật độ của phân phối chuẩn nhiều chiều có thể được viết là
+\begin{equation}
+f(x)=(2\pi)^{-n/2}\abs{\Gamma}^{-1/2}exp \left\lbrace-1/2(x-\mu)^{'}\Gamma^{-1}(x-\mu)\right\rbrace  \label{ct1.36}	
+\end{equation} với \abs{\cdot} biểu thị định thức. Phân phối này tạo cơ sở để giải quyết các vấn đề liên quan đến suy luận thống kê cho chuỗi thời gian. Nếu  $ \left\lbrace x_{t}\right\rbrace  $ là chuỗi thời gian Gaussian có tính dừng yếu thì $ \mu_{t}=\mu $ và $\gamma(t_{i},t_{j})=\gamma(\abs{t_{i}-t_{j}}) $, sao cho vectơ $ \mu $ và ma trận $ \Gamma $ không phụ thuộc vào thời gian. Từ đó suy ra rằng tất cả các phân phối hữu hạn,(\ref{ct1.36}), của chuỗi $ \left\lbrace x_{t}\right\rbrace  $ chỉ phụ thuộc vào độ trễ thời gian chứ không phụ thuộc vào thời gian thực tế và do đó, chuỗi phải dừng ngặt. Chúng tôi sử dụng hàm mật độ chuẩn nhiều chiều để áp dụng cho các biến ngẫu nhiên phức tạp trong phần tiếp theo.
+\subsection{Ước lượng của tương quan}
+Mặc dù lý thuyết các hàm tự tương quan và các hàm tương quan chéo là hữu ích để mô tả các tính chất của các mô hình giả thuyết nhất định, hầu hết các phân tích phải được thực hiện bằng cách sử dụng dữ liệu được lấy mẫu. Giới hạn này có nghĩa là các điểm được lấy mẫu $x_ 1$, $x_2$,...,$x_n$ chỉ có sẵn để ước tính giá trị trung bình, hàm tự hiệp phương sai, và các hàm tự tương quan. Từ quan điểm của thống kê cổ điển, điều này đặt ra một vấn đề là chúng ta thường sẽ không có các bản sao iid của $x_t$ có sẵn để ước tính các hàm hiệp phương sai và các hàm tương quan.
+
+Tuy nhiên, trong tình huống thông thường chỉ có một lần thực hiện, giả thiết về tính dừng trở nên quan trọng. Bằng cách nào đó, chúng ta phải sử dụng trung bình trên thực hiện này để ước tính số bình quân của tổng thể chung và hàm hiệp phương sai.
+Theo đó, nếu một chuỗi thời gian là dừng, hàm trung bình (\ref{ct1.24}), $\mu_t=\mu$ là hằng số để chúng ta có thể ước tính nó theo trung bình mẫu
+\begin{equation}
+	\bar{x} = \frac{1}{n}\sum _ {i = 1 } ^ { \infty } x_{t} \label{ct1.37}
+\end{equation}
+Lý thuyết hàm tự hiệp phương sai được ước tính bằng hàm tự hiệp phương sai mẫu định nghĩa như sau
+\begin{dn}\textbf{Hàm tự hiệp phương sai} mẫu được định nghĩa là 
+\begin{equation}
+	\hat{\gamma}(h) = n^{-1}\sum _ {t = 1 } ^ {n-h} (x_{t+h}-\bar{x})(x_{t}-\bar{x}) \label{ct1.38}
+\end{equation} với $\hat{\gamma}(-h) = \hat{\gamma}(h)$ cho $h= 0,1,...,n-1$
+\end{dn}
+Tổng trong (\ref{ct1.38}) chạy trong phạm vi bị giới hạn bởi $x_{t+h}$ không khả thi nếu $t + h> n$. Ước lượng trong (\ref{ct1.38}) sẽ thu được bằng cách chia cho $n - h$ vì (\ref{ct1.38}) là một hàm xác định không âm. Điều này có nghĩa là nếu chúng ta để $\hat{\Gamma}(-h) =\left\lbrace \hat{\gamma}(i-j); i,j=1,...,n\right\rbrace $ là ma trận hiệp phương sai mẫu $n \times n$ của dữ liệu $x = (x_{1}, ..., x_{n})^{'}$ thì $\hat{\Gamma}$ là ma trận xác định không âm. Vì vậy, nếu chúng ta để  $a = (a_{1},..., a_{n})^{'}$ là một vectơ $n \times 1$ của các hằng số, sau đó $\hat{var}(a'x) = a'\hat{\varGamma}a\geq 0$. Do đó, tính chất xác định không âm đảm bảo phương sai mẫu của các tổ hợp tuyến tính của các biến $x_{t}$ sẽ luôn luôn không âm. Lưu ý rằng không chia cho $n$ hay $n - h$ trong (\ref{ct1.38}) cho ước lượng không lệch của $\gamma(h)$.
+\begin{dn} \textbf{Hàm tự tương quan mẫu} được xác định, tương tự như (\ref{ct1.25}), như
+\begin{equation}
+\hat{\rho}(h)=\dfrac{\hat{\gamma}(h)}{\hat{\gamma}(0)} \label{ct1.39}
+\end{equation} 
+\end{dn}
+
+Hàm tự tương quan mẫu có phân phối mẫu cho phép chúng tôi đánh giá dù dữ liệu từ một chuỗi hoàn toàn ngẫu nhiên hay chuỗi nhiễu trắng hoặc các mối tương quan có ý nghĩa thống kê ở một số độ trễ.
+\begin{dl}\textbf{Phân phối mẫu lớn của ACF}\\
+Trong điều kiện chung, nếu $ x_{t}$ là nhiễu trắng, thì với n đủ lớn, ACF mẫu, $\hat{\rho_{x}}(h)$ với h = 1,2,...,H, trong đó H cố định nhưng tùy ý, là xấp xỉ phân phối chuẩn với giá trị trung bình bằng $0$ và độ lệch chuẩn được cho bởi
+\begin{equation}
+\sigma_{\hat{\rho_{x}}(h)}=\dfrac{1}{\sqrt{n}} \label{ct1.40}
+\end{equation}
+\end{dl}
+Dựa vào kết quả trên, chúng tôi có được một phương pháp ban đầu để đánh giá xem các đỉnh trong $\rho(h)$ có ý nghĩa bằng cách xác định xem các đỉnh được quan sát không nằm ngoài khoảng $\pm\dfrac{2}{\sqrt{n}}$ (hoặc cộng / trừ hai sai số tiêu chuẩn); cho một trình tự nhiễu trắng, khoảng $95\%$ của ACF mẫu phải nằm trong giới hạn này. Các ứng dụng của tính chất này phát triển vì nhiều quá trình thống kê mô hình hóa phụ thuộc vào việc giảm chuỗi thời gian thành chuỗi nhiễu trắng qua nhiều loại biến đổi. Sau khi trình tự như vậy được áp dụng, đồ thị  ACF của phần còn lại sau đó nên nằm trong giới hạn cho trước ở trên.
+\begin{dn}Các công cụ ước tính cho hàm hiệp phương sai $\gamma_{xy}(h)$, như được cho trong (\ref{ct1.30}) và tương quan chéo $\rho_{xy}(h)$, trong (\ref{ct1.31}), được đưa ra, tương ứng, bởi \textbf{hàm hiệp phương sai chéo mẫu}
+\begin{equation}
+\hat{\gamma}_{xy}(h)= n^{-1}\sum _ {t = 1 } ^ {n-h} (x_{t+h}-\bar{x})(y_{t}-\bar{y}) \label{ct1.41}	
+\end{equation}
+trong đó $\gamma_{xy}(h)= \gamma_{yx}(h)$ xác định hàm cho độ trễ âm và hàm tương quan chéo mẫu
+\begin{equation}
+	\hat{\rho_{xy}}(h)= \dfrac{\hat{\gamma}_{xy}(h)}{\sqrt{\hat{\gamma_{x}}(0).\hat{\gamma_{y}}(0)}} \label{ct1.42}
+\end{equation}
+\end{dn}
+Hàm tương quan chéo mẫu có thể được kiểm tra bằng đồ họa như một hàm của độ trễ h để tìm kiếm các mối quan hệ hàng đầu hoặc độ trễ trong dữ liệu bằng cách sử dụng tính chất được đề cập trong ví dụ 1.22 cho lý thuyết hàm hiệp phương sai . Vì $-1\leqslant xy(h)$, tầm quan trọng thực tế của các đỉnh có thể được đánh giá bằng cách so sánh độ lớn của chúng với mức tối đa lý thuyết của các giá trị. Hơn nữa, đối với các quá trình tuyến tính độc lập $x_{t}$ và $y_{t}$ của mẫu (\ref{ct1.33}), chúng tôi có 
+\begin{dl}
+\textbf{Phân phối mẫu lớn của Tương quan chéo Dưới sự độc lập}\
+	
+Phân phối mẫu lớn của $\hat{\rho}_{xy}(h)$ là bình thường với giá trị trung bình bằng 0 và
+\begin{equation}
+\sigma_{\hat{\rho}_{xy}}=\dfrac{1}{\sqrt{n}} \label{ct1.43}
+\end{equation} 
+nếu ít nhất một trong các quá trình là nhiễu trắng độc lập (xem Định lý A.8 trong Phụ lục A).
+\end{dl}
+\subsection{\label{hqcd}Hồi quy cổ điển trong phân tích chuỗi thời gian}
+Chúng ta bắt đầu thảo luận về hồi quy tuyến tính trong chuỗi thời gian bằng cách giả sử một số chuỗi thời gian đầu ra hoặc phụ thuộc, $x_{t}$, với $t = 1 ,. . . , n$, đang bị ảnh hưởng bởi một tập hợp các chuẩn đầu vào hợp lý hoặc độc lập, giả sử, $z_{t1}, z_{t2},...z_{tn}$ trong đó đầu vào là cố định và đã biết. Giả thiết này, cần để áp dụng hồi quy tuyến tính thông thường, sẽ được mở rộng sau này. Chúng tôi biểu thị mối quan hệ này thông qua mô hình hồi quy tuyến tính 
+\begin{equation}
+x_{t}=\beta_{1}z_{t1} + \beta_{2}z_{t2} +...+ \beta_{q}z_{tq} +w_{1} \label{ct1.44}
+\end{equation}
+trong đó $\beta_{1},\beta_{2},...,\beta_{q}$ là các hệ số hồi quy cố định chưa biết và $ {\omega_{t}} $ là một sai số ngẫu nhiên hoặc quá trình nhiễu bao gồm các biến chuẩn độc lập và phân phối giống hệt nhau với giá trị trung bình bằng 0 và phương sai $ \sigma_{\omega}^{2} $; chúng ta sẽ mở rộng giả định iid sau. Một thiết lập tổng quát hơn để nhúng ước lượng bình phương trung bình và hồi quy tuyến tính được nêu trong Phụ lục B, trong đó chúng tôi giới thiệu các không gian Hilbert và Định lý Chiếu
+
+Mô hình tuyến tính được mô tả bởi (\ref{ct1.44}) ở trên có thể được viết một cách thuận tiện bằng ký hiệu tổng quát hơn qua việc xác định các vectơ cột $z_{t}=(z_{t1},z_{t2},...,z_{tq})^{'}$ và $\beta_{t}=(\beta_{1},\beta_{2},...,\beta_{q})^{'}$, trong đó biểu thị chuyển vị, vì vậy (\ref{ct1.44}) có thể được viết ở dạng thay thế
+\begin{equation}
+x_{t}=\beta^{'} z_{t} + w_{t} \label{ct1.45}
+\end{equation}	
+trong đó $\omega_{t} \sim idd(0,\sigma_{w}^{2})$ Việc xem xét ước tính vectơ hệ số chưa biết là điều tự nhiên bằng cách giảm thiểu số dư tổng bình phương
+\begin{equation}
+RSS = \sum_{t=1}^{n} (x_{t}- \beta ^{'}z_{t})^{2} \label{ct1.46}	
+\end{equation}
+đối với $\beta_{1},\beta_{2},...,\beta_{q}$. Tối thiểu hóa RSS mang lại công cụ ước lượng bình phương nhỏ nhất. Việc giảm thiểu này có thể được thực hiện bằng cách phân biệt (\ref{ct1.46}) đối với vectơ hoặc bằng cách sử dụng các tính chất của các phép chiếu. Trong ký hiệu trên, quy trình này đưa ra các phương trình chuẩn.
+\begin{equation}
+(\sum_{t=1}^{n} z_{t}z_{t}^{;})\hat{\beta}= \sum_{t=1}^{n} z_{t} x_{t} \label{ct1.47}
+\end{equation}
+Đơn giản hóa hơn nữa các kết quả ký hiệu từ việc xác định ma trận 
+$Z=(z_{1},z_{2},...,z_{n})^{'}$ là ma trận $n\times q$ bao gồm n mẫu của các biến đầu vào và vectơ được quan sát $x=(x_{1},x_{2},...,x_{n})^{'}$ Nhận định này mang lại:
+\begin{equation}
+	(Z^{'}Z)\hat{\beta}=Z^{'}x \label{ct1.48}
+\end{equation}
+và nghiệm
+\begin{equation}
+\hat{\beta}=(Z^{'}Z)^{-1}Z^{'}x \label{ct1.49}	
+\end{equation}
+khi ma trận $ Z^{'}Z $ có thứ $ q $. Tổng số bình phương tối thiểu phần dư  (\ref{ct1.46}) có dạng ma trận tương đương
+\begin{align*}
+RSS&=(x-Z\hat{\beta})^{'}(x-Z\hat{\beta})\\
+&=x^{'}x-\hat{\beta}^{'}Z^{'}x\\
+&=x^{'}x-x^{'}Z(Z^{'}Z)^{-1}Z^{'}x
+\end{align*}
+để đưa ra một số phiên bản hữu ích cho tham khảo sau này. Các công cụ ước lượng bình phương nhỏ nhất thông thường là ‘’không chệch’’, tức là, $E(\hat{\beta})=\beta$ và có phương sai nhỏ nhất trong lớp các công cụ ước lượng ‘không chệch’ tuyến tính. Nếu các sai số $ \omega_{t} $ là phân phối chuẩn (Gaussian), $ \hat{\beta}$ cũng là ước tính mức tối đa khả năng cho $\beta$ và là phân phối chuẩn với 
+\begin{align}
+cov(\hat{\beta})&=\sigma_{w}^{2}(\sum_{t=1}^{n} z_{t}z_{t}^{'})^{-1}\\
+&=\sigma_{w}^{2}(Z^{'}Z)^{-1}\\
+&=\sigma_{w}^{2}C \label{2.8}
+\end{align}
+trong đó	
+\begin{equation}
+C=(Z^{'}Z)^{-1} \label{ct1.50}
+\end{equation}
+là một ký hiệu thuận tiện cho các phương trình sau này. Công cụ ước lượng không chệch cho phương sai $ \sigma_{w}^{2} $ là
+\begin{equation}
+s_{w}^{2}=\dfrac{RSS}{n-q} \label{ct1.51}
+\end{equation}
+trái ngược với ước tính khả năng mức tối đa $\hat{\sigma}_{\omega}^{2}=RSS/n$ có ước số $n$. Theo giả thiết chuẩn, $ s_{\omega}^{2} $ được phân phối tỷ lệ với một biến ngẫu nhiên (chi-squared) với bậc $ n - q $ tự do, ký hiệu là $ \chi_{n-q}^{2} $ và độc lập với $ \hat{\beta} $. Theo đó
+\begin{equation}
+t_{n-q}=\dfrac{(\hat{\beta}_{i}-\beta_{i})}{s_{w}\sqrt{c_{ii}}} \label{ct1.52}
+\end{equation}
+có phân bố $ t $ với $ n − q $ bậc tự do; $ c_{ii} $ biểu thị phần tử đường chéo thứ $ i $ của $ c $, như được định nghĩa trong (\ref{ct1.50}).
+
+Các mô hình cạnh tranh khác nhau được quan tâm để tách biệt hoặc chọn tập hợp con tốt nhất của các biến độc lập. Giả sử một mô hình được đề xuất chỉ định rằng chỉ một tập hợp con biến độc lập $ q_{1}< q $ , $z_{1t}=(z_{t1}, z_{t2},...z_{tq_{1}})^{'}$ đang ảnh hưởng đến biến phụ thuộc $ x_{t} $, do đó mô hình 
+\begin{equation}
+x_{t}=\beta_{1}^{'}z_{1t}+w_{t} \label{ct1.53}
+\end{equation}
+trở thành giả thiết không, trong đó $\beta_{1}=(\beta_{1},\beta_{2},...,\beta_{q_{1}})^{'}$ là tập hợp con của các hệ số của các biến q ban đầu. Chúng ta có thể kiểm tra mô hình rút gọn (\ref{ct1.53}) so với mô hình đầy đủ (\ref{ct1.45}) bằng cách so sánh các tổng bình phương còn lại trong hai mô hình qua thống kê F
+\begin{equation}
+F_{q-q_{1}, n-q}=\frac{RSS_{1}-RSS}{RSS}\dfrac{n-q}{q-q_{1}} \label{ct1.54}
+\end{equation}
+có phân phối $ F $ trung tâm với $ q-q_{1} $ và $ n-q $ bậc tự do khi (\ref{ct1.53}) là mô hình chính xác.
+
+Thống kê, sau khi áp dụng tiêu chí tỷ lệ khả năng, có sự cải thiện về số tham số được thêm vào tử số so với sai số tổng bình phương theo mô hình đầy đủ trong mẫu số. Thông tin liên quan đến quá trình thử nghiệm thường được tóm tắt trong bảng Phân tích phương sai (ANOVA) như được nêu trong Bảng 2.1 cho trường hợp cụ thể này. Sự khác biệt trong tử số thường được gọi là tổng hồi quy của bình phương 
+
+Theo Bảng 2.1, thông thường để viết thống kê $ F $ (\ref{ct1.54}) là tỷ số của hai bình phương trung bình, thu được
+\begin{equation}
+F_{q-q_{1}, n-q}=\frac{MS_{reg}}{s_{\omega}^{2}} \label{ct1.55}
+\end{equation}
+Một trường hợp đặc biệt quan tâm là $ q_{1}=1 $ và $ z_{1t}=1 $, do đó mô hình trong (\ref{ct1.53}) trở thành
+\begin{equation}
+x_{t}=\beta_{1} + w_{t} \label{ct1.56}
+\end{equation}
+và chúng tôi có thể đo tỷ lệ biến thiên được tính bởi các biến khác bằng cách sử dụng
+\begin{equation}
+R_{xz}^{2}=\dfrac{RSS_{0}-RSS}{RSS_{0}} \label{ct1.57}
+\end{equation}
+trong đó tổng bình phương phần dư theo mô hình rút gọn
+\begin{equation}
+RSS_{0}= \sum_{t=1}^{n} (x_{t}-\bar{x})^{2} \label{ct1.58}
+\end{equation}
+trong trường hợp này chỉ là tổng độ lệch bình phương so với trung bình $\bar{x}$. Các biện pháp$ R_{xz}^{2} $ cũng là tương quan bội bình phương giữa $x_{t}$ và các biến $ z_{t1}, z_{t2},...z_{tq_{1}} $
+
+Các kỹ thuật được thảo luận trong đoạn trước có thể được sử dụng để kiểm tra các mô hình khác nhau bằng cách sử dụng thử nghiệm $ F $ được đưa ra trong (\ref{ct1.54}), (\ref{ct1.55}) và bảng ANOVA. Các thử nghiệm này đã được sử dụng trong quá khứ theo cách từng bước, trong đó các biến được thêm hoặc xóa khi các giá trị từ kiểu tra $F$ hoặc vượt quá hoặc không vượt quá một số mức định trước. Quy trình này được gọi là hồi quy nhiều bước, rất hữu ích trong việc đưa ra một tập hợp các biến hữu ích. Một cách khác là tập trung vào một quá trình lựa chọn mô hình, có nghĩa là không tiến hành tuần tự, mà chỉ đơn giản là đánh giá từng mô hình theo giá trị riêng của nó. Giả sử chúng ta xem xét một mô hình hồi quy với hệ số $ k $ và biểu thị ước tính mức tối đa khả năng cho phương sai như	
+\begin{equation}
+\hat{\sigma}_{k}^{2}=\dfrac{RSS_{k}}{n} \label{ct1.59}
+\end{equation}
+trong đó $ RSS_{k} $ biểu thị tổng bình phương phần dư theo mô hình với các hệ số hồi quy $ k $. Sau đó, Akaike (1969, 1973, 1974) đề nghị đo lường mức độ phù hợp của mô hình cụ thể này bằng cách cân bằng sai số của sự phù hợp với số lượng tham số trong mô hình; chúng tôi xác định 
+\begin{dn}	
+	\textit{Tiêu chuẩn thông tin Akaike (AIC)} 
+	\begin{equation}
+	AIC= ln (\hat{\sigma}_{k}^{2}) +\dfrac{n+ 2k}{n} \label{ct1.60}
+	\end{equation}
+	trong đó $ \hat{\sigma}_{k}^{2} $ được cho bởi (\ref{ct1.59}) và $ k $ là số lượng tham số trong mô hình.
+\end{dn}
+
+Mô hình tốt nhất khi AIC đạt giá trị tối thiểu.
+
+Giá trị của $ k $ mang lại AIC tối thiểu chỉ định mô hình tốt nhất. Ý tưởng đại khái là giảm thiểu $ \hat{\sigma}_{k}^{2} $ sẽ là một mục tiêu hợp lý, ngoại trừ việc nó giảm đơn điệu khi $ k $ tăng. Do đó, chúng ta nên xử lý sai số phương sai  bằng một thuật ngữ tỷ lệ thuận với số lượng tham số. Sự lựa chọn hình thức xử lý được đưa ra bởi (\ref{ct1.60}) không phải là duy nhất. Một dạng chính xác, được đề xuất bởi Sugiura (1978) và được mở rộng bởi Hurvich và Tsai (1989), có thể dựa trên kết quả phân phối mẫu nhỏ cho mô hình hồi quy tuyến tính (chi tiết được cung cấp trong Bài toán \ref{ct1.47} và \ref{ct1.48}). Các hình thức xử lý được định nghĩa là:
+\begin{dn}	
+	\textit{Tiêu chuẩn AIC hiệu chỉnh ($AIC_{c}$)}
+	\begin{equation}
+	AIC_{c}= ln (\hat{\sigma}_{k}^{2}) +\dfrac{n+ k}{n-k-2} \label{ct1.61}
+	\end{equation} 
+	Trong đó $ \hat{\sigma}_{k}^{2} $ được cho bởi (\ref{ct1.59}), $ k $ là số lượng tham số trong mô hình và $ n $ là cỡ mẫu.
+	
+\end{dn}
+Chúng tôi cũng có thể rút ra một thuật ngữ điều chỉnh dựa trên các lập luận Bayes, như trong Schwarz (1978), dẫn đến
+\begin{dn}	
+	\textit{Tiêu chuẩn thông tin Schwarz (SIC)} 
+	\begin{equation}
+	SIC= ln (\hat{\sigma}_{k}^{2}) +\dfrac{k.ln(n)}{n} \label{ct1.62}
+	\end{equation}
+	sử dụng ký hiệu tương tự như trong Định nghĩa 2.2
+\end{dn}
+SIC còn được gọi là Tiêu chuẩn Thông tin Bayes (BIC) (xem thêm Rissanen,1978, cho một cách tiếp cận mang lại thống kê tương tự dựa trên đối số độ dài mô tả tối thiểu). Các nghiên cứu mô phỏng khác nhau có xu hướng xác minh rằng SIC thực hiện tốt thứ tự đúng trong các mẫu lớn, trong khi AICc có xu hướng vượt trội trong các mẫu nhỏ hơn với số lượng tham số tương đối lớn (xem McQuarrie và Tsai, 1998, để so sánh chi tiết). Trong các mô hình hồi quy phù hợp, hai biện pháp đã được sử dụng trong quá khứ là bình phương R được điều chỉnh, về cơ bản là $ s_{\omega}^2 $ và Mallows $ C_{p} $, Mallows (1973), mà chúng tôi không xem xét trong nội dung này.
+\subsection{Phân tích dữ liệu thăm dò}
+Nói chung, dữ liệu chuỗi thời gian có tính dừng là cần thiết, do đó, trung bình tích các độ trễ theo thời gian, như trong phần trước, sẽ là một điều cần thiết. Với dữ liệu chuỗi thời gian, chính sự phụ thuộc giữa các giá trị của chuỗi là quan trọng để đo lường; ít nhất, chúng ta phải có khả năng ước tính độ tự tương quan với độ chính xác. Sẽ rất khó để đo lường sự phụ thuộc đó nếu cấu trúc phụ thuộc không đều đặn hoặc đang thay đổi tại mọi thời điểm.
+Do đó, để đạt được bất kỳ phân tích thống kê có ý nghĩa nào về dữ liệu chuỗi thời gian, điều quan trọng là, nếu không có gì khác, hàm trung bình và hàm tự hiệp phương sai thỏa mãn các điều kiện ổn định (ít nhất là một khoảng thời gian hợp lý) được nêu trong Định nghĩa 1.7. Thông thường, đây không phải là trường hợp, và chúng tôi sẽ đề cập đến một số phương pháp trong phần này để làm giảm ảnh hưởng của tính không ổn định và để tính dừng của chuỗi thời gian có thể được nghiên cứu. 
+
+Có lẽ một dạng đơn giản nhất của tích không dừng nhất để làm việc với mô hình xu hướng dừng, trong đó quá trình có dáng điệu dừng xung quanh một xu hướng. Chúng tôi có thể viết loại mô hình này là:
+\begin{equation}
+x_{t}=\mu_{t}+y_{t} \label{ct1.63}
+\end{equation}
+Trong đó $ x_{t} $ là các quan sát, $ \mu_{t} $ biểu thị xu hướng và $ y_{t} $ là một quá trình dừng. Một cách rất thường xuyên, xu hướng mạnh mẽ,$ \mu_{t} $ , sẽ che khuất dáng điệu của quá trình dừng $ y_{t} $. Do đó, có một số lợi thế để loại bỏ xu hướng như là bước đầu tiên trong phân tích thăm dò về điều đó chuỗi thời gian. Các bước phức tạp là để có được ước tính hợp lý của thành phần xu hướng, giả sử $ \hat{\mu}_{t} $ , và sau đó làm việc với phần dư
+\begin{equation}
+\hat{y}_{t}=x_{t}-\hat{\mu}_{t} \label{ct1.64}
+\end{equation}
+Một lợi thế của quá trình sai phân là loại bỏ được thành phần xu hướng. Tuy nhiên, một nhược điểm là sai phân không mang lại ước tính về quá trình dừng $y_{t}$. Nếu một ước tính của $ y_{t} $ là cần thiết, thì việc giảm xu hướng có thể phù hợp hơn. Nếu mục tiêu là đưa dữ liệu về tính dừng, thì sai phân có thể phù hợp hơn. Sai phân cũng là một công cụ khả thi nếu xu hướng được cố định.
+Bởi vì sai phân đóng vai trò trung tâm trong phân tích chuỗi thời gian, nên nó có được ký hiệu riêng. Sai phân đầu tiên được ký hiệu là
+\begin{equation}
+\nabla x_{t}=x_{t}-x_{t-1} \label{ct1.66}
+\end{equation}
+Như chúng ta đã thấy, sai phân đầu tiên loại bỏ xu hướng tuyến tính. Một sai phân thứ hai,  có thể loại bỏ xu hướng bậc hai, v.v. Để xác định sai phân cao hơn, chúng ta cần một biến thể trong ký hiệu mà chúng ta sử dụng, lần đầu tiên ở đây và thường là trong cuộc thảo luận của chúng ta về các mô hình ARIMA trong Chương 3.
+\begin{dn}
+	Chúng tôi định nghĩa toán tử backshift bằng
+	\begin{equation}
+	Bx_{t}=x_{t-1} \label{ct1.67}
+	\end{equation}
+	và mở rộng nó thành lũy thừa 	$B^{2}x_{t}=B(Bx_{t})=Bx_{t-1}=Bx_{t-2}$. Như vậy
+	\begin{equation}
+	B^{k}x_{t}=x_{t-k} \label{ct1.68}	
+	\end{equation}
+\end{dn}
+Rõ ràng là sau đó chúng tôi có thể viết lại (\ref{ct1.66}) thành
+\begin{equation}
+	\nabla x_{t}=(1-B)x_{t} \label{ct1.69}
+\end{equation}
+và chúng tôi có thể mở rộng khái niệm hơn nữa. Ví dụ, sai phân bậc hai trở thành
+\begin{align*}
+\nabla^{2} x_{t} &=(1-B)^{2}x_{t}=(1-2B+B^{2})x_{t}\\
+&=x_{t}-2x_{t-1}+x_{t-2}\\	
+\end{align*}
+bởi tính tuyến tính của toán tử. Để kiểm tra, chỉ cần lấy sai phân của sai phân bậc nhất
+$\nabla(\nabla x_{t})=\nabla (x_{t}-x_{t-1})- (x_{t-1}-x_{t-2})=(x_{t}-x_{t-1})-(x_{t-1}-x_{t-2})$
+\begin{dn}
+	Sai phân bậc d được định nghĩa là
+	\begin{equation}
+	\nabla^{d}=(1-B)^{d} \label{ct1.70}
+	\end{equation}
+	trong đó chúng ta có thể mở rộng toán tử $ (1-B)^{d} $ theo đại số để đánh giá các giá trị nguyên cao hơn của d. 
+\end{dn}
+Sai phân bậc nhất (\ref{ct1.66}) là một ví dụ về bộ lọc tuyến tính được áp dụng để loại bỏ xu hướng. Các bộ lọc khác, được hình thành bằng các giá trị trung bình gần $ x_{t} $, có thể tạo ra chuỗi được điều chỉnh để loại bỏ các loại dao động không mong muốn khác. 
+
+Kỹ thuật sai phân là một thành phần quan trọng của mô hình ARIMA của Box và Jenkins (1970) (xem thêm Box et al., 1994).
+Một thay thế cho sai phân là có cách thực hiện đơn giản hóa mà vẫn đảm báo tính dừng của chuỗi thời gian. Sự thay thế này, được gọi là sai phân từng phần, mở rộng khái niệm toán tử sai phân (\ref{ct1.70}) thành các lũy thừa phân số $ −.5 <d <.5 $, vẫn đảm bảo các quá trình dừng. Granger và Joyeux (1980) và Hosking (1981) đã giới thiệu chuỗi thời gian trong thời gian dài, tương ứng với trường hợp khi $ 0 <d <.5 $. Mô hình này thường được sử dụng cho chuỗi thời gian phát sinh trong môi trường thủy văn.
+Thông thường, quang sai tính không dừng cũng như phi tuyến tính trong chuỗi thời gian quan sát được. Trong trường hợp như vậy, biến đổi có thể hữu ích để cân bằng sự thay đổi theo chiều dài của một chuỗi. Một chuyển đổi đặc biệt hữu ích là
+\begin{equation}
+y_{t}=ln(x_{t}) \label{ct1.71}
+\end{equation}
+có xu hướng triệt tiêu các dao động lớn hơn xảy ra trên các phần của chuỗi trong đó các giá trị tìm ẩn lớn hơn. Các khả năng khác là biến đổi cơ số trong họ Box$-$Cox có dạng
+\begin{align}
+y_{t}=
+\begin{cases} 
+(x_{t}^{\lambda}-1)/\lambda&, \lambda\neq 0\\
+ln(x_{t})&, \lambda=0\\
+\end{cases}
+\label{BC}
+\end{align}
+Phương pháp chọn cơ số $ \lambda $ là có sẵn (xem Johnson và Wicéc, 1992) nhưng chúng tôi không tìm hiểu chúng ở đây. Thông thường, các phép biến đổi cũng được sử dụng để cải thiện tính gần đúng với tính chuẩn hoặc để cải thiện tính tuyến tính trong việc dự đoán giá trị của chuỗi này từ chuỗi khác.
+Là một công cụ thăm dò cuối cùng, chúng tôi thảo luận về việc đánh giá dáng điệu trong dữ liệu chuỗi thời gian bằng cách sử dụng phân tích hồi quy và biểu đồ. Một số chuỗi thời gian chúng ta đã thấy cho đến nay thể hiện dáng điệu. 
+\subsection{Làm mịn trong chuỗi thời gian}
+Trong phần \ref{ytph}, chúng tôi đã đưa ra khái niệm làm mịn chuỗi thời gian. Phương pháp này rất hữu ích trong việc khám phá những đặc điểm nhất định trong một chuỗi thời gian, chẳng hạn như xu hướng dài hạn và các thành phần theo mùa. Giả sử $ x_{t} $ là các quan sát, ta có
+\begin{equation}
+m_{t}= \sum_{j=-k}^{k} a_{j}x_{t-j} \label{ct1.72}	
+\end{equation}
+trong đó $a_{j}=a_{-j}\geq 0$ và $\sum_{j=-k}^{k} a_{j}=1$ là trung bình trượt đối xứng của dữ liệu.
+
+Nhiều kỹ thuật khác có sẵn để làm mịn dữ liệu chuỗi thời gian dựa trên các phương pháp từ bộ làm mịn phân tán. Thiết lập chung cho một biểu đồ thời gian là
+\begin{equation}
+x_t=f_t+y_t  \label{ct2.49}
+\end{equation}
+Trong đó $ f_t $ là một số hàm trơn của thời gian và $ y_t $ là một quá trình dừng. Chúng ta có thể nghĩ về trung bình trượt trơn $ m_t $, được đưa ra trong (\ref{ct1.72}), như một công cụ ước lượng của $ f_t $. Một lựa chọn rõ ràng cho $ f_t $ in (\ref{ct2.49}) là đa thức hồi quy 
+\begin{equation}
+f_t= \beta_0+\beta_1 t+...+\beta_p t^p \label{ct2.50}
+\end{equation}
+Đối với dữ liệu có chu kỳ, người ta có thể sử dụng hồi quy tuần hoàn
+\begin{equation}
+f_t = \alpha_0+\alpha_1 cos(2\pi w_1 t)+\beta_1 sin(2\pi w_1 t)
++...+\alpha_p cos(2\pi w_p t)+\beta_p sin(2\pi w_p t)  \label{ct2.51}
+\end{equation}
+trong đó $ w_1,...,w_p $ là các tần số riêng biệt, được chỉ định. Ngoài ra, người ta có thể xem xét kết hợp (\ref{ct2.50}) và (\ref{ct2.51}). Làm trơn có thể được áp dụng bằng phương pháp hồi quy tuyến tính cổ điển.
+
+Các kỹ thuật hồi quy hiện đại có thể được sử dụng để phù hợp với các bộ làm trơn chung cho các cặp điểm $ (t,x_t) $ trong đó ước lượng của $ f_t $ là trơn. Nhiều kỹ thuật có thể dễ dàng được áp dụng cho dữ liệu chuỗi thời gian bằng cách sử dụng các gói thống kê R hoặc S-PLUS; xem Venables và Ripley (1994, Chương 10) để biết chi tiết về việc áp dụng các phương pháp này trong S-PLUS (R tương tự). Một vấn đề với các kỹ thuật được sử dụng chúng tôi giả sử $ f_t $ là cùng một hàm trong khoảng thời gian $ t $; chúng ta có thể nói rằng kỹ thuật này là toàn cầu. Các bộ làm trơn trung bình trượt sẽ làm mịn trung bình trượt cho phép $ f_t $ là một hàm sai phân theo thời gian. Lưu ý rằng phương pháp nói đến ở trên hoàn toàn không tính đến việc số liệu là theo thứ tự tương quan, và phần lớn kỹ thuật nói đến đã được thiết kế cho quan sát độc lập.
+
+
+Dự đoán chuỗi thời gian là việc sử dụng mô hình để dự đoán các sự kiện thời gian dựa vào các sự kiện đã biết trong quá khứ để từ đó dự đoán các điểm dữ liệu trước khi nó xảy ra (hoặc được đo). Trong thực tế, dự báo chính xác là một nhiệm vụ quan trọng nhưng thường là khó khăn đối với các nhà hoạch định chính sách trong nhiều lĩnh vực. Mặc dù có rất nhiều mô hình được ứng dụng trong việc dự báo nhưng mỗi mô hình đều có ưu điểm và hạn chế riêng. Trong đó, mô hình trung bình chuyển động kết hợp tự hồi quy (ARIMA) là một trong những mô hình tuyến tính phổ biến nhất trong dự báo chuỗi thời gian đã được áp dụng rộng rãi để xây dựng các mô hình lai chính xác hơn trong thập kỷ qua. Theo Khashei và Bijari (2011). Mô hình này cũng được đánh giá là phù hợp đối với những quan hệ tuyến tính giữa dữ liệu hiện tại và dữ liệu quá khứ. Trong phần tiếp theo, chúng tôi sẽ giới thiệu lý thuyết xây dựng mô hình ARIMA.
+\section{Mô hình ARIMA và dự báo}
+\subsection{Giới thiệu mô hình ARIMA}
+
+Mô hình ARIMA (Autoregressive Integrated Moving Average – Tự hồi qui tích hợp Trung bình trượt) là một lớp mô hình tuyến tính có khả năng biểu diễn cả chuỗi thời gian tĩnh lẫn không tĩnh. Mô hình ARIMA dựa vào các mẫu tự tương quan trong bản thân của chuỗi thời gian để sinh ra dự đoán. Hệ thống các phương pháp dùng để xác định, kiểm tra và cải tiến mô hình ARIMA có sự đóng góp rất lớn của hai nhà thống kê, G.E.P.Box và G.M.Jenkins (1976). Do đó việc mô hình và dự đoán dựa trên mô hình ARIMA còn được gọi là phương pháp luận Box-Jenkins. 
+\subsection{Mô hình ARMA}
+Mô hình hồi quy cổ điển ở phần (\ref{hqcd}) được phát triển cho trường hợp chuỗi thời gian dừng, cụ thể là, chúng tôi chỉ cho phép biến phụ thuộc được tính bằng các giá trị hiện tại của các biến độc lập. Đối với các chuỗi thời gian, cho phép biến phụ thuộc được tính bằng các giá trị trong quá khứ của các biến độc lập và có thể bằng các giá trị trong quá khứ của chính nó. Nếu giá trị hiện tại có thể được mô hình hóa hợp lý theo các giá trị trong quá khứ của các đầu vào độc lập, chúng ta có triển vọng hấp dẫn rằng có thể tiến hành dự báo.
+
+\textbf{Giới thiệu về các mô hình tự hồi quy}
+
+Các mô hình tự hồi quy dựa trên ý tưởng rằng giá trị hiện tại của chuỗi $x_{t}$ có thể được giải thích là hàm của $p$ giá trị p trong quá khứ, $x_{t-1}, x_{t-2}, ..., x_{t-p}$, trong đó $p$ xác định số lượng các bước trong quá khứ cần thiết để dự báo giá trị hiện tại.
+
+Mức độ có thể dự đoán chuỗi dữ liệu thực từ các giá trị trong quá khứ của chính nó có thể được đánh giá bằng cách xem xét hàm tự tương quan và ma trận phân tán bị trễ được thảo luận trong phần (\ref{hqcd}).Trong phần sau, chúng tôi làm rõ chức năng truyền và mô hình vector AR làm thế nào để xử lý sự phụ thuộc vào các giá trị được thực hiện bởi các chuỗi khác. Điều đó dẫn đến định nghĩa sau đây:
+\begin{dn}
+Một mô hình hồi quy theo bậc p, viết tắt AR(p), có dạng
+\begin{equation}
+	x_{t} = \phi_{1}x_{t-1} + \phi_{2}x_{t-2} + ...+ \phi_{p}x_{t-p}+ w_{t}, \label{ct1.80}
+\end{equation}	
+trong đó $x_{t}$ là chuỗi dừng, $\phi_{1}, \phi_{2},..., \phi_{p}$ là các hằng số $(\phi_{p} \neq 0)$. Trừ khi có quy định khác, chúng tôi giả sử rằng $w_{t}$ là một chuỗi nhiễu trắng Gaussian có giá trị trung bình là 0 và phương sai $\sigma_{w}^{2}$. Giá trị trung bình của $x_{t}$ trong (\ref{ct1.80}) bằng không. Nếu giá trị trung bình $\mu$ của $x_{t}$ không bằng 0, thay thế $x_{t}$ = $x_{t} − \mu$, trong (\ref{ct1.80}), tức là,
+\begin{equation}
+	x_{t} − \mu= \phi_{1}(x_{t-1} - \mu) + \phi_{2}(x_{t-2}-\mu) +...+\phi_{p}(x_{t-p}- \mu) +w_{t}, \label{ct1.81}
+\end{equation}
+hoặc
+\begin{equation}
+x_{t}= \alpha + \phi_{1}x_{t-1} + \phi_{2}x_{t-2}+...+ \phi_{p}x_{t-p}+ w_{t}, \label{ct1.82}
+\end{equation}
+với $\alpha = \mu(1-\phi_{1}-...-\phi_{p})$.
+
+Chúng tôi lưu ý rằng (\ref{ct1.82}) tương tự như mô hình hồi quy cổ điển ở phần (\ref{hqcd}), và do đó chúng tôi có thuật ngữ tự hồi quy. Tuy nhiên, việc áp dụng mô hình sẽ gặp hạn chế vì các biến hồi quy $x_{t-1},..., x_{t-p}$ là các thành phần ngẫu nhiên, trong khi  $z_{t}$ được giả sử là đã cố định. Một giải pháp được đưa ra bằng cách sử dụng toán tử dịch chuyển ngược (\ref{ct1.68}) để viết mô hình AR(p), (\ref{ct1.80}), như sau:
+\begin{equation}
+	(1-\phi_{1}B - \phi_{2}B^{2}- ...- \phi_{p}B^{p})x_{t}= w_{t} \label{ct1.83}
+\end{equation}
+hoặc thậm chí chính xác hơn là
+\begin{equation}
+\phi(B)x_{t}= w_{t} \label{ct1.84}	
+\end{equation}
+Các tính chất của $\phi(B)$ rất quan trọng trong việc giải (\ref{ct1.84}) cho $x_{t}$. Điều này dẫn đến định nghĩa sau.
+\end{dn}
+\begin{dn} \textit{Toán tử tự hồi quy} được định nghĩa như sau
+\begin{equation}
+\phi(B) = 1-\phi_{1}B - \phi_{2}B^{2}- ... - \phi_{p}B^{p} \label{ct1.85}
+\end{equation}	
+
+Chúng tôi bắt đầu nghiên cứu các mô hình AR bằng cách xem xét mô hình bậc một, AR (1), được đưa ra bởi $x_{t} = \phi x_{t-1} + w_{t}$. Lặp đi lặp lại $k$ lần, chúng ta nhận được
+	\begin{align*}
+	x_{t}=\phi x_{t-1} +w_{t} &= \phi(\phi x_{t-2} +w_{t-1}) +w_{t}\\& \enskip\vdots\\&= \phi^{2}x_{t-2} + \phi w_{t-1} +w_{t}\\&= \phi^{k}x_{t-k} + \sum_{j=0}^{k-1}\phi^{j}w_{t-j}.
+	\end{align*}
+Phương pháp này gợi ý rằng, bằng cách tiếp tục lặp đi lặp lại với điều kiện $| \phi | <1$ và $x_{t}$ là chuỗi dừng, chúng ta có thể biểu diễn mô hình AR(1) dưới dạng một quá trình tuyến tính được đưa ra bởi
+	\begin{equation}
+	x_{t}= \sum_{j=0}^{\infty} \phi^{j}w_{t-j} \label{ct1.86}	
+	\end{equation}
+	
+Quá trình AR(1) được xác định bởi (\ref{ct1.86}) là dừng với giá trị trung bình là
+	\begin{equation}
+	E(x_{t})= \sum_{j=0}^{\infty}\phi^{j} E(w_{t-j})=0, \label{ct1.87}	
+	\end{equation}
+và hàm tự hiệp phương sai có dạng
+    \begin{align}
+	\gamma(h)= cov(x_{t+h}, x_{t}) &=E[(\sum_{j=o}^{\infty}\phi^{j}w_{t+h-j})(\sum_{k=0}^{\infty}\phi^{k}w_{t-k})]\\&= \sigma_{w}^{2} \sum_{j=0}^{\infty} \phi^{j}\phi^{j+h} = \sigma_{w}^{2}\phi^{h} \sum_{j=0}^{\infty}\phi^{2j} =  \dfrac{\sigma_{w}^{2}\phi^{h}}{1- \phi^{2}}, \hspace{1cm} h\geq 0.
+     \label{ct1.888}
+     \end{align}
+Hãy nhớ lại rằng $\gamma(h) = \gamma (-h)$, vì vậy chúng ta sẽ trình bày hàm tự hiệp phương sai với $h \geq 0$. Từ (\ref{ct1.888}), ta có được ACF của AR(1) là
+	\begin{equation}
+	\rho(h)= \dfrac{\gamma(h)}{\gamma(0)}= \phi^h, \hspace{1cm} h\geq 0, \label{ct1.88}
+	\end{equation}
+	và $\rho(h)$ thỏa mãn
+	\begin{equation}
+	\rho(h)= \phi \rho(h-1),\hspace{1cm} h=1,2,\dots. \label{ct1.89}
+	\end{equation}
+Chúng ta sẽ thảo luận về ACF của một mô hình AR(p) chung trong phần (\ref{acfpacf}).
+	
+Kỹ thuật lặp ngược để có ý tưởng về giải pháp ổn định của các mô hình AR hoạt động tốt khi $p = 1$, nhưng không phù hợp cho bậc lớn hơn. Một kỹ thuật chung là so khớp các hệ số. Hãy xem xét mô hình AR(1) ở dạng toán tử 
+	\begin{equation}
+	\phi(B)x_{t}= w_{t}, \label{ct1.90}	
+	\end{equation}
+trong đó $\phi(B) = 1- \phi(B)$ và $|\phi| <1$. Ngoài ra, chúng tôi có thể viết mô hình trong phương trình (\ref{ct1.86}) bằng cách sử dụng dạng toán tử như sau
+\begin{equation}
+x_{t}= \sum_{j=0}^{\infty}\psi_{j}w_{t-j} = \psi(B)w_{t}, \label{ct1.91}
+\end{equation}
+trong đó $\psi(B)= \sum_{j=0}^{\infty}\psi_{j}B^{j}$ và $\psi_{j} = \phi^{j}$. Giả sử chúng ta không biết rằng $\psi_{j} = \phi^{j}$ . Chúng ta có thể thay thế $\psi(B)w_{t}$ từ (\ref{ct1.91}) cho $x_{t}$ trong (\ref{ct1.90}) để thu được 
+\begin{equation}
+\phi(B)\psi(B)w_{t} = w_{t}. \label{ct1.92}
+\end{equation}
+Các hệ số của $B$ ở phía bên trái của phương trình (\ref{ct1.92}) phải bằng với các hệ số ở phía bên phải của phương trình (\ref{ct1.92}), có nghĩa là 
+\begin{equation}
+(1- \phi B)(1-\psi_{1}B +\psi_{2}B^{2}+...+\psi_{j}B^{j}+...)=1 \label{ct1.93}
+\end{equation}	
+Sắp xếp lại các hệ số trong (\ref{ct1.93}),
+\begin{equation}
+1- (\psi_{1} -\phi)B + (\psi_{2}-\psi_{1}\phi)B^{2}+...+ (\psi_{j}-\psi_{j-1}\phi)B^{j})+...=1, \label{ct1.94}
+\end{equation}	
+chúng ta thấy rằng với mỗi $j = 1, 2, ...$, hệ số của $B^{j}$ ở bên trái phải bằng 0 vì nó bằng 0 ở bên phải. Hệ số của B ở bên trái là $(\psi_{1}-\phi)$ và phương trình này bằng 0, $\psi_{1} −\phi = 0$, dẫn đến $\psi_{1} = \phi$. Tiếp tục, hệ số của $B^{2}$ là $(\psi_{2}-\psi{1}\phi)$, do đó $\psi_{2}= \phi^{2}$. Nói chung,
+\begin{equation}
+	\psi_{j}= \psi{j-1}\phi \label{ct1.95}
+\end{equation}	
+với $\psi_{0} = 1$, dẫn đến nghiệm chung là $\psi_{j} = \phi^{j}$.
+
+Một cách khác để suy nghĩ về các toán tử mà chúng ta vừa thực hiện là xem xét mô hình AR(1) ở dạng toán tử, $\phi(B)x_{t} = w_{t}$. Bây giờ nhân cả hai bên với $\phi^{-1}(B)$ (giả sử tồn tại toán tử ngược) để có được 
+\begin{equation}
+\phi^{-1}(B)\phi(B)x_{t}= \phi^{-1}(B)w_{t} \label{ct1.96}
+\end{equation}
+hoặc
+\begin{equation}
+x_{t}= \phi^{-1}(B)w_{t}. \label{ct1.97}
+\end{equation}
+Chúng ta đã biết rằng
+\begin{equation}
+\phi^{-1}(B)= 1 +\phi B+ \phi^{2}B^{2}+ ...+ \phi^{j}B^{j}+..., \label{ct1.98}
+\end{equation}
+nghĩa là, $\phi^{-1}(B)$ là $\psi(B)$ trong (\ref{ct1.91}). Vì vậy, chúng tôi nhận thấy rằng làm việc với các toán tử cũng giống như làm việc với đa thức. Nghĩa là xem xét đa thức $\phi(z) = 1-\phi z$, trong đó $z$ là số phức và $|\phi|<1$. Sau đó,
+\begin{equation}
+\phi^{-1}(z)= \dfrac{1}{(1-\phi z)}= 1+ \phi z+ \phi^{2} z^{2}+...+ \phi^{j} z^{j}+..., |z|\leq1, \label{ct1.99}
+\end{equation}	
+và các hệ số của $B^{j}$ trong $\phi^{-1}(B)$ giống như các hệ số của $z^{j}$ trong $\phi^{-1}(z)$. Nói cách khác, chúng ta có thể coi toán tử dịch chuyển ngược, B, là một số phức, z. Những kết quả này sẽ được khái quát trong cuộc thảo luận của chúng tôi về các mô hình ARMA. Chúng ta sẽ tìm ra các đa thức tương ứng với các toán tử, hữu ích trong việc khám phá các tính chất chung của các mô hình ARMA.
+\end{dn}
+
+\textbf{Giới thiệu về mô hình trung bình trượt}
+
+Một thay thế cho biểu diễn tự hồi quy, giả sử $x_{t}$ ở phía bên trái của phương trình được giả sử được kết hợp tuyến tính, mô hình trung bình trượt của bậc q, viết tắt là MA(q), giả sử nhiễu trắng $w_{t}$ ở bên phải của phương trình được kết hợp tuyến tính để tạo thành dữ liệu quan sát được.
+\begin{dn} Mô hình trung bình trượt của bậc q, hoặc MA(q), được định nghĩa là 
+\begin{equation}
+x_{t}= w_{t}+\theta_{1}w_{t-1}+ \theta_{2}w_{t-2}+...+\theta_{q}w_{t-q} \label{ct1.100}
+\end{equation}
+có q độ trễ trong trung bình trượt và $\theta_{1}, \theta_{2},..., \theta_{q} (\theta_{q} \neq 0)$ là các tham số. Nhiễu $w_{t}$ được giả sử là nhiễu trắng Gaussian.
+
+Phương pháp này giống như trung bình trượt được định nghĩa là quá trình tuyến tính (\ref{ct1.91}), trong đó $\psi_{0} = 1, \psi_{j} = \theta_{j}$, với $j = 1, ..., q$ và $ \psi_{j} = 0$ cho các giá trị khác. Chúng tôi cũng có thể viết quy trình MA(q) ở dạng tương đương
+\begin{equation}
+x_{t}= \theta(B)w_{t} \label{ct1.101}	\end{equation}
+sử dụng định nghĩa sau.
+\end{dn}
+\begin{dn}
+Toán tử trung bình trượt là 
+\begin{equation}
+\theta(B)= 1+ \theta_{1}B+\theta_{2}B^{2}+...+ \theta_{q}B^{q} \label{ct1.102}
+\end{equation}	
+\end{dn}
+
+Không giống như quá trình tự hồi quy, quá trình trung bình trượt là ổn định cho bất kỳ giá trị nào của các tham số $\theta_{1}, ..., \theta_{q}$. Chi tiết về kết quả này được trình bày trong phần (\ref{acfpacf}).
+	
+Như trong trường hợp AR, đa thức, $\theta(z)$, tương ứng với các toán tử trung bình trượt, $\theta(B)$, sẽ hữu ích trong việc khám phá các tính chất chung của các quá trình MA. Ví dụ, theo các bước của phương trình (\ref{ct1.90}) - (\ref{ct1.93}), chúng ta có thể viết mô hình MA(1) là $x_{t} = \theta(B) w_{t}$, trong đó $\theta(B) = 1 + \theta B$. Nếu $| \theta | <1$ thì chúng ta có thể viết mô hình có dạng là $\pi (B)x_{t} = w_{t}$, trong đó $\pi(B) = \theta^{-1}(B)$. Ta thu được kết quả như sau 
+$$\theta(z) = 1+\theta z, |z|\leq1, \hspace{0.5cm}\text{khi đó} \hspace{0.5cm} \pi(z) = \theta^{-1} = \dfrac{1}{(1-\theta z)}= \sum_{j=0}^{\infty}(-\theta)^{j}z^{j}$$ 
+và $\pi(B)= \sum_{j=0}^{\infty}(-\theta)^{j}z^{j}$.
+
+\textbf{Mô hình tự hồi quy trung bình trượt}
+
+Bây giờ chúng tôi tiến hành phát triển chung về các mô hình tự hồi quy, trung bình trượt, tự hồi quy trung bình trượt (ARMA) cho chuỗi thời gian dừng.
+\begin{dn}
+Một chuỗi thời gian $ \{x_{t}, t=0,\pm1,\pm2,...\}$ là ARMA(p, q) nếu nó có tính dừng và 
+\begin{equation}
+ x_{t}= \phi_{1}x_{t-1}+...+\phi_{p}x_{t-p} + w_{t} + \theta_{1}w_{t-1}+...+ \theta_{q}w_{t-q} \label{ct1.104}
+\end{equation}
+ với $\phi_{p} \neq 0, \theta_q \neq $0 và $\sigma_{w}^{2}> 0$. Các tham số $p$ và $q$ lần lượt là bậc của tự hồi quy và trung bình trượt. Nếu $x_{t}$ có một giá trị trung bình $\mu \neq 0$, chúng ta đặt $\alpha = \mu(1 − \phi_{1} -\dots- \phi_{p})$ và viết mô hình là
+\begin{equation}
+x_{t}= \alpha + \phi_{1}x_{t-1}+...+\phi_{p}x_{t-p}+w_{t}+\theta_{1}w_{t-1}+...+\theta_{q}w_{t-q} \label{ct1.105}	
+\end{equation}
+Trừ khi có phát biểu khác, $\{w_{t}; t = 0, \pm 1, \pm 2, ...\}$ là dãy nhiễu trắng Gaussian.
+\end{dn}
+	
+Như đã lưu ý trước đây, khi $q = 0$, mô hình được gọi là mô hình tự hồi quy theo bậc p, AR(p) và khi $p = 0$, mô hình được gọi là mô hình trung bình trượt bậc q, MA (q). Để hỗ trợ cho việc nghiên cứu các mô hình ARMA, sẽ rất hữu ích khi viết chúng bằng toán tử AR, (\ref{ct1.85}) và toán tử MA, (\ref{ct1.102}). Cụ thể, mô hình ARMA(p, q) trong (\ref{ct1.104}) sau đó có thể được viết dưới dạng ngắn gọn như
+\begin{equation}
+\phi(B)x_{t}= \theta(B)w_{t} \label{ct1.106}
+\end{equation}	
+Trước khi chúng tôi thảo luận về các điều kiện theo đó (\ref{ct1.104}) là nguyên nhân và khả nghịch, chúng tôi chỉ ra một vấn đề tiềm ẩn với mô hình ARMA. 
+\begin{dn}
+Các đa thức AR và MA được định nghĩa là 
+\begin{equation}
+\phi(z)= 1 - \phi_{1}z - ... - \phi_{p}z^{p}, \phi_{p}\neq 0, \label{ct1.107}
+\end{equation}	
+	và
+\begin{equation}
+\theta(z)= 1+ \theta_{1}z + ....+\theta_{q}z^{q},\theta_{q}\neq 0, \label{ct1.108}
+\end{equation}
+tương ứng, trong đó $z$ là một số phức.
+\end{dn}
+	
+Đầu tiên, chúng ta sẽ đề cập đến một mô hình ARMA(p, q) để nó có dạng đơn giản nhất. Nghĩa là, ngoài định nghĩa ban đầu được đưa ra trong phương trình (\ref{ct1.104}), chúng ta cũng sẽ yêu cầu $\phi(z)$ và $\theta(z)$ không có các yếu tố chung.
+	
+Để giải quyết vấn đề của các mô hình phụ thuộc trong tương lai, chúng tôi chính thức giới thiệu khái niệm nhân quả.
+
+\begin{dn}
+Một mô hình ARMA(p, q), $\phi(B)x_{t} = \theta(B)w_{t}$, được gọi là nhân quả, nếu chuỗi thời gian $\{x_{t}; t = 0, \pm 1, \pm 2, ...\}$ có thể được viết dưới dạng quy trình tuyến tính một phía:
+\begin{equation}
+x_{t}= \sum_{j=0}^{\infty}\psi_{j}w_{t-j}= \psi(B)w_{t} \label{ct1.109}
+\end{equation}	
+trong đó $\psi(B)= \sum_{j=0}^{\infty}\psi_{j}B^{j}, \text{và} \sum_{j=0}^{\infty}|\psi_{j}|< \infty, \psi_{0}=1$.
+\end{dn}
+Do đó chúng tôi có các tính chất sau 
+
+\begin{tc}\textbf{\label{qhnq}Quan hệ nhân quả của quá trình ARMA(p, q)}\\
+Mô hình ARMA(p, q) là nhân quả khi và chỉ khi $\phi(z) \neq 0$ với $|z| \leq1$. Các hệ số của quá trình tuyến tính được cho trong (\ref{ct1.109}) có thể được xác định bằng cách giải
+$$\psi(z)= \sum_{j=0}^{\infty}\psi_{j}z^{j}= \dfrac{\theta(z)}{\phi(z)}, \hspace{1cm} |z|\leq1$$.
+\end{tc}
+
+Một cách khác để diễn đạt tính chất (\ref{qhnq}) là quá trình ARMA chỉ là nguyên nhân khi các nghiệm của $\phi(z)$ nằm ngoài vòng tròn đơn vị; nghĩa là, $\phi(z) = 0$ chỉ khi $| z | > 1$. Cuối cùng, để giải quyết vấn đề về tính duy nhất, chúng tôi chọn mô hình cho phép biểu diễn tự hồi quy vô hạn.
+
+\begin{dn}
+Một mô hình $ARMA(p, q)$, $\phi(B)x_{t} = \theta(B)w_{t}$, được cho là khả nghịch, nếu chuỗi thời gian $\{x_{t}; t = 0, \pm 1, \pm2, ...\}$ có thể được viết là 
+\begin{equation}
+\pi(B)x_{t}= \sum_{j=0}^{\infty}\pi_{j}x_{t-j} = w_{t}, \label{ct1.111}
+\end{equation}	
+với $\pi(B)= \sum_{j=0}^{\infty}\pi_{j}B^{j}$, và $\sum_{j=0}^{\infty}|\pi_{j}| < \infty, \pi_{0}=1$.
+\end{dn}
+
+Tương tự như tính chất (\ref{qhnq}), chúng ta có tính chất sau 
+\begin{tc}\textbf{\label{tckn}Tính khả nghịch của quá trình $ARMA(p, q)$}\\
+ Mô hình ARMA(p, q) khả nghịch khi và chỉ khi $\theta(z) \neq0$ với $| z | \leq1$. Có thể xác định hệ số $\pi_{j}$ của $\pi(B)$ trong (\ref{ct1.111}) bằng cách giải 
+$$\pi(z)= \sum_{j=0}^{\infty}\pi_{j}z^{j} = \dfrac{\phi(z)}{\theta(z)}, |z|\leq1$$.
+\end{tc}
+
+Một cách khác để diễn đạt tính chất (\ref{tckn}) là quy trình ARMA chỉ khả nghịch khi các nghiệm của $\theta(z)$ nằm ngoài vòng tròn đơn vị; nghĩa là, $\theta(z) = 0$ chỉ khi $| z | > 1$.
+
+\subsection{Phương trình sai phân}
+Nghiên cứu về dáng điệu của các quá trình ARMA và ACF của chúng bằng kiến thức cơ bản về phương trình sai phân được nâng cao đáng kể. Chủ đề này cũng hữu ích trong nghiên cứu các mô hình trong miền thời gian và các quá trình ngẫu nhiên nói chung.
+
+Giả sử chúng ta có một chuỗi số $u_{0},u_{1},u_{2}...$ sao cho
+\begin{equation}
+u_{n} - \alpha  u_{n+1} =0  ,      \alpha \neq 0      , n=1,2,... . \label{ct1.113}
+\end{equation}
+Trong (\ref{ct1.89}), chúng tôi đã chỉ ra rằng ACF của quy trình AR(1) là một chuỗi, $\rho(h)$, thỏa mãn
+$$\rho(h)-\phi\rho(h-1)= 0, h=1,2,...$$.
+Phương trình (\ref{ct1.113}) thể hiện phương trình sai phân thuần nhất của bậc 1. Để giải phương trình, chúng ta viết
+\begin{align*}
+u_{1}&= \alpha u_{0}\\
+u_{2}&=\alpha u_{1}= \alpha^{2} u_{0}\\
+& \hspace{0.2cm}\vdots\\
+u_{n}&=\alpha u_{n-1} =\alpha^{n} u_{0}.	
+\end{align*}
+Với một điều kiện ban đầu $u_{0}=c$  , chúng ta có thể giải (\ref{ct1.113}), cụ thể là $u_{n}=a^{n}c$.
+
+Trong ký hiệu toán tử, (\ref{ct1.113}) có thể được viết là $(1-\alpha B) u_{n}=0$. Đa thức liên kết với (\ref{ct1.113}) là $\alpha (z) =1-\alpha z$, và nghiệm $z_{0}$ của đa thức này là $z_{0}= 1/a$; do đó $\alpha (z_{0}) =0$. Chúng ta biết được nghiệm từ (\ref{ct1.113}), với điều kiện ban đầu $u_{0}=c$, là
+$$u_{n}=a^{n}c=(z_{0}^{-1})^{n}c$$.
+Nghĩa là, nghiệm của phương trình sai phân (\ref{ct1.113}) chỉ phụ thuộc vào điều kiện ban đầu và nghịch đảo của nghiệm với đa thức liên quan $\alpha(z)$.
+
+Bây giờ giả sử rằng chuỗi thỏa mãn
+\begin{equation}
+u_{n}-\alpha_{1}u_{n-1}-\alpha_{2}u_{n-2}=0, \alpha_{2}\neq 0, \hspace{1cm} n=2,3,...\label{ct1.116}
+\end{equation}
+Phương trình này là phương trình sai phân thuần nhất bậc 2. Đa thức tương ứng là:
+$$\alpha(z)=1-\alpha_{1}z-\alpha_{2}z^{2}$$, trong đó có hai nghiệm $z_{1}$ và $z_{2}$; nghĩa là, $\alpha(z_{1})=\alpha(z_{2})=0$. Chúng tôi sẽ xem xét hai trường hợp. Đầu tiên giả sử $z_{1}\neq z_{2}$. Vậy thì nghiệm chung cho (\ref{ct1.116}) là
+\begin{equation}
+u_{n}=c_{1}. z_{1}^{-n} + c_{2}. z_{2}^{-n}, \label{ct1.118}
+\end{equation}
+trong đó $c_{1}$ và $c_{2}$ phụ thuộc vào các điều kiện ban đầu. Điều này có thể được kiểm tra bằng cách thay thế trực tiếp (\ref{ct1.118}) thành (\ref{ct1.116}):
+\begin{align*}
+c_{1}z_{1}^{-n}  + c_{2}z_{2}^{-n} &- \alpha_{1} (c_{1}z_{1}^{-(n-1)}+ 	c_{2} z_{2}^{-(n-1)}) - \alpha_{2} (	c_{1} z_{1}^{-(n-2)}+ 	c_{2} z_{2}^{-(n-2)})\\
+&= c_{1}z_{1}^{-n}(1-\alpha_{1}z_{1}-\alpha_{2}z_{1}^{2}) +  c_{2}. z_{2}^{-n}(1-\alpha_{1}z_{2}-\alpha_{2}z_{2}^{2})\\
+&=c_{1}z_{1}^{-n}\alpha(z_{1}) + c_{2}z_{2}^{-n}\alpha(z_{2})\\
+&=0.
+\end{align*}
+Với hai điều kiện ban đầu $u_{0}$ và $u_{1}$, chúng ta có thể giải cho $c_{1}$ và $c_{2}$:
+\begin{align*}
+u_{0}&= c_{1}+ c_{2}\\
+u_{1}&=c_{1}z_{1}^{-1} + c_{2}z_{2}^{-1}
+\end{align*}
+trong đó $z_{1}$và $z_{2}$ có thể được giải theo các giá trị của $\alpha_{1} $và $\alpha_{2} $ bằng cách sử dụng công thức bậc hai chẳng hạn.
+
+Khi các nghiệm của phương trình bằng nhau, $z_{1}=z_{2} (=z_{0})$, nghiệm chung cho (\ref{ct1.116}) là
+\begin{equation}
+u_{n}= z_{0}^{-n} (c_{1 +c_{2}n}). \label{ct1.119}
+\end{equation}
+
+Diều này cũng có thể được kiểm bằng cách thay thế trực tiếp (\ref{ct1.119}) vào (\ref{ct1.116}):
+\begin{align*}
+z_{0}^{-n} (c_{1 +c_{2}n})&- \alpha_{1}(z_{0}^{-(n-1)} [c_{1 + c_{2} (n-1)}]) - \alpha_{2}(z_{0}^{-(n-2)} [c_{1 + c_{2} (n-2)}])\\
+&=z_{0}^{-n} (c_{1 +c_{2}n})(1-\alpha_{1}z_{0}-\alpha_{2}. z_{0}^{2}) + c_{2} z_{0}^{-n+1} (\alpha_{1}+2\alpha_{2}z_{0})\\
+&=c_{2} z_{0}^{-n+1} (\alpha_{1}+2\alpha_{2}z_{0}).
+\end{align*}
+Để chỉ ra rằng $(\alpha_{1}+2\alpha_{2}z_{0})=0$, ta viết $ 1-\alpha_{1}z-\alpha_{2}z^{2}=(1-z_{0}^{-1}z)^{2}$ và lấy đạo hàm tương ứng với $z$ ở cả hai phía của phương trình để thu được $ (\alpha_{1}+2\alpha_{2}z)=2z_{0}^{-1} (1-z_{0}^{-1}z)$. Do đó, $(\alpha_{1}+2\alpha_{2}z_{0})=2z_{0}^{-1} (1-z_{0}^{-1}z)=0$ như đã được chỉ ra ở trên. Cuối cùng, với hai điều kiện ban đầu, $u_{0}$ và $u_{1}$, chúng ta có thể giải $c_{1}$ và $c_{2}$:
+\begin{align*}
+u_{0}&= c_{1}\\
+u_{1}&=(c_{1}+ c_{2}) z_{0}^{-1}.
+\end{align*}
+
+Để tóm tắt những kết quả này, trong trường hợp hai nghiệm phân biệt, nghiệm của phương trình sai phân thuần nhất bậc hai là
+\begin{align*}
+u_{n}&= z_{1}^{-n}\times( \text{một đa thức trong n có bậc}  m_{1}-1) \\
+& + z_{2}^{-n}\times( \text{một đa thức trong n có bậc}  m_{2}-1)
+\end{align*}
+trong đó $m_{1}$ là bội số của nghiệm $z_{1}$ và $m_{2}$ là bội số của nghiệm $z_{2}$. Trong ví dụ này, tất nhiên, $m_{1}=m_{2}=1$, và chúng tôi đã gọi các đa thức $c_{1}$ và $c_{2}$ có bậc $0$. Trong trường hợp nghiệm lặp đi lặp lại, nghiệm là
+$$u_{n}= z_{0}^{-n}\times( \text{một đa thức trong n có bậc }  m_{0}-1)$$ ,
+trong đó $m_{0}$ là bội số của nghiệm $z_{0}$; đó là, $m_{0}=2$. Trong trường hợp này, chúng tôi đã viết đa thức bậc một là $c_{1}+c_{2}n$.Trong cả hai trường hợp, chúng tôi đã tìm được $c_{1}$ và $c_{2}$ với hai điều kiện ban đầu là $u_{1}$ và $u_{2}$.	
+
+Bây giờ, chúng tôi sẽ giải phương trình sai phân thuần nhất bậc $p$
+\begin{equation}
+	u_n-\alpha_1 u_{n-1}-\dots-\alpha_p u_{n-p}=0, \hspace{1cm}\alpha_p\neq 0, \hspace{1cm} n=p, p+1,\dots. \label{ct3.34}
+\end{equation}
+Đa thức liên kết là 
+$$\alpha(z)=1-\alpha_1z-\dots-\alpha_pz^p$$.
+Giả sử $\alpha(z)$ có $r$ nghiệm phân biệt, $z_1$ có bội số $m_1$, $z_2$ có bội số $m_2$,\dots, và $z_r$ có bội số $m_r$ và $m_1+m_2+\dots+m_r=p$. Nghiệm chung của phương trình sai phân (\ref{ct3.34}) là
+\begin{equation}
+	u_n=z_1^{-n}P_1(n)+z_2^{-n}(n)+\dots+z_r^{-n}P_r(n), 
+\end{equation}
+trong đó $P_j(n)$ là một đa thức trong $n$ có bậc $m_j-1$, với $j=1,2,\dots,r$ Chọn $p$ điều kiện ban đầu $u_0,\dots, u_{p-1}$, chúng tôi có thể giải $P_j(n)$ một cách dễ dàng.
+\subsection{\label{acfpacf}Hàm tự tương quan và hàm tự tương quan từng phần}
+Chúng tôi bắt đầu bằng cách biểu diễn ACF của một quá trình $MA(q)$, $x_{t}=\theta(B)w_{t}$, trong đó $\theta(B)=1+\theta_{1}B+...+\theta_{q}B^{q}$. Bởi vì $x_{t}$ là sự kết hợp tuyến tính hữu hạn của các thuật ngữ nhiễu trắng nên quá trình này dừng với giá trị trung bình 
+$$E(x_{t})= \displaystyle\sum_{j=1}^q \theta_{j}E(w_{t-j})=0$$,
+trong đó chúng tôi đã viết $\theta_{0}=1$ và với hàm tự hiệp phương sai
+\begin{align}
+	\gamma(h)= cov (x_{t+h},x_{t}) & = E\Bigg[\bigg(\displaystyle\sum_{j=0}^{q} \theta_{j}w_{t+h-j}\bigg)\bigg(\displaystyle\sum_{k=0}^{q} \theta_{k}w_{t-k}\bigg)\Bigg]\\	
+	&=\begin{cases} 
+	\sigma_w^{2}\displaystyle\sum_{j=0}^{q-h}\theta_{j}\theta_{j+h}&, 0\leq h\leq q \\
+    0&, h>q. \\ \label{3.38}
+	\end{cases}
+\end{align}
+Vì $\gamma(h)=\gamma(-h)$ nên chúng tôi chỉ biểu diễn các giá trị cho $h\geq 0$. Việc cắt đứt $\gamma(h)$ sau độ trễ $q$ là kí hiệu của mô hình $MA(q)$. Chia (\ref{3.38}) cho $0$ ta thu được ACF của một $MA(q)$:
+\begin{align}
+\rho(h) =
+\begin{cases} 
+\displaystyle\dfrac{\displaystyle\sum_{j=0}^{q-h}\theta(j)\theta(j+h)}{1+\theta_1^{2}+...+\theta_q^{2}}&, 1 \leq h \leq q\\ 
+0&, h > q.\\
+\end{cases}
+\label{ct3.39}
+\end{align}
+
+Đối với mô hình $ARMA(p,q)$ nhân quả, $\phi(B)x_{t}=\theta(B)w_{t}$, trong đó các số $\phi(z)$ nằm ngoài vòng tròn đơn vị, được viết
+\begin{equation}
+x_{t}=\displaystyle\sum_{j=0}^{\infty}\psi_{j}w_{t-j}. \label{ct1.122}
+\end{equation}
+Khi đó $E(x_{t}=0)$. Ngoài ra, hàm tự hiệp phương sai tự động của $x_{t}$ có thể được viết là:
+\begin{equation}
+\gamma(h)= cov (x_{t+h},x_{t})= \sigma_w^{2}\displaystyle\sum_{j=0}^{\infty}\psi_{j}\psi_{j+h}, \hspace{1cm} h \geq 0. \label{ct1.123}
+\end{equation}
+
+Trong phần tiếp theo, chúng tôi sẽ giới thiệu các \textbf{xác định trọng số $\psi$ cho một mô hình nhân quả ARIMA $(p,q)$}\\
+
+Đối với mô hình nhân quả ARIMA $(p,q)$, $\phi(B)x_{t}=\theta(B)w_{t}$, trong đó các số không của $\phi(z)$ nằm ngoài vòng tròn đơn vị, chúng ta có thể viết:  
+$$x_{t}=\sum_{j=0}^{\infty}\psi_{j}w_{t-j}$$
+trong đó trọng số $\psi$ được xác định bằng tính chất (\ref{qhnq}).
+Đối với mô hình MA$(q)$ thuần túy, $\psi_{0}=1$, $\psi_{j}=0$, với $j=1,...,q$, và ngược lại $\psi_{j}=0$. Đối với trường hợp chung của các mô hình ARMA$(p,q)$, việc tìm ra trọng số $\psi$ phức tạp hơn nhiều. Chúng ta có thể sử dụng lý thuyết của phương trình sai phân thuần nhất để tìm các trọng số đó dễ dàng hơn. Để tìm ra các trọng số $\psi$, ta phải khớp các hệ số trong phương trình $\psi(z)\phi(z)=\theta(z)$:
+$$(\psi_{0}+\psi_{1}z+\psi_{2}z^{2}+...)(1-\phi_{1}z-\phi_{2}z^{2}-...)=(1+\theta_{1}z+\theta_{2}z^{2}+...)$$
+Một vài giá trị đầu tiên là:
+\begin{align*}
+\psi_{0}&=1\\
+\psi_{1}-\phi_{1}\psi_{0}&=\theta_{1}\\
+\psi_{2}-\phi_{1}\psi_{1}-\phi_{2}\psi_{0}&=\theta_{2}\\
+\psi_{3}-\phi_{1}\psi_{2}-\phi_{2}\psi_{1}-\phi_{3}\psi_{0}&=\theta_{3}\\
+\vdots
+\end{align*}
+trong đó $\phi_{j}=0$ với $j>p$, và $\theta_{j}=0$ với $j>q$. Các trọng số $\psi$ thỏa mãn phương trình sai phân thuần nhất được cho bởi:
+\begin{equation}
+\psi_{j}-\sum_{k=1}^{p}\phi_{k}\psi_{j-k}=0, j\geqslant max(p,q+1), \label{ct3.36}
+\end{equation}
+Với điều kiện ban đầu
+\begin{equation}
+\psi_{j}-\sum_{k=1}^{p}\phi_{k}\psi_{j-k}=\theta_{j}, 0\leqslant j \leqslant max(p, q+1) \label{ct3.37}
+\end{equation}
+Nghiệm tổng quát phụ thuộc vào các nghiệm của đa thức AR $\phi_(z)=1-\phi_{1}z-...-\phi_{p}z^{p}$, như trong (\ref{ct3.36}). Còn các nghiệm riêng sẽ phụ thuộc vào các điều kiện ban đầu.
+
+Sau đó, chúng ta có thể sử dụng (\ref{ct3.36}) và (\ref{ct3.37}) để giải các $\psi-weights$. Chúng ta có thể giải cho $\gamma(h)$ và ACF $\rho(h)=\gamma(h)/\gamma(0)$. Diều này dẫn đến chúng tôi có thể có được phương trình sai phân thuần nhất trực tiếp theo $\gamma(h)$. Đầu tiên, chúng tôi viết:
+\begin{align}
+\gamma(h) & = cov (x_{t+h},x_{t}) = E\Bigg[\bigg(\displaystyle\sum_{j=1}^{p} \theta_{j}w_{t+h-j}\bigg)x_{t}\Bigg]\\
+&  =\displaystyle\sum_{j=1}^{p}\phi_{j}\gamma(h-j)+\sigma_w^{2}\displaystyle\sum_{j=h}^{q}\theta_{j}\psi_{j-h}, \hspace{1.5cm} h \geq 0, \label{ct3.41}
+\end{align}
+trong đó $x_{t}=\sum_{k=0}^{\infty}\psi_{k}w_{t-k}$ và $h \geq 0$,
+$$E(w_{t+h-j}x_{t})= E\Bigg[w_{t+h-j}\Big(\displaystyle\sum_{k=0}^{\infty}\psi_{k}w_{t-k}\Big)\Bigg] = \psi_{j-h}\sigma_w^{2}.$$ Từ (\ref{ct3.41}), chúng ta có thể viết phương trình thuần nhất chung cho ACF của quá trình ARMA nhân quả:
+\begin{equation}
+\gamma(h)-\phi_{1}\gamma(h-1)-...-\phi_{p}\gamma(h-p) = 0,\hspace{1cm} h \geq max(p, q +1), \label{ct1.125}
+\end{equation} với điều kiện ban đầu
+\begin{equation}
+\gamma(h)-\displaystyle\sum_{j=1}^{p}\phi_{j}\gamma(h-j) = \sigma_w^{2}\displaystyle\sum_{j=h}^{q}\phi_{j}\psi_{j-h}, \hspace{1cm} 0 \leq h < max(p, q+1). \label{ct1.126}
+\end{equation}
+Chia (\ref{ct1.125}) và (\ref{ct1.126}) cho $\gamma(0)$ cho phép chúng tôi tìm được ACF, $\rho(h) = \gamma(h)/\gamma(0)$.
+\subsubsection*{Chức năng tự tương quan từng phần (PACF - Partial AutoCorrelation Function)}
+Chúng ta đã thấy trong (\ref{ct3.39}), đối với các mô hình MA (q), ACF sẽ bằng $0$ đối với độ trễ lớn hơn q. Hơn nữa, vì $\theta_q\neq0$, ACF sẽ khác $0$ tại độ trễ $q$. Do đó, ACF cung cấp một lượng thông tin đáng kể về thứ tự của sự phụ thuộc khi nó là một quá trình trung bình trượt. Tuy nhiên, nếu quá trình là ARMA hoặc AR, thì ACF chỉ cho chúng ta biết rất ít về các thứ tự phụ thuộc. Do đó, chúng tôi cần tìm một hàm sẽ hoạt động giống như ACF của các mô hình MA, nhưng đối với các mô hình AR, cụ thể là hàm tự tương quan từng phần (PACF).
+
+Để mô tả ý trên, ta xem xét một mô hình AR(1) nhân quả, $x_t=\phi x_{t-1}+w_t$. Do đó
+\begin{align*}
+ \gamma(2) = cov(\phi x_{t-1} + w_{t}, x_{t-2}) & = cov(\phi x_{t-1}+x_{t-2})\\
+ & = cov(\phi^{2}x_{t-2}+\phi w_{t-1}+w_{t},x_{t-2})= \phi^{2}\gamma(0).
+\end{align*}
+Kết quả này xuất phát từ quan hệ nhân quả vì $x_{t-2}$ liên quan đến ${w_{t-2},w_{t-3},... }$, tất cả đều không tương quan với $w_{t}$ và $w_{t-1}$. Mối tương quan giữa $x_{t}$ và $x_{t-2}$ khác $0$, vì nó là một MA(1), bởi vì $x_{t}$ phụ thuộc vào $x_{t-2}$ đến $x_{t-1}$. Giả sử chúng ta phá vỡ chuỗi phụ thuộc này bằng cách loại bỏ (hoặc tách ra) $x_{t-1}$. Đó là, chúng tôi xem xét mối tương quan giữa $x_{t}-\phi x_{t-1}$ và $x_{t-2}-\phi x_{t-1}$, vì đó là mối tương quan giữa $x_{t}$ và $x_{t-2}$, với sự phụ thuộc tuyến tính của từng loại trên $x_{t-1}$ đã bị loại bỏ. Theo cách này, chúng tôi đã phá vỡ chuỗi phụ thuộc giữa $x_{t}$ và $x_{t-2}$. Trong thực tế, 
+$$cov(x_{t}-\phi x_{t-1},x_{t-2}-\phi x_{t-1}) = cov(w_{t},x_{t-2}-\phi x_{t-1}) = 0.$$
+
+Để chính thức xác định PACF cho chuỗi thời gian dừng trung bình bằng $0$, cho $x_1^{h-1}$ biểu thị hồi quy của $x_{h}$ trên ${x_{h-1}, x_{h-2},...,x_{1}}$, mà chúng ta viết là 
+\begin{equation}
+x_h^{h-1}= \beta_{1}x_{h-1}+\beta_{2}x_{h-2}+...+\beta_{h-1}x_{1}. \label{ct1.128}
+\end{equation}
+Không có thuật ngữ chặn là cần thiết trong (\ref{ct1.128}) vì giá trị trung bình của $x_{t}$ bằng không. Ngoài ra, hãy cho $x_0^{h-1}$ biểu thị hồi quy của $x_{0}$ trên ${x_{1},x_{2},...,x_{h-1}}$, khi đó 
+\begin{equation}
+x_0^{h-1} = \beta_{1}x_{1}+\beta_{2}x_{2}+...+\beta_{h-1}x_{h-1}. \label{ct1.129}
+\end{equation}
+Các hệ số $\beta_{1},...,\beta_{h-1}$ giống nhau ở (\ref{ct1.128}) và (\ref{ct1.129}); chúng tôi sẽ giải thích kết quả này trong phần tiếp theo.
+
+\begin{dn}\textbf{Hàm tự tương quan từng phần - PACF} của một quá trình dừng $x_{t}$, ký hiệu là $\phi_{hh}$, với $h=1,2,...$ là
+\begin{equation}
+\phi_{11}=corr(x_{1},x_{0})=\rho(1) \label{ct1.130}
+\end{equation}	
+và 
+\begin{equation}
+\phi_{hh} = corr(x_{h}-x_h^{h-1}, x_{0}-x_0^{h-1}), \hspace{1cm} h \geq 2. \label{ct1.131}	
+\end{equation}
+\end{dn}
+
+Cả hai $(x_h-x_h^{h-1})$ và $(x_0-x_0^{h-1})$ đều không tương quan với ${x_1,x_2,\dots,x_{h-1}}$. Bởi vì chuỗi dừng nên PACF, $\phi_{hh}$, là mỗi tương quan giữa $x_t$ và $x_{t-h}$ với sự phụ thuộc tuyến tính của ${x_{t-1},\dots,x_{t-(h-1)}}$. Nếu quá trình $x_t$ là chuỗi Gaussian, ta có $\phi_{hh}=corr(x_t,x_{t-h}| x_{t-1},\dots, x_{t-(h-1)})$. Đó là, $\phi_{hh}$ là hệ số tương quan giữa $x_t$ và $x_{t-h}$ trong hàm phân phối hai biến của $(x_t,x_{t-h})$ với điều kiện ${x_{t-1},\dots,x_{t-(h-1)}}$.
+
+Trong phần tiếp theo, chúng ta sẽ thảo luận về các phương pháp tính toán PACF. PACF cho các mô hình MA hoạt động giống như ACF cho các mô hình AR. Ngoài ra, PACF cho các mô hình AR hoạt động giống như các mô hình ACF cho MA. Sau khi chuỗi thời gian đã đạt được tính dừng, $p$, $q$ được xác định dựa trên phân tích tự tương quan (ACF) và tự tương quan từng phần (PACF). Quá trình phân tích được chúng tôi mô tả vắn tắt trong bảng (\ref{b1}).
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|p{2.5cm}|p{6cm}|p{6cm}|}
+	\hline 
+	&\textbf{ACF }&\textbf{PACF }\\
+	\hline
+\textbf{AR(p)} &Giảm từ từ về 0 theo hàm mũ hoặc sóng hình sin & Giảm ngay về 0 sau độ trễ p\\
+\hline
+\textbf{MA(p)} &Giảm ngay về 0 sau độ trễ q &Giảm từ từ về 0 theo hàm mũ hoặc sóng hình sin \\
+  \hline
+\textbf{ARMA(p,q)} &Giảm theo hàm mũ &Giảm theo hàm mũ \\
+ \hline
+	\end{tabular}
+\caption{\textit{Xác định p và q}}
+\label{b1} 
+\end{table}
+
+\subsection{Dự báo}
+Mục tiêu của dự báo là dự đoán các giá trị trong tương lai của chuỗi thời gian, $x_{n} + m $, $m =1, 2 ,\dots$, dựa trên dữ liệu thu thập được cho đến hiện tại, $x = {x_{n}, x_{n-1},\dots, x_{1}}$. Trong suốt phần này, chúng ta sẽ giả sử $x_t$ là dừng và các tham số mô hình đã biết. Vấn đề dự báo khi các tham số mô hình là chưa biết sẽ được thảo luận trong phần tiếp theo. Công cụ dự báo sai số toàn phương trung bình tối thiểu (Mean Squared Error - MSE) của $x_{n+m}$ là 
+$$x_{n+m}^n= E (x_{n+m}\mid x_{n},x_{n-1},...,x_{1})$$ bởi vì kỳ vọng có điều kiện giảm thiểu sai số toàn phương trung bình 
+\begin{equation}
+E[x_{n+m} - g(x)]^2, \label{ct1.133}
+\end{equation}
+trong đó $g(x)$ là một hàm của các quan sát $x$.
+
+Đầu tiên, chúng tôi sẽ hạn chế sự chú ý đến các yếu tố dự đoán là các hàm tuyến tính của dữ liệu, nghĩa là các yếu tố dự đoán theo dạng
+\begin{equation}
+x_{n+m}^n =\alpha_{0} + \sum_{k=1}^{n} \alpha_{k} x_{k}, \label{ct1.134}
+\end{equation}
+trong đó $\alpha_{0}, \alpha_{1},\dots, \alpha_{n}$ là các số thực. Dự báo tuyến tính theo (\ref{ct1.134}) mà giảm thiểu sai số toàn phương trung bình của dự báo (\ref{ct1.133}) được gọi là dự báo tuyến tính tốt nhất. Do đó, dự báo tuyến tính chỉ phụ thuộc vào moment bậc hai của quá trình được ước tính dễ dàng từ dữ liệu.
+\begin{tc}\textbf{\label{BLP}Dự báo tuyến tính tốt nhất cho các quá trình dừng (Best Linear Prediction - BLP)}\\
+Cho dữ liệu $x_{1},..., x_{n}$, công cụ dự báo tuyến tính tốt nhất, $x_{n+m}^n= \alpha_{0} + \sum_{k=1}^{n}\alpha_{k} x_{k}$, của $x_{n+m}$,với $m\geq1$ được tìm thấy bằng cách giải
+\begin{equation}
+ E[(x_{n+m} - x_{n+m}^n)x_{k}] = 0; k=0,1,...,n. \label{ct1.135}
+\end{equation}
+trong đó $x_{0}=1$.
+\end{tc}
+
+Các phương trình được quy định trong (\ref{ct1.135}) được gọi là các phương trình dự báo và chúng được sử dụng để tìm các hệ số ${\alpha_{0}, \alpha_{1} ,\dots,\alpha_{n}}$. Nếu $E(x_{t}) =\mu $, phương trình đầu tiên $(k = 0)$ của (\ref{ct1.135}) là $$E(x_{n+m}^n)= E (x_{n+m})= \mu.$$
+Do đó, lấy kỳ vọng ở (\ref{ct1.134}), chúng ta có
+$$\mu= \alpha_{0} + \sum_{k=1}^{n} \alpha_k\mu \hspace{1cm} \text{hoặc} \hspace{1cm} \alpha_0 =\mu(1-\sum_{k=1}^{n}\alpha_k).$$ 	
+Do đó, dạng của mô hình dự báo tuyến tính tốt nhất là
+$$x_{n+m}^{n}=\mu+\sum_{k=1}^{n}\alpha_k(x_k-\mu)$$.
+Vì vậy, cho đến khi chúng tôi thảo luận về ước tính, không mất tính tổng quát, giả sử $ \mu= 0$, trong trường hợp đó, $\alpha_{0} = 0.$ Đầu tiên, chúng tôi sẽ dự báo trước một bước. Đó là, với ${x_{1},. . . , x_{n}}$ đã cho, chúng tôi muốn dự báo giá trị của chuỗi thời gian tại thời điểm tiếp theo, $x_{n+1}$. Các BLP của $x_{n+1}$ là
+\begin{equation}
+x_{n+1}^n = \phi_{n1}x_{n}+ \phi_{n2}x_{n-1}+...+ \phi_{nn}x_{1}, \label{ct1.138}
+\end{equation}
+trong đó chúng tôi đã viết $\alpha_{k}$ trong (\ref{ct1.134}) như $\phi_{n,n+1=k}$ trong (\ref{ct1.138}), với $k = 1,\dots, n$. Sử dụng tính chất (\ref{BLP}), các hệ số ${\phi_{n1}, \phi_{n2},\dots,\phi_{nn}}$ thỏa mãn
+$$E[(X_{n+1} - \sum_{j=1}^{n} \phi_{nj}x_{n+1-j})x_{n+1-k}] =0, k=1,..n,$$ hoặc 
+\begin{equation}
+	\sum_{j=1}^{n}\phi_{nj}\gamma(k-j)=\gamma(k), \hspace{1cm} k=1,\dots,n. \label{ct3.55}
+\end{equation}
+Các phương trình dự đoán (\ref{ct3.55}) có thể được viết bằng ký hiệu ma trận như
+\begin{equation}
+\Gamma_{n}\phi_{n}= \gamma_{n}, \label{ct1.140}
+\end{equation}
+trong đó $\Gamma_n={\gamma(k-j)}_{j,k=1}^{n}$ là ma trận cấp $n\times n$, $\phi_n=(\phi_{n-1},\dots,\phi_{nn})^{'}$ là vector $n\times 1$ và $\gamma_n=(\gamma(1),\dots,\gamma(n))^{'}$ là vector $n\times 1$.
+	
+$\Gamma_{n}$ là ma trận xác đinh không âm. Nếu $\Gamma_n$ là ma trận suy biến, có nhiều cách giải cho (\ref{ct1.140}), nhưng theo định lý hình chiếu, $x_{n+1}^{n}$ là duy nhất. Nếu $\Gamma_n$ là không suy biến, thì các phần tử của $\phi_n$ là duy nhất và được cho bởi
+\begin{equation}
+\phi_{n}= \Gamma_{n}^{-1}\gamma_{n}. \label{ct1.141}
+\end{equation}
+Đối với các mô hình ARMA, thực tế là $\sigma^{2}_{w}> 0$ và $\gamma(h) \rightarrow 0$ khi $h \rightarrow  \infty$  đủ để đảm bảo rằng $\Gamma$ là xác định dương. Nó đôi khi thuận tiện để viết dự báo trước một bước trong ký hiệu vector
+\begin{equation}
+x^{n}_{n+1}= \phi_{n}^{'}x, \label{ct1.142}	
+\end{equation}
+với mọi $x= (x_{n}, x_{n-1},...,x_{1})^{'}.$
+
+Sai số toàn phương trước một bước trung bình của dự báo là
+\begin{equation}
+P_{n+1}^{n} = E (x_{n+1} - x_{n+1}^{n})^{2} = \gamma(0) - \Gamma^{'}_{n}\Gamma_n^{-1}\gamma_{n}. \label{ct3.59}
+\end{equation}	
+Để kiểm tra (\ref{ct3.59}), chúng tôi sử dụng (\ref{ct1.141}) và (\ref{ct1.142}),
+\begin{align*}
+E(x_{n+1}- x_{n+1}^{n})^{2} &= E(x_{n+1} - \phi_{n}^{'}x)^{2}= E(x_{n+1} - \gamma_n^{'}\Gamma^{'}_{n}x)^{2}\\& = E(x_{n+1}^{2} - 2\gamma^{'}_{n}\Gamma^{-1}_{n}xx_{n+1} + \gamma^{'}_{n}\Gamma^{-1}_{n}xx^{'}\Gamma^{-1}_{n}\gamma_{n})\\ & =\gamma(0) -2\gamma^{'}_{n}\Gamma^{-1}_{n}\gamma_n+ \gamma^{'}_{n}\Gamma^{-1}_{n}\Gamma_n\Gamma_n^{-1}\gamma_n\\ & =\gamma(0)-\gamma_n^{'}\Gamma_n^{-1}\gamma_n.
+\end{align*}
+
+Nếu chuỗi thời gian là một quá trình AR(p) nhân quả, với $n\geq p$ thì ta có được
+\begin{equation}
+x_{n+1}^{n}=\phi_1x_n+\phi_2x_{n-1}+\dots+\phi_px_{n-p+1}. \label{ct3.60}
+\end{equation}
+Đối với các mô hình ARIMA chung, các phương trình dự đoán sẽ không đơn giản như trường hợp AR thuần túy. Bên cạnh đó, đối với $n$ lớn, việc sử dụng (\ref{ct1.141}) là cấm. Vì nó yêu cầu sự nghịch đảo của ma trận lớn. Tuy nhiên, các giải pháp lặp đi lặp lại mà không đòi hỏi bất kỳ ma trận nào khả nghịch. Đặc biệt, chúng tôi đề cập đến những giải pháp đệ quy được đưa ra bởi Levinson (1947) và Durbin (1960).
+\begin{tc}\textbf{Thuật toán  Durbin- Levinson}\\
+Phương trình (\ref{ct1.141}) và (\ref{ct3.59}) có thể được giải lặp lại như sau: 
+\begin{equation}
+\phi_{00}= 0 , \hspace{1cm} P_{1}^{0}= \gamma(0). \label{ct1.144}
+\end{equation} 
+Khi $n\geq 1$,
+\begin{equation}
+\phi_{nn} = \dfrac{\rho(n) - \sum_{k-1}^{n-1}\phi_{n-1,k}\rho
+(n-k)}{1- \sum_{k-1}^{n-1}\phi_{n-1,k}\rho(k)}, \hspace{1cm}  P_{n+1}^{n}= P_{n}^{n-1}(1 - \phi_{nn}^{2}), \label{ct1.145}
+\end{equation}
+khi $n\geq 2$,
+\begin{equation}
+\phi_{nk} = \phi_{n-1,k}- \phi_{nn}\phi_{n-1,n-k}, \hspace{1cm}  k=1,2,...,n-1. \label{ct1.146}
+\end{equation}
+\end{tc}
+
+Một hệ quả quan trọng của thuật toán Durbin- Levinson như sau tính chất (\ref{gpl})
+\begin{tc} \textbf{\label{gpl}Giải pháp lặp cho PACF}\\
+PACF của một quá trình có tính dừng $x_{t}$, có thể được lặp đi lặp lại qua (\ref{ct1.145}) như $\phi_{nn}$, với $n= 1,2,... .$
+\end{tc}
+
+Cho đến nay, chúng tôi đã tập trung vào dự đoán trước một bước, nhưng tính chất (\ref{BLP}) cho phép chúng tôi tính BLP của $x_{n+m}$ với mọi $m \geq 1$. Cho dữ liệu, $(x_{1} ,\dots, x_{n})$, công cụ dự đoán trước một bước là
+ \begin{equation}
+ x_{n+m}^{n}= \phi_{n1}^{(m)}x_{n} +\phi_{n2}^{(m)}x_{n-1}+...+\phi_{nn}^{(m)}x_{1}, \label{ct1.147}
+ \end{equation}	
+trong đó $\{\phi_{n1}^{(m)}, \phi_{n2}^{(m)},...,\phi_{nn}^{(m)}\}$ thỏa mãn các phương trình dự đoán,
+$$\sum_{j=1}^{n}\phi_{nj}^{(m)}E(x_{n+1-j}x_{n+1-k})= E (x_{n+m}x_{n+1-k}),\hspace{1cm} k= 1,...,n,$$
+hoặc 
+\begin{equation}
+\sum_{j=1}^{n}\phi_{nj}^{(m)}\gamma(m+k-1), \hspace{1cm} k=1,...,n \label{ct1.149}
+\end{equation}	 
+Các phương trình dự đoán một lần nữa có thể được viết bằng ký hiệu ma trận như
+\begin{equation}
+\Gamma_{n}\phi_{n}^{(m)}= \gamma_{n}^{(m)}, \label{ct1.150}
+\end{equation}
+với $\gamma_{n}^{(m)}= (\gamma(m),...,\gamma(m+n-1))^{'}$
+và $\phi_{n}^{(m)} = (\phi_{n1}^{(m)},...,\phi_{nn}^{(m)})^{'}$ là $n\times 1$ vector.
+
+Sai số toàn phương trung bình trước $m$ bước của dự đoán là
+\begin{equation}
+P_{n+m}^{n} = E (x_{n+m}- x_{n+m}^{n})^{2} = \gamma(0) - \gamma_{n}^{(m)^{'}}\Gamma_{n}^{-1}\gamma_{n}^{(m)}. \label{ct1.151}
+\end{equation}
+
+Một thuật toán hữu ích khác để tính toán dự báo được đưa ra bởi Brockwell và Davis. Thuật toán này theo sau trực tiếp từ việc áp dụng định lý hình chiếu cho các đổi mới, $x_{t} - x_{t}^{t-1}$, cho $t = 1 ,..., n$,s sử dụng thực tế là các đổi mới $x_{t} - x_{t}^{t-1}$ và $x_{s} - x_{s}^{s-1}$ là không tương quan cho $s \neq t$. Chúng tôi sẽ trình bày trường hợp $x_{t}$ là một chuỗi thời gian có giá trị trung bình bằng $0$.
+\begin{tc}\textbf{Thuật toán đổi mới}\\
+Các dự đoán trước một bước, $x_{t+1}^{t}$ và các sai số toàn phương trung bình của chúng, $P_{t+1}^{t}$, có thể được tính toán lặp đi lặp lại như
+$$x_{1}^{0}=0, \hspace{1cm} P_{1}^{0} =\gamma(0) $$
+\begin{equation}
+x_{t+1}^{t} = \sum_{j=1}^{t}\theta_{tj}(x_{t+1-j} - x_{t+1-j}^{t-j}), \hspace{1cm} t= 1,2... \label{ct1.153}
+\end{equation}	
+\begin{equation}
+P_{t+1}^{t} = \gamma(0) - \sum_{j=0}^{t-1}\theta^{2}_{t,t-j}P_{j+1}^{j}, \hspace{1cm}  t=1,2,...,\label{ct1.154}
+\end{equation}
+với $j=0,1,...,t-1,$
+\begin{equation}
+\theta_{t,t-j}= (\gamma(t-j) - \sum_{k=0}^{j-1}\theta_{j,j-k}\theta_{t,t-k}P_{k+1}^{k})(P_{j+1}^{j})^{-1}.\label{ct1.155}
+\end{equation}
+\end{tc}
+	
+Cho dữ liệu $x_{1} ,..., x_{n}$, thuật toán đổi mới có thể được tính liên tiếp với $t = 1$, sau đó $t = 2,...,$ trong trường hợp đó, phép tính của $x^{n}_{n+1}$ và $P^{n}_{n+1}$ được thực hiện ở bước cuối cùng $t = n$. Công cụ dự đoán trước $m$ bước và sai số toàn phương trung bình của nó dựa trên thuật toán đổi mới được cho bởi
+\begin{equation}
+x_{n+1}^{n} = \sum_{j=m}^{n+m-1}\theta_{n+m-1,j}(x_{n+m-j}- x^{n+m-j-1}_{n+m-j}), \label{ct1.156}
+\end{equation}
+\begin{equation}
+P_{n+m}^{n}=  \gamma(0) - \sum_{j=m}^{n+m-1}\theta^{2}_{n+m-1,j}P_{n+m-j}^{n}, \label{ct1.157}
+\end{equation}	
+trong đó $\theta_{n+m-1,j}$ thu được bằng cách lặp lại liên tục của (\ref{ct1.155}).
+
+\subsection*{Quá trình dự báo của ARIMA}
+Các phương trình dự đoán chung (\ref{ct1.135}) chưa sâu sắc về dự báo cho các mô hình ARMA nói chung. Có một số cách khác nhau để biểu diễn những dự báo này và mỗi cách sẽ cho biết cấu trúc đặc biệt của ARMA. Chúng tôi giả sử $x_{t}$ là một quá trình ARMA(p,q) nhân quả và khả nghịch, $\phi(B)x_{t} = \theta(B)w_{t}$ với $w_{t} \sim iid N(0,\delta_{w}^{2})$. Trong trường hợp giá trị trung bình khác không, $E(x_{t})=\mu$, chỉ cần thay $x_{t}$ $x_{t}-\mu$ trong mô hình. Đầu tiên, chúng tôi xem xét hai loại dự báo. Chúng tôi viết $x_{n+m}^{n}$ là sai số toàn phương trung bình tối thiểu dự đoán của $x_{n+m}$ dựa trên dữ liệu $\{x_{n},...,x_{1}\}$, nghĩa là
+$$x_{n+m}^{n} = E(x_{n+m}|x_{n},...,x_{1}).$$
+Đối với các mô hình ARMA, việc tính toán dự đoán $x_{n+m}$ sẽ dễ dàng hơn, giả sử chúng tôi có dữ liệu lịch sử đầy đủ của quá trình $\{x_{n},x_{n-1},...\}$ Chúng tôi sẽ biểu thị dự báo của $x_{n+m}$ dựa trên quá khứ vô hạn như sau 
+$$\tilde{x}_{n+m} = E(x_{n+m}|x_{n},...,x_{1}).$$
+Ý tưởng ở đây là, đối với các mẫu lớn, $\tilde{x}_{n+m}$ sẽ cung cấp một xấp xỉ tốt đến $x_{n+m}^{n}$.
+  
+Bây giờ, $x_{n+m}$ có dạng nhân quả và khả nghịch:
+\begin{equation}
+x_{n+m}= \sum_{j=0}^{\infty} \psi_{j}w_{n+m-j}, \hspace{1cm} \psi_{0}=1 \label{ct1.160}
+\end{equation}
+\begin{equation}
+w_{n+m}= \sum_{j=0}^{\infty} \pi_{j}x_{n+m-j}, \hspace{1cm} \pi_{0}=1. \label{ct1.161}
+\end{equation}
+Sau đó, lấy kỳ vọng có điều kiện trong (\ref{ct1.160}), chúng ta được
+\begin{equation}
+\tilde{x}_{n+m} =\sum_{j=0}^{\infty}\psi_{j}\tilde{w}_{n+m-j} = \sum_{j=m}^{\infty}\psi_jw_{n+m-j},\label{ct1.162}
+\end{equation}
+bởi vì, bởi (\ref{ct1.161}),
+\begin{align*}
+\tilde{w}_{t}\equiv E(w_{t}|x_{n},x_{n-1},...) = 
+\begin{cases} 
+0&, t>n\\
+w_t&, h > q.\\
+\end{cases}
+\end{align*}
+Tương tự, lấy kỳ vọng có điều kiện trong (\ref{ct1.161}), chúng ta có
+$$0 = \overline{x}_{n+m} + \sum_{j=1}^{\infty} \pi_{j}\overline{x}_{n+m-j}$$
+hoặc
+\begin{equation}
+\tilde{x}_{n+m} = -\sum_{j=1}^{m-1}\pi_{j}\tilde{x}_{n+m-j}- \sum_{j=m}^{\infty}\pi_{j}x_{n+m-j}, \label{ct1.165}
+\end{equation}
+sử dụng $E(x_{t}|x_{n},x_{n-1},...)= x_{t}$ với $t \leq n$. Dự đoán được thực hiện sử dụng hồi quy (\ref{ct1.165}), bắt đầu bằng công cụ dự đoán trước một bước, $m = 1$, và sau đó tiếp tục cho $m = 2,3,...$. Sử dụng (\ref{ct1.162}), chúng tôi có thể viết
+$$x_{n+m} - \tilde{x}_{n+m} = \sum_{j=0}^{m-1}\psi_{j}w_{n+m-j},$$
+vì vậy sai số toàn phương trung bình của dự đoán có thể được viết là
+\begin{equation}
+P_{n+m}^{n}= E(x_{n+m} - \tilde{x}_{n+m})^{2}= \sigma^{2}_{w} \sum_{j=0}^{m-1}\psi_{j}^{2}. \label{ct1.167}
+\end{equation}
+Ngoài ra, chúng tôi lưu ý, đối với một cỡ mẫu cố định $n$, các sai số của dự đoán có tương quan. Đó là, với $ k\geq 1$
+\begin{equation}
+E\{(X_{n+m}- \tilde{x}_{n+m})(x_{n+m+k} - \tilde{x}_{n+m+k})\}= \sigma_{w}^{2}\sum_{j=0}^{m-1}\psi_{j}\psi_{j+k}. \label{ct1.168}
+\end{equation}
+
+Khi $n$ nhỏ, các phương trình dự đoán chung (\ref{ct1.135}) có thể được sử dụng dễ dàng. Khi $n$ lớn, chúng ta sẽ sử dụng (\ref{ct1.165}) bằng cách cắt cụt, vì chỉ có dữ liệu $x_1, x_2,..., x_n$ có sẵn. Trong trường hợp này, chúng ta có thể cắt cụt (\ref{ct1.165}) bằng cách đặt $\sum_{j=n+m}^{\infty} \pi_{j}\ x_{n+m-j}= 0$. Dự đoán cắt cụt được viết là
+\begin{equation}
+\tilde{x}^{n}_{n+m}= - \sum_{j=1}^{m-1}\pi_{j}\tilde{x}_{n+m-j}^{n} - \sum_{j=n}^{n+m-1}\pi_{j}x_{n+m-j} , \label{ct1.169}
+\end{equation}
+cũng được tính toán đệ quy, $m = 1, 2,...$. Sai số toàn phương trung bình của dự đoán trong trường hợp này được tính gần đúng bằng cách sử dụng (\ref{ct1.167}).
+
+Đối với các mô hình AR(p) khi $n> p$, phương trình (\ref{ct3.60}) mang lại dự đoán chính xác $x^{n}_{n+m}$ của $x_{n+m}$ và không cần xấp xỉ. Đó là, cho $n> p$, $\tilde{x}_{n+m}^{n}=\tilde{x}_{n+m}=x^{n}_{n+n}$. Ngoài ra, trong trường hợp này, sai số trước một bước của dự đoán là  $E(x_{n+1} - x_{n+1}^{n})^{2}=\sigma^{2}_{w}$. Đối với các mô hình ARMA(p,q) chung, dự đoán cắt cụt với $m = 1, 2,...$ là
+\begin{equation}
+\tilde{x}^{n}_{n+m}=\phi_{1}\tilde{x}^{n}_{n+m-1}+...+ \phi_{p}\tilde{x}^{n}_{n+m-p}+ \theta_{1}\tilde{w}^{n}_{n+m-1}+...+\theta_{q}\tilde{w}^{n}_{n+m-q}, \label{ct1.170}
+\end{equation}
+trong đó $\tilde{x}_{t}^{n}=x_{t}$ với $1\leqslant t \leqslant n$ và $\tilde{x}^{n}_{t}=0$ với $t\leqslant0$. Các sai số cắt cụt của dự đoán được đưa ra bởi: $\tilde{w}_{t}^{n}=0$ với $t\leqslant0$ hoặc $t>n$ và $\tilde{w}_{t}^{n}=\phi(B)\tilde{x}_{t}^{n}-\theta_{1} \tilde{w}_{t-1}^{n}-...-\theta_{q}\tilde{w}_{t-q}^{n}$ với $ 1 \leq t \leq n.$ 
+
+Để đánh giá độ chính xác của các dự báo, các khoảng tin cậy thường là tính toán cùng với các dự báo. Nói chung, $ (1-\alpha) $ là những khoảng tin cậy có dạng 
+\begin{equation}
+ x_{n+m}^n \pm c_{\frac{a}{2}} \sqrt{P_{n+m}^n}, \label{ct1.171}
+\end{equation}
+trong đó $c_{\frac{a}{2}} $ được chọn để có được mức độ tin cậy mong muốn. Ví dụ, nếu quá trình là Gaussian, chọn $c_{\frac{a}{2}}=2$ sẽ mang lại khoảng dự đoán xấp xỉ $95\%$ cho $x_{n+m}$. Nếu chúng ta quan tâm đến việc thiết lập các khoảng dự đoán nhiều hơn một chu kỳ thời gian thì nên điều chỉnh $c_{\frac{a}{2}}$ một cách thích hợp.
+
+Tiếp theo, chúng tôi muốn thảo luận ngắn gọn về backcasting. Trong backcasting, chúng tôi muốn dự đoán $ x_{1-m} $, $ m=1, 2, ...$, dựa trên dữ liệu $ \left\lbrace x_{1},...,x_{n} \right\rbrace $ 
+Viết backcast như sau
+\begin{equation}
+x_{1-m}^n=\sum_{j=1}^{n}\alpha_{j}x_{j} \label{ct1.172}
+\end{equation}
+Tương tự với (\ref{ct1.149}), các phương trình dự đoán (giả sử $ \mu = 0 $) là 
+\begin{equation}
+\sum_{j=1}^{n}\alpha_{j}E(x_{j}x_{k})=E(x_{1-m}x_{k}), \hspace{1cm} k=1,...,n, \label{ct1.173}
+\end{equation}
+hoặc 
+\begin{equation}
+\sum_{j=1}^{n}\alpha_{j}\gamma(k-j)=\gamma(m+k-1), \hspace{1cm} k=1,...,n. \label{ct1.174}
+\end{equation}
+Những phương trình này là những phương trình dự đoán chính xác dự đoán ở trước $ \alpha_{j}\equiv \phi_{nj}^{(m)} $ với $ j=1,...,n$, trong đó $ \phi_{nj}^{(m)} $ đưuọc cho bởi (\ref{ct1.150}). Cuối cùng, những backcast được đưa ra như sau
+\begin{equation}
+x_{1-m}^n= \phi_{n1}^{(m)}x_{1}+...+\phi_{nn}^{(m)}x_{n}, \hspace{1cm} m=1,2,... .\label{ct1.175}
+\end{equation}
+\subsection{Ước lượng}
+Trong phần này, chúng tôi giả sử rằng có $n$ quan sát $x_{1} ,..., x_{n}$, từ một quá trình ARMA$(p,q)$ nhân quả và khả nghịch của chuỗi Gaussian với $p$ và $q$ đã biết. Mục tiêu của chúng tôi là ước tính các tham số $ \phi_{1} ,..., \phi_{p}$, $\theta_{1} ,..., \theta_{q} $ và $\sigma_{w}^2 $. Chúng tôi sẽ thảo luận về cách xác định $p$ và $q$ ở phần (\ref{arima}).
+
+Chúng tôi bắt đầu với phương pháp ước tính moments. Ý tưởng đằng sau những ước tính này là đánh đồng các moments tổng thể  với các moments mẫu và sau đó giải quyết các tham số về các moments mẫu. Chúng tôi thấy rằng, nếu $ E(x_{t})=\mu $ thì phương pháp ước lượng moments của $ \mu $ là trung bình mẫu, $ \bar{x} $. Vì vậy, trong khi thảo luận về phương pháp moments, chúng ta sẽ giả sử $ \mu=0 $. Mặc dù phương pháp moments có thể tạo ra các công cụ ước tính tốt, đôi khi chúng có thể dẫn đến các công cụ ước tính dưới mức tối ưu. Trước tiên chúng tôi xem xét trường hợp trong đó phương pháp dẫn đến các công cụ ước tính (hiệu quả) tối ưu, đó là mô hình $ AR(p) $.
+
+Khi quá trình là $ AR(p) $, 
+$$x_{t}=\phi_{1}x_{t-1}+...+\phi_{p}x_{t-p}+w_{t},$$
+$ p + 1 $ của (\ref{ct1.125}) và (\ref{ct1.126}), $ h = 0, 1 ,..., p $, dẫn đến
+tiếp theo:
+\begin{dn}
+	Phương trình Walker Yule
+	\begin{equation}
+	\gamma(h)=\phi_{1}\gamma (h-1)+...+\phi_{p}\gamma (h-p) , h = 1, 2 ,. . . , p \label{ct3.88}
+	\end{equation}
+	\begin{equation}
+	\sigma_{w}^2=\gamma(0) - \phi_{1}\gamma(1)-...-\phi_{p}\gamma(p)  \label{ct3.89}
+	\end{equation}	
+\end{dn}
+Trong ký hiệu ma trận, các phương trình Yule của Walker là
+\begin{equation}
+\Gamma_{p}\phi=\gamma_{p}, \sigma_{w}^2=\gamma(0)-\phi^{'}\gamma_{p} \label{ct3.90}
+\end{equation}
+
+trong đó $ \Gamma_{p}\left\lbrace \gamma(k-j)\right\rbrace_{j,k=1}^p  $ là ma trận $ p \times p, \phi=(\phi_{1},...,\phi_{p})^{'} $ là một vecto $ p \times 1 $, và $ \gamma_{p}=(\gamma(1),...,\gamma(p))^{'} $ là một vecto $ p\times1 $ . Sử dụng phương pháp moments, chúng tôi thay $ \gamma(h) $ trong (\ref{ct3.90}) bằng $ \hat{\gamma}(h) $  [xem phương trình (\ref{ct1.36})] và giải
+\begin{equation}
+\hat{\phi}=\hat{\Gamma}_{p}^{-1}\hat{\gamma}_{p},  \hat{\sigma}_{w}^2=\hat{\gamma}(0)-\hat{\gamma}^{'}_{p}\hat{\Gamma}^{-1}_{p}\hat{\gamma}_{p} \label{ct3.91}
+\end{equation}
+
+Các công cụ ước tính này thường được gọi là công cụ ước tính Walker Yule. Để tính toán mục đích, đôi khi thuận tiện hơn khi làm việc với ACF mẫu.
+Bằng nhân tố $ \hat{\gamma}(0) $ trong (\ref{ct3.91}), chúng ta có thể viết ước tính Yule Walker như sau
+\begin{equation}
+\hat{\phi}=\hat{R}_{p}^{-1}\hat{\rho}_{p}, \hat{\sigma}_{w}^{2}=\hat{\gamma}(0)[1-\hat{\rho}_{p}^{'} \hat{R}_{p}^{-1}\hat{\rho}_{p}] \label{ct3.92}
+\end{equation}
+Trong đó $ \hat{R}_{p}=\left\lbrace\hat{\rho}(k-j)\right\rbrace _{j,k=1}^p  $ là ma trận $p\times p$ và $\hat{\rho}_{p}=(\hat{\rho}(1),...\hat{\rho}(p))^{\prime}  $ là một vector $ p\times 1 $.
+
+Đối với các mô hình AR($ p $), nếu kích thước mẫu lớn, công cụ ước tính Walker Yule gần với phân phối chuẩn và $ \hat{\sigma}_{w}^{2} $ gần với giá trị thực của $ \sigma_{w}^{2} $. Chúng tôi nêu những kết quả này trong định lý \ref{dlwy}.
+\begin{theo}
+\textbf{\label{dlwy}Kết quả mẫu lớn cho Công cụ ước tính Walker Yule}\\	
+Hành vi tiệm cận $ (n \longrightarrow\infty) $ của các công cụ ước tính Walker Yule trong trường hợp của các quá trình AR($ p $) nhân quả như sau:
+\begin{equation}
+\sqrt{n}(\hat{\phi}-\phi) \xrightarrow{d} N(0,\sigma_{w}^2\Gamma_{p}^{-1}),  \hat{\sigma}_{w}^2 \xrightarrow{p} \sigma_{w}^2 \label{ct3.93}
+\end{equation}  	
+\end{theo}
+Thuật toán  Durbin- Levinson, (\ref{ct1.144}) - (\ref{ct1.146}), có thể được sử dụng để tính $ \hat{\phi} $ mà không đảo ngược $ \hat{\Gamma}_{p} $ hoặc $ \hat{R}_{p} $ bằng cách thay $ \gamma(h) $ bằng $ \hat{\gamma}(h) $ trong thuật toán.  
+
+Trong chạy thuật toán, chúng tôi sẽ tính toán lặp lại vectơ $ h \times 1 $, $\hat{\phi}_{h}=(\hat{\phi}_{h1},...\hat{\phi}_{hh})^{\prime}  $ với $ h = 1, 2 ,... $ . Vì vậy, ngoài việc đạt được mong muốn dự báo, thuật toán Durbin-Levinson mang lại trường $ \hat{\phi}_{hh} $ PACF mẫu. Sử dụng (\ref{ct3.93}), chúng tôi chỉ ra các tính chất sau.
+\begin{theo}
+	Phân phối mẫu lớn của PACF
+	
+	Đối với quá trình AR$(p)$ nhân quả, tiệm cận $ (n \longrightarrow\infty) $
+	\begin{equation}
+	\sqrt{n}\hat{\phi}_{hh} \xrightarrow{d} N(0,1), h>p   \label{ct3.94}
+	\end{equation}
+\end{theo}
+
+Trong trường hợp của mô hình AR$(p)$, các công cụ ước tính Yule - Walker được đưa ra trong (\ref{ct3.92}) là tối ưu theo nghĩa phân phối tiệm cận, (\ref{ct3.93}), là phân phối tiệm cận chuẩn tốt nhất. Điều này là do, với các điều kiện ban đầu, mô hình AR$(p)$ là mô hình tuyến tính và các công cụ ước tính Yule - Walker về cơ bản là các công cụ ước lượng bình phương tối thiểu. Nếu chúng ta sử dụng phương pháp mô men cho các mô hình MA hoặc ARMA, chúng ta sẽ không nhận được các ước tính tối ưu vì các quy trình như vậy là phi tuyến trong các tham số.
+
+\textbf{HỢP LÝ CỰC ĐẠI VÀ  ƯỚC LƯỢNG  BÌNH PHƯƠNG TỐI THIỂU}
+
+Để củng cố khái niệm, đầu tiên chúng tôi tập trung vào trường hợp AR(1)  nhân quả. Giả sử
+$$ x_{t}=\mu + \phi(x_{t-1}-\mu)+w_{t} $$
+trong đó $\mid\phi\mid<1$ và $ w_{t}\sim \text{iid N}(0,\sigma_{w}^2) $, cho dữ liệu $ x_{1}, x_{2},. . . , x_{n} $, ta tìm hợp lý 
+$$ L(\mu,\phi,\sigma_{w}^2)= f_{\mu,\phi,\sigma_{w}^2}(x_{1},x_{2}. . . , x_{n}) $$ 
+Trong trường hợp AR(1), chúng ta viết hợp lý như sau
+$$ L(\mu,\phi,\sigma_{w}^2)= f(x_{1})f(x_{2}\mid x_{1})...f(x_{n}\mid x_{n-1}), $$
+trong đó chúng tôi đã bỏ các tham số theo mật độ, $ f(\cdot) $, để giảm bớt ký hiệu. Bởi vì $ x_{t}\mid x_{t-1} \sim N(\mu + \phi(x_{t-1}-\mu),\sigma_{w}^2) $, ta có
+$$ f(x_{t}\mid x_{t-1})=f_{w}[(x_{t}-\mu)-\phi(x_{t-1}-\mu)]  $$
+trong đó $ f_{w}(\cdot) $ là mật độ của $ w_{t} $, đó là, mật độ chuẩn với giá trị trung bình bằng 0 và phương sai $ \sigma_{w}^2 $. Do đó ta có thể viết hợp lý như sau
+$$ L(\mu,\phi,\sigma_{w})= f(x_{1})\prod_{t=2}^{n}f_{w}[(x_{t}-\mu)-\phi(x_{t-1}-\mu)]  $$
+Để tìm $ f(x_{1}) $, chúng ta có thể dùng phép biểu diễn  nhân quả
+$$ x_{1}=\mu + \sum_{j=0}^{\infty}\phi^{j}w_{1-j} $$ 
+để thấy $ x_{1} $ là chuẩn, với trung bình $ \mu $ và phương sai $ \sigma_{w}^2/(1-\phi^{2}) $. Cuối cùng, cho AR$(1)$, hợp lý là
+\begin{equation}
+L(\mu,\phi,\sigma_{w}^2)=(2\pi\sigma_{w}^2)^{-n/2}(1-\phi^{2})^{1/2}exp[-\dfrac{S(\mu,\phi)}{2\sigma_{w}^2}] \label{ct3.95}
+\end{equation}
+trong đó 
+\begin{equation}
+S(\mu,\phi)=(1-\phi^{2})(x_{1}-\mu)^{2}+\sum_{t=2}^{n}[(x_{t}-\mu)-\phi(x_{t-1}-\mu)]^{2} \label{ct3.96}
+\end{equation}
+Thông thường, $S (\mu,\phi )$ được gọi là tổng bình phương vô điều kiện . Chúng ta có thể cũng đã xét ước lượng của $\mu$ và $\phi$ bằng bình phương tối thiểu vô điều kiện , đó là, ước lượng bằng tối thiểu  $S (\mu,\phi )$ . 
+
+Lấy đạo hàm riêng của log của (\ref{ct3.95}) đối với $\sigma^{2}_{w}$ và đặt kết quả bằng $0$, ta thấy rằng với bất kỳ giá trị đã cho nào của  trong không gian tham số, $\sigma^{2}_{w}=n^{-1}S({\mu},{\phi})$ sẽ hợp lý tối đa. Do đó, ước tính hợp lý tối đa của $\sigma^{2}_{w}$ là
+\begin{equation}
+\hat{\sigma}^{2}_{w}=n^{-1}S(\hat{\mu},\hat{\phi}) \label{ct3.97}
+\end{equation}
+trong đó $\hat{\mu}$ và $\hat{\phi}$ lần lượt là MLEs của $\mu$ và $\phi$. Nếu chúng ta thay $n$ trong (\ref{ct3.97}) bằng $n - 2$, chúng ta sẽ có được ước lượng bình phương tối thiểu vô điều kiện là $\sigma^{2}_{w}$.
+
+Nếu, trong (\ref{ct3.95}), chúng tôi lấy log, thay thế $\sigma^{2}_{w}$ bằng $\hat{\sigma}^{2}_{w}$ và bỏ qua các hằng số, $\hat{\mu}$ và $\hat{\phi}$ là các giá trị giảm thiểu hàm tiêu chí 
+\begin{equation}
+l(\mu, \phi)=ln[n^{-1}S(\mu,\phi)]-n^{-1}ln(1-\phi^{2}) \label{ct3.98}
+\end{equation}
+Nghĩa là $l(\mu,\phi)\propto-2lnL(\mu,\phi,\hat{\sigma}^{2}_{w})$. Bởi vì (\ref{ct3.96}) và (\ref{ct3.98}) là các hàm phức của các tham số, tối thiểu của $l(\mu,\phi)$ hoặc $S(\mu,\phi)$ là hoàn thành bằng số. Trong trường hợp của mô hình AR, chúng ta có lợi thế là, có điều kiện trên các giá trị ban đầu, chúng là các mô hình tuyến tính. Đó là, chúng ta có thể bỏ số hạng trong hợp lý gây ra sự phi tuyến tính. Điều hòa trên $x_{1}$, hợp lý có điều kiện trở thành 
+\begin{align}
+L(\mu,\phi,{\sigma}^{2}_{w}|x_{1})&=\prod_{t=2}^{n}f_{w}[(x_{t}-\mu)-\phi(x_{t-1}-\mu)]\\
+&=(2\pi \sigma^{2}_{w})^{-(n-1)/2}exp[-\dfrac{S_{c}(\mu,\phi)}{2\sigma^{2}_{w}}]  \label{ct3.99}
+\end{align}
+Trong đó tổng bình phương có điều kiện là
+\begin{equation}
+S_{c}(\mu,\phi)=\sum_{t=2}^{n}[(x_{t}-\mu)-\phi(x_{t-1}-\mu)]^{2} \label{ct3.100}
+\end{equation}
+MLE có điều kiện của $\sigma^{2}_{w}$ là
+\begin{equation}
+\hat{\sigma}^{2}_{w}=S_{c}(\hat{\mu},\hat{\phi})/(n-1) \label{ct3.101}
+\end{equation}
+và $\hat{\mu}$ và $\hat{\phi}$ là các giá trị làm giảm thiểu tổng bình phương có điều kiện $S_{c}(\mu,\phi)$. Giả sử $\alpha=\mu(1-\phi)$, tổng bình phương có điều kiện có thể viết là
+\begin{equation}
+S_{c}(\mu,\phi)=\sum_{t=2}^{n}[x_{t}-(\alpha+\phi x_{t-1})]^{2} \label{ct3.102}
+\end{equation}
+Bài toán bây giờ là một bài toán hồi quy tuyến tính được phát biểu trong §2.2. 
+
+Theo sau tạo ra bởi ước lượng bình phương tối thiểu, ta có $\hat{\alpha}=\bar{x}_{(2)}-\phi \bar{x}_{(1)}$, trong đó $\bar{x}_{(1)}=(n-1)^{-1}\sum_{t=1}^{n-1}x_{t}$ và $\bar{x}_{(2)}=(n-1)^{-1}\sum_{t=2}^{n}x_{t}$. Và ước lượng có điều kiện sau đó là
+\begin{equation}
+\hat{\mu}=\dfrac{\bar{x}_{(2)}-\hat{\phi}\bar{x}_{(1)}}{1-\hat{\phi}} \label{ct3.103}
+\end{equation}
+\begin{equation}
+\hat{\phi}=\dfrac{\sum_{t=2}^{n}(x_{t}-\bar{x}_{(2)})(x_{t-1}-\bar{x}_{(1)})}{\sum_{t=2}^{n}(x_{t-1}-\bar{x}_{(1)})^{2}} \label{ct3.104}
+\end{equation}
+Từ (\ref{ct3.103}) và (\ref{ct3.104}), chúng ta thấy rằng $\hat{\mu}\approx \bar{x}$ và $\hat{\phi}\approx \hat{\rho}(1)$. Đó là, các công cụ ước tính Walker Yule, và các công cụ ước tính bình phương tối thiểu có điều kiện gần như nhau. Sự khác biệt duy nhất là bao gồm hoặc loại trừ các số hạng liên quan đến điểm cuối, $x_{1}$ và $x_{n}$. Chúng ta cũng có thể điều chỉnh ước lượng $\sigma^{2}_{w}$ trong (\ref{ct3.101}) tương đương với ước lượng bình phương tối thiểu, nghĩa là chia $S_{c}(\hat{\mu},\hat{\phi})$ cho $(n - 3)$ thay vì $(n - 1)$ trong (\ref{ct3.101}). 
+
+Đối với các mô hình AR$(p)$ chung, ước tính hợp lý tối đa, bình phương tối thiểu vô điều kiện và bình phương tối thiểu có điều kiện  tương tự với AR$(1)$.
+
+Đối với các mô hình ARMA tổng quát, rất khó để viết các likelihood như một hàm rõ ràng của các tham số. Thay vào đó, sẽ thuận lợi khi viết các likelihood về các đổi mới hoặc các sai số dự đoán trước một bước, $ x_{t}-x_{t}^{t-1} $. Điều này cũng sẽ hữu ích trong Chương 6 khi chúng ta nghiên cứu các mô hình không gian trạng thái.
+
+Giả sử $x_{t}$ là một quá trình ARMA$ (p,q) $ nhân quả  với $ w_{t}\sim \text{iid N}(0,\sigma_{w}^2) $. Đặt $ \beta=(\mu,\phi_{1},...,\phi_{p},\theta_{1},...,\theta_{q})^{\prime} $ là vectơ $ (p + q + 1) \times 1 $ của các tham số mô hình.  Likelihood có thể được viết là
+$$ L(\beta,\sigma_{w}^2)=\prod_{t=1}^{n} f(x_{t}\mid x_{t-1},...,x_{1}), $$
+Phân phối có điều kiện của $ x_{t} $ cho $x_{t-1},...,x_{1} $ là Gaussian với giá trị trung bình $ x_{t}^{t-1} $ và phương sai $ P_{t}^{t-1} $. Ngoài ra, đối với các mô hình ARMA, chúng tôi có thể viết$ P_{t}^{t-1}=\sigma_{w}^2 r_{t}^{t-1} $ trong đó $ r_{t}^{t-1} $ không phụ thuộc vào $ \sigma_{w}^2 $ (điều này có thể dễ dàng nhìn thấy từ Mệnh đề P3.4 bằng cách lưu ý $ P^0_1=\gamma(0)=\sigma_{w}^2\sum_{j=0}^{\infty}\psi^2_j $)
+
+Likelihood của dữ liệu bây giờ có thể được viết là
+\begin{equation} L(\beta,\sigma_{w}^2)=(2\pi\sigma_{w}^2)^{-n/2}(r^0_1(\beta)r^1_2(\beta)...r^{n-1}_{n}(\beta))^{-1/2}exp[-\dfrac{S(\beta)}{2\sigma_{w}^2}] \label{ct3.105}
+\end{equation}
+trong đó
+\begin{equation}
+S(\beta)=\sum_{t=1}^{n}[\dfrac{(x_{t}-x^{t-1}_{t}(\beta))^{2}}{r^{t-1}_{t}(\beta)}] \label{ct3.106}
+\end{equation}
+
+Cả $ x^{t-1} $ và $ r^{t-1}_{t} $ đều là các hàm của $ \beta $, và chúng tôi chỉ ra rõ ràng trong (\ref{ct3.105}) - (\ref{ct3.106}). Với các giá trị $\beta$ và $ \sigma_{w}^2 $, hợp lý có thể được xác định bằng các kỹ thuật của §3,5. Bây giờ, ước lượng hợp lý cực đại sẽ tiến hành bằng cách tối đa hóa (\ref{ct3.105}) đối với $\beta$ và $ \sigma_{w}^2 $. Như trong ví dụ AR$(1)$, chúng ta có
+\begin{equation}
+\hat{\sigma}^{2}_{w}=n^{-1}S(\hat{\beta}) \label{ct3.107}
+\end{equation}
+Trong đó $ \hat{\beta} $ là giá trị của $ \beta $ làm giảm thiểu hàm tiêu chí
+\begin{equation}
+l(\beta)=ln[n^{-1}S(\beta)]+n^{-1}\sum_{t=1}^{n}lnr^{t-1}_{t}(\beta) \label{ct3.108}
+\end{equation}
+Ví dụ, đối với mô hình AR$(1)$ đã được thiết lập trước đó, $ l(\beta) $ tổng quát trong (\ref{ct3.108}) là $ l(\mu,\phi) $ trong (\ref{ct3.98}) và $ S(\beta) $ tổng quát trong (\ref{ct3.106}) là $ S(\mu,\phi) $ được cho trong (\ref{ct3.96}). Từ (\ref{ct3.96}) và (\ref{ct3.98}), chúng ta thấy $ x^0_1=\mu $ và $ x^{t-1}_{t}=\mu + \phi(x_{t-1}-\mu) $ cho $ t=2,..,n $. Ngoài ra $ r^0_1=(1-\phi^{2}) $ và $ r^{t-1}_{t}= 1 $ với $ t=2,...,n $.
+
+Bình phương tối thiểu vô điều kiện sẽ được thực hiện bằng cách thu nhỏ (\ref{ct3.106}) đối với $ \beta $. Ước lượng bình phương tối thiểu có điều kiện sẽ liên quan đến việc tối thiểu hóa (\ref{ct3.106}) đối với $ \beta $ nhưng trong đó, để giảm bớt gánh nặng tính toán, các dự đoán và sai số của chúng có được nhờ điều chỉnh các giá trị ban đầu của dữ liệu. Nói chung, các tối ưu hóa số quen thuộc được sử dụng để có được các ước lượng thực tế và các sai số tiêu chuẩn của chúng. 
+
+Bây giờ chúng ta thảo luận về bình phương tối thiểu cho các mô hình ARMA$(p,q)$ thông qua Gauss - Newton. Để biết chi tiết và đầy đủ về phương pháp Gauss - Newton, người đọc có thể tham khảo Fuller (1995). Đặt $ x_{t} $ là một  ARMA$ (p,q) $ Gaussian nhân quả và khả nghịch. Viết  $\beta=(\phi_{1},...,\phi_{p},\theta_{1},...,\theta_{q})^{\prime} $ và để dễ thảo luận, chúng tôi sẽ đặt mô hình $ \mu=0 $. Chúng tôi viết mô hình theo các sai số
+\begin{equation}
+w_{t}(\beta)=x_t - \sum_{j=1}^{p}\phi_j x_{t-j} - \sum_{k=1}^{q}\theta_k w_{t-k}(\beta) \label{ct3.109}
+\end{equation}
+nhấn mạnh sự phụ thuộc của các sai số vào các tham số. 
+
+Đối với bình phương tối thiểu có điều kiện, chúng ta tính gần đúng tổng bình phương còn lại bằng cách xét điều kiện trên $ x_1, ..., x_p $ $ (p >0) $ và $ w_p = w_{p-1} =w_{p-2}=... =w_{1-q}= 0$ $ (q > 0) $, trong trường hợp đó chúng tôi có thể đánh giá (\ref{ct3.109}) với $ t = p + 1, p + 2 ,..., n $. Sử dụng đối số điều kiện này, sai số tổng bình phương có điều kiện là
+$$ S_c(\beta)=\sum_{t=p+1}^{n}w^2_t(\beta) $$
+Giảm thiểu $ S_c(\beta) $ đối với $ \beta $  mang lại ước lượng bình phương tối thiểu có điều kiện. Nếu $ q = 0 $, bài toán là hồi quy tuyến tính và không cần kỹ thuật lặp để giảm thiểu $  S_c(\phi_1,...,\phi_p) $. Nếu $ q > 0 $, vấn đề trở thành hồi quy phi tuyến và chúng ta sẽ phải dựa vào tối ưu hóa .
+
+Khi $ n $ lớn, điều kiện trên một vài giá trị ban đầu sẽ ít có ảnh hưởng đến các ước lượng tham số cuối cùng. Trong trường hợp mẫu nhỏ đến trung bình, người ta có thể dựa vào bình phương tối thiểu vô điều kiện. Bình phương tối thiểu vô điều kiện là chọn $ \beta $ để giảm thiểu tổng bình phương vô điều kiện, mà chúng ta đã ký hiệu chung là $ S(\beta) $ trong phần này. Tổng bình phương vô điều kiện có thể được viết theo nhiều cách khác nhau và một dạng hữu ích trong trường hợp mô hình ARMA$ (p, q) $ có nguồn gốc từ Box et al. (1994). Họ đã chỉ ra (xem Bài toán 3.18) tổng bình phương vô điều kiện có thể được viết là
+$$ S(\beta)=\sum_{t=-\infty}^{n}\hat{w}^{2}_{t}(\beta) $$
+trong đó $ \hat{w}_{t}(\beta) = E(w_t\mid x_1,..., x_n) $. Khi $ t \leq 0 $, $ \hat{w}_{t}(\beta) $ thu được bằng cách backcasting. Thực tế, chúng tôi ước lượng $ S(\beta) $ bằng cách bắt đầu tổng tại $ t = −M + 1 $, trong đó $ M $ được chọn đủ lớn để đảm bảo $ \sum_{t=-\infty}^{-M}\hat{w}^{2}_{t}(\beta)\approx0 $. Trong trường hợp ước lượng bình phương tối thiểu vô điều kiện, cần có kỹ thuật tối ưu hóa ngay cả khi $ q = 0 $.
+
+Để sử dụng Gauss-Newton, đặt $\beta_{(0)}=(\phi^{(0)}_{1},...,\phi^{(0)}_{p},\theta^{(0)}_{1},...,\theta^{(0)}_{q})^{\prime} $ là ước lượng ban đầu của $ \beta $. Ví dụ: chúng ta có thể thu được $ \beta_{(0)} $ bằng phương pháp momen. Bản mở rộng Taylor thứ nhất của $ w_t(\beta) $ là
+\begin{equation}
+w_t(\beta)\approx w_t(\beta_{(0)})-(\beta-\beta_{(0)})^\prime z_t(\beta_{(0)}) \label{ct3.110} 
+\end{equation}
+trong đó
+$$ z_t(\beta_{(0)})=(-\dfrac{\partial w_t(\beta_{(0)})}{\partial \beta_1},...,-\dfrac{\partial w_t(\beta_{(0)})}{\partial \beta_{p+q}})^\prime, \text{t=1,...,n} $$
+Giá trị tuyến tính gần đúng của $ S_c(\beta) $ là
+\begin{equation}
+Q(\beta)=\sum_{t=p+1}^{n}[w_t(\beta_{(0)})-(\beta-\beta_{(0)})^\prime z_t(\beta_{(0)})]^2 \label{ct3.111}
+\end{equation}
+và đây là số lượng mà chúng tôi sẽ giảm thiểu. Đối với bình phương tối thiểu vô điều kiện gần đúng, chúng ta sẽ bắt đầu tổng bằng (\ref{ct3.111}) tại $ t=−M + 1 $, với giá trị lớn của M và làm việc với các giá trị backcasted. 
+
+Sử dụng kết quả của bình phương tối thiểu thông thường (§2.2), chúng tôi biết
+\begin{equation}
+\widehat{(\beta-\beta_{(0)})}=(n^{-1}\sum_{t=p+1}^{n}z_t(\beta_{(0)})z^{\prime}_t(\beta_{(0)}))^{-1}(n^{-1}\sum_{t=p+1}^{n}z_t(\beta_{(0)})w_t(\beta_{(0)})) \label{ct3.112}
+\end{equation}
+giảm thiểu $ Q(\beta) $. Từ (\ref{ct3.112}), chúng tôi viết ước lượng Gauss-Newton một bước như sau
+\begin{equation}
+\beta_{(1)}=\beta_{(0)}+\bigtriangleup(\beta_{(0)}) \label{ct3.113}
+\end{equation}
+trong đó $ \bigtriangleup(\beta_{(0)}) $ biểu thị phía bên phải của (\ref{ct3.112}). Ước lượng Gauss - Newton được thực hiện bằng cách thay $ \beta_{(0)} $ bằng $ \beta_{(1)} $ trong (\ref{ct3.113}). Quá trình này được lặp lại bằng cách tính toán, tại lần lặp $ j = 2, 3,... $ 
+$$ \beta_{(j)}=\beta_{(j-1)}+\bigtriangleup(\beta_{(j-1)}) $$
+cho đến khi hội tụ.
+
+Trong trường hợp chung của các mô hình ARMA$ (p, q) $ nhân quả và khả nghịch, ước lượng hợp lý cực đại và ước lượng bình phương tối thiểu có điều kiện và không điều kiện (và ước lượng Yule-Walker trong trường hợp mô hình AR) đều dẫn đến ước lượng tối ưu. Chứng minh về kết quả chung này có thể được tìm thấy trong một số văn bản về lý thuyết phân tích chuỗi thời gian (ví dụ, Brockwell và Davis, 1991, hoặc Hannan, 1970, vài đề cập khác). Chúng ta sẽ biểu thị các tham số hệ số ARMA bằng $\beta=(\phi_{1},...,\phi_{p},\theta_{1},...,\theta_{q})^{\prime} $
+
+\begin{theo}
+	Phân phối mẫu lớn của Công cụ ước tính
+	
+	Trong các điều kiện thích hợp, đối với các quá trình ARMA nhân quả và không thể đảo ngược, khả năng tối đa, bình phương tối thiểu vô điều kiện và công cụ ước lượng bình phương tối thiểu có điều kiện, mỗi công cụ được khởi tạo bằng phương pháp ước lượng Moments, tất cả cung cấp các ước tính tối ưu của $ \sigma_{w}^2 $ và  $ \beta $  , theo nghĩa $ \hat{\sigma}_{w}^2 $   là phù hợp, và phân phối tiệm cận của là phân phối chuẩn tiệm cận tốt nhất. Cụ thể, như $ (n \longrightarrow\infty) $
+	\begin{equation}
+	\sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N(0,\sigma_{w}^2\Gamma^{-1}_{p,q}) \label{ct3.118}
+	\end{equation}
+	
+	
+\end{theo}
+Trong (\ref{ct3.118}), ma trận hiệp phương sai phương sai của công cụ ước lượng $ \hat{\beta} $ là nghịch đảo của ma trận thông tin. Trong trường hợp này, ma trận $ (p + q) \times (p + q) $ $ \Gamma_{p,q} $ có hình thức
+\begin{equation}
+\Gamma_{p,q}= \begin{pmatrix}
+\Gamma_{\phi\phi}  & \Gamma_{\phi\theta} \\
+\Gamma_{\theta\phi}  & \Gamma_{\theta\theta}
+\end{pmatrix} \label{ct3.119}
+\end{equation}
+
+Ma trận $ p \times p $  $ \Gamma_{\phi\phi}  $
+được cho bởi (\ref{ct3.90}), nghĩa là phần tử thứ $ ij $ của $ \Gamma_{\phi\phi}  $ cho
+$ i, j = 1 ,. . . , p $, là $ \gamma_{x}(i-j) $ từ quy trình AR($ p $), $ \phi (B)x_{t}=w_{t} $. Tương tự $ \Gamma_{\theta\theta} $ là ma trận $ q \times q $ với phần tử thứ $ ij $, bằng $ \gamma_{y}(i-j) $ từ một quá trình AR($ q $), $ \theta(B)y_{t}=w_{t} $. Ma trận $ p \times q $, $ \Gamma_{\phi\theta} = \left\lbrace \gamma_{xy}(i-j)\right\rbrace  $. cho $ i = 1 ,. . . , p $; $ j = 1 ,. . . , q $; đó là, phần tử thứ $ ij $ là hiệp phương sai giữa hai quá trình AR được cho bởi $ \phi (B)x_{t}=w_{t} $ và $ \theta(B)y_{t}=w_{t} $. Cuối cùng, $ \Gamma_{\theta\phi}= \Gamma_{\phi\theta}^{\prime}$.
+
+
+Trên thực tế các phân phối tiệm cận của $ \hat{\phi} $ từ AR$(1)$ và $ \hat{\theta} $ từ MA$(1)$ có cùng dạng. Có thể giải thích kết quả này bằng cách sử dụng trực giác của hồi quy tuyến tính. Đó là, đối với mô hình hồi quy thong thường được trình bày trong \ref{hqcd} không có thuật ngữ chặn, $ x_{t}=\beta z_{t}+w_{t} $, chúng ta biết $ \hat{\beta}$ thường có phân phối chuẩn với giá trị trung bình $\beta$ và từ (2.8),
+$$ var\left\lbrace \sqrt{n}(\hat{\beta}-\beta)\right\rbrace=n\sigma_{w}^2(\sum_{t=1}^{n}z^2_{t})^{-1}=\sigma_{w}^2(n^{-1}\sum_{t=1}^{n}z^2_{t})^{-1} $$
+Đối với mô hình AR$(1)$ nhân quả được cho bởi $ x_{t}=\phi x_{t-1}+w_{t} $, trực giác của hồi quy cho chúng ta biết rằng, với $ n $ lớn,
+$$ \sqrt{n}(\hat{\phi}-\phi) $$
+là xấp xỉ thông thường với trung bình bằng $0$ và phương sai được đưa ra bởi
+$$ \sigma_{w}^2(n^{-1}\sum_{t=2}^{n}x^2_{t-1})^{-1} $$
+Bây giờ, $ n^{-1}\sum_{t=2}^{n}x^2_{t-1} $ là phương sai mẫu (nhắc lại rằng giá trị trung bình của $ x_{t} $ bằng 0) của $x_{t}$, vì vậy khi $ n $ lớn, chúng ta sẽ mong đợi nó tiến gần đến $var(x_{t})=\gamma(0)=\sigma_{w}^2/(1-\phi^{2})$. Do đó, phương sai mẫu lớn của $ \sqrt{n}(\hat{\phi}-\phi) $ là
+$$ \sigma_{w}^2\gamma_x(0)^{-1}=\sigma_{w}^2(\dfrac{\sigma_{w}^2}{1-\phi^{2}})^{-1}=(1-\phi^{2}).$$
+
+Trong trường hợp MA$(1)$, chúng ta có thể sử dụng ví dụ 3.30 để viết mô hình hồi quy gần đúng cho MA$(1)$. Đó là, coi phép tính gần đúng (\ref{ct3.116}) là mô hình hồi quy
+$$z_{t}(\hat{\theta})=-\theta z_{t-1}(\hat{\theta})+w_{t-1}  $$
+trong đó bây giờ, $ z_{t-1}(\hat{\theta}) $ như được định nghĩa trong ví dụ 3.30, đóng vai trò của biến hồi quy.
+Tiếp tục với sự tương tự, chúng tôi hy vọng phân phối tiệm cận của $ \sqrt{n}(\hat{\theta}-\theta) $ là chuẩn, với giá trị trung bình bằng 0 và phương sai gần đúng
+$$ \sigma_{w}^2(n^{-1}\sum_{t=2}^{n}z^2_{t-1}(\hat{\theta}))^{-1} $$
+Như trong trường hợp AR$(1)$, $ n^{-1}\sum_{t=2}^{n}z^2_{t-1}(\hat{\theta}) $ là phương sai mẫu của $ z_{t}(\hat{\theta}) $ vì vậy, đối với $ n $ lớn, ta nói đây phải là $var \left\lbrace z_{t}(\hat{\theta})\right\rbrace=\gamma_z(0)$. Nhưng lưu ý, như đã thấy từ (\ref{ct3.116}), $ z_t(0) $ xấp xỉ với một quá trình AR$(1)$ với tham số $ -\theta $. Như vậy
+$$ \sigma_{w}^2\gamma_z(0)^{-1}=\sigma_{w}^2(\dfrac{\sigma_{w}^2}{1-(-\theta)^{2}})^{-1}=(1-\theta^{2}) $$
+đúng với (\ref{ct3.122}). Cuối cùng, các phân phối tiệm cận của các ước lượng tham số AR và ước lượng tham số MA có cùng dạng vì trong trường hợp MA, các “hồi quy” là quá trình sai phân $ z_t(\theta) $ có cấu trúc AR, và nó là cấu trúc xác định phương sai tiệm cận của ước lượng.
+
+Dáng điệu tiệm cận của các bộ kích thích tham số cho chúng ta cái nhìn sâu sắc hơn về vấn đề đưa các mô hình ARMA vào dữ liệu. Ví dụ: giả sử chuỗi thời gian tuân theo quy trình AR$(1)$ và chúng tôi quyết định điều chỉnh AR$(2)$ cho dữ liệu. Có bất kỳ vấn đề xảy ra không? Tổng quát hơn, tại sao không chỉ đơn giản là phù hợp với các mô hình AR lớn để đảm bảo rằng chúng tôi nắm bắt được tính năng động của quy trình? Xét cho cùng, nếu quá trình thực sự là AR$(1)$, các tham số tự động khác sẽ không đáng kể. Câu trả lời là nếu chúng ta điều chỉnh quá sức, chúng ta sẽ mất hiệu quả. Ví dụ: nếu chúng ta điều chỉnh AR$(1)$ cho quy trình AR$(1)$, với $ n $ lớn, $ var(\hat{\phi})\approx n^{-1}(1-\phi^{2}_{1}) $. Nhưng nếu chúng ta khớp một AR$(2)$ với quy trình AR$(1)$, với $ n $ lớn, $ var(\hat{\phi})\approx n^{-1}(1-\phi^{2}_{2})=n^{-1} $ bởi vì $\phi^{2}=0$. Do đó, phương sai của $\phi_{1}$ đã bị thổi phồng, làm cho công cụ ước lượng ít chính xác hơn. Chúng tôi muốn đề cập rằng quá mức có thể được sử dụng như một công cụ dự đoán. Ví dụ: nếu chúng ta khớp mô hình AR$(2)$ với dữ liệu và hài lòng với mô hình đó, thì việc thêm một tham số và khớp AR$(3)$ sẽ dẫn đến mô hình tương tự như trong mô hình AR$(2)$. Chúng tôi sẽ thảo luận về chẩn đoán mô hình chi tiết hơn trong §3.8.
+
+Nếu $ n $ nhỏ hoặc nếu các tham số gần với biên, các xấp xỉ tiệm cận có thể khá kém. Bootstrap có thể hữu ích trong trường hợp này; để biết cách xử lý rộng rãi của bootstrap, xem Efron và Tibshirani (1994). Chúng tôi thảo luận về trường hợp AR$(1)$ tại đây và để lại cuộc thảo luận chung cho Chương 6. Bây giờ, chúng tôi đưa ra một ví dụ đơn giản về bootstrap cho quy trình AR$(1)$.
+\subsection{Mô hình tích hợp cho dữ liệu không có tính dừng}
+Trong các phần trước, chúng ta đã thấy rằng nếu $ x_{t} $ là bước đi ngẫu nhiên, $ x_{t}=x_{t-1}+\omega_{t} $ thì bằng lấy sai phân $ x_{t} $ ta được $ \bigtriangledown x_{t}=\omega_{t} $ là dừng. Trong nhiều tình huống, chuỗi thời gian có thể được coi là bao gồm hai thành phần, một thành phần xu hướng không có tính dừng và một thành phần là chuỗi dừng có giá trung bình bằng không. Ví dụ, chúng tôi xem xét mô hình
+\begin{equation}
+	x_t=\mu_t+y_t, \label{3.129}
+\end{equation}
+trong đó $\mu_t=\beta_0+\beta_1t$ và $y_t$ là chuỗi có tính dừng. Bằng cách lấy sai phân, ta được quá trình đứng yên:
+$$\bigtriangledown x_t=x_t-x_{t-1}=\beta_1+y_1-y_{t-1}=\beta_1+\bigtriangledown y_t.$$
+Một mô hình lấy sai phân lần thứ nhất là trường hợp $\mu_t$ trong (\ref{3.129}) là ngẫu nhiên và biến đổi chậm theo một bước đi ngẫu nhiên. Đó là, trong (\ref{3.129}) 
+$$\mu_t=\mu_{t-1}+v_t$$
+với $v_t$ có tính dừng. Trong trường hợp này,
+$$\bigtriangledown x_t=v_t+\bigtriangledown y_t$$ có tính dừng. Nếu $\mu_t$ trong (\ref{3.129}) là bậc $k$ của đa thức $\mu_t=\sum_{j=0}^{k}\beta_jt_j$. Do đó, chuỗi sai phân $\bigtriangledown^{k}y_t$ có tính dừng. Các mô hình xu hướng ngẫu nhiên có thể dẫn đến việc lấy sai phân bậc cao. Giả sử trong (\ref{3.129}) 
+$$\mu_t=\mu_{t-1}+v_t \hspace{1cm} \text{và} \hspace{1cm} v_t=v_{t-1}+e_t,$$
+trong đó $e_t$ có tính dừng. Do đó, $\bigtriangledown x_t=v_t+\bigtriangledown y_t$ không có tính dừng, nhưng $$\bigtriangledown^{2}x_t=e_t+\bigtriangledown^{2}y_t$$ có tính dừng.
+
+Mô hình ARMA tích hợp, hoặc mô hình ARIMA là một mở rộng của lớp các mô hình ARMA bao gồm việc lấy sai phân.
+\begin{dn}
+Một quá trình $ x_{t} $ được gọi là \textbf{ARIMA(p,d,q)} nếu 
+$$\bigtriangledown^{d} x_{t}=(1-B)^{d}x_{t}$$
+là ARMA(p,q). Chúng tôi viết mô hình ARIMA(p,d,q) có dạng
+\begin{equation}
+	\phi(B)(1-B)^{d}x_{t}=\theta(B)w_{t}. \label{ct1.185}
+\end{equation} 
+Nếu $ E(\bigtriangledown^{d} x_{t})=\mu $ chúng ta viết mô hình là
+$$\phi(B)(1-B)^{d}x_{t}=\alpha+\theta(B)w_{t},$$
+trong đó $ \alpha=\mu(1-\phi_{1}-...-\phi_{p}).$
+\end{dn}
+\subsection{\label{arima}Xây dựng mô hình ARIMA}
+Có một vài bước cơ bản để khớp các mô hình ARIMA với dữ liệu chuỗi thời gian. Các bước này liên quan đến việc vẽ dữ liệu, có thể chuyển đổi dữ liệu, xác định các thứ tự phụ thuộc của mô hình, ước tính tham số, chẩn đoán và lựa chọn mô hình. Đầu tiên, đối với bất kỳ phân tích dữ liệu nào, chúng ta nên xây dựng một biểu đồ thời gian từ dữ liệu và kiểm tra xem biểu đồ có dấu hiệu bất thường nào không. Ví dụ, dữ liệu thay đổi tăng theo thời gian cần phải chuyển đổi dữ liệu để ổn định phương sai. Trong những trường hợp như vậy, chúng ta có thể sử dụng lớp biến đổi của Box Box Cox, phương trình (\ref{BC}).
+
+Sau khi chuyển đổi dữ liệu một cách thích hợp, bước tiếp theo là xác định giá trị ban đầu của tự hồi quy bậc $p$, bậc của sai phân $d$ và bậc của trung bình trượt $q$. Chúng tôi đã đề cập sơ qua về vấn đề chọn $d$. Một biểu đồ thời gian của dữ liệu thường sẽ gợi ý xem có cần sai phân hay không. Nếu dữ liệu chưa dừng, chúng ta lấy sai phân lần một $d = 1$ và quan sát biểu đồ thời gian của $\nabla x_{t}$. Nếu cần thiết phải lấy sai phân lần nữa, hãy tiếp tục thử lấy sai phân và kiểm tra biểu đồ thời gian của $\nabla^{2}x_{t}$. Hãy cẩn thận và không để biểu đồ quá khác biệt bởi vì điều này có thể không tồn tại sự phụ thuộc. Ví dụ, $x_{t}=w_{t}$ không tương quan nhưng $\nabla x_{t} = w_{t}-w_{t-1}$ là MA(1). Bên cạnh các biểu đồ thời gian, biểu đồ ACF có thể giúp xác định xem có cần lấy sai phân hay không. Vì đa thức $\phi(z)(1-z)^{d}$ có một nhiệm đơn vị, ACF mẫu $\hat{\rho}$ sẽ không phân rã về $0$ nhanh khi $h$ tăng. Do đó, sự phân rã chậm trong $\hat{\rho}$ là một dấu hiệu cho thấy việc lấy sai phân là cần thiết. 
+
+Khi các giá trị sơ bộ của $d$ đã được chọn, bước tiếp theo là xem xét ACF và PACF mẫu của $\nabla^{d}x_{t}$ cho bất cứ giá trị nào của $d$ đã được chọn. Sử dụng bảng (\ref{b1}) chọn các giá trị sơ bộ của $p$ và $q$. Nếu $p = 0$ và $q> 0$, ACF sẽ cắt đứt sau lag $q$ và PACF giảm đi. Nếu $q = 0$ và $p> 0$, PACF sẽ cắt đứt sau lag $p$ và ACF giảm đi. Nếu $p> 0$ và $q> 0$, cả ACF và PACF sẽ cắt đứt. Bởi vì chúng tôi đang xử lý các ước tính không luôn luôn chỉ ra ACF hoặc PACF mẫu đang giảm dần hoặc cắt đứt. Hơn nữa, hai mô hình có vẻ khác nhau nhưng thực sự có thể rất giống nhau. Với suy nghĩ này, chúng ta không nên lo lắng về việc mô hình phù hợp quá chính xác ở giai đoạn này. Ở giai đoạn này, một vài giá trị sơ bộ của $p$, $d$ và $q$ đã được chọn và chúng ta có thể bắt đầu ước tính các tham số.
+
+Bước tiếp theo trong mô hình phù hợp là chẩn đoán. Nghiên cứu này bao gồm phân tích phần dư cũng như so sánh mô hình. Bước đầu tiên là vẽ biểu đồ thời gian của các đổi mới (hoặc phần dư), $x_{t}-\hat{x}_{t}^{t-1}$, hoặc của các đổi mới được tiêu chuẩn hóa
+\begin{equation}
+e_{t}=  \frac{x_{t}-\hat{x}_{t}^{t-1}}{\sqrt[]{\hat{P}_t^{t-1}}} , \label{ct1.191}
+\end{equation}
+trong đó $\hat{x}_{t}^{t-1}$ là dự đoán trước một bước của $x_{t}$ dựa trên mô hình được trang bị và $\hat{P}_t^{t-1}$ là phương sai ước tính của sai số trước một bước. Nếu mô hình phù hợp tốt, phần dư được chuẩn hóa sẽ hoạt động như một chuỗi $iid$ với giá trị trung bình bằng 0 và phương sai một. Biểu đồ thời gian nên được kiểm tra cho bất kỳ sự chênh lệch nào từ giả định này. Trường hợp chuỗi thời gian là Gaussian, các phần dư không tương quan. Ví dụ, trong trường hợp không phải Gaussian có thể có một quá trình không tương quan với các giá trị gần kề theo thời gian sẽ phụ thuộc rất lớn.
+
+Nghiên cứu về tính chuẩn tắc cận biên có thể được thực hiện một cách trực quan bằng cách nhìn vào biểu đồ của phần dư. Ngoài ra, một biểu đồ phân phối chuẩn tắc hoặc một biểu đồ Q-Q có thể giúp kiểm tra độ lệch từ tính chuẩn tắc. Xem Johnson và Wicéc (1992, Chương 4) để biết chi tiết về thử nghiệm này cũng như các thử nghiệm bổ sung cho tính chuẩn tắc đa biến.[cite]
+
+Có một số thử nghiệm về tính ngẫu nhiên, ví dụ thử nghiệm chạy, có thể được áp dụng cho các phần dư. Chúng tôi cũng có thể kiểm tra sự tự tương quan mẫu của phần dư, giả sử, $\hat{\rho}_{e(h)}$, cho bất kỳ mẫu hoặc các giá trị lớn nào. Đối với chuỗi nhiễu trắng, tự tương quan mẫu được xấp xỉ độc lập và phân phối chuẩn tắc với giá trị trung bình bằng $0$ và phương sai $\frac{1}{n}$. Do đó, một kiểm tra tốt về cấu trúc tương quan của phần dư là vẽ biểu đồ $\hat{\rho}_{e}(h)$ so với $h$ cùng với các giới hạn sai số là $\pm2/\sqrt{n}$. Tuy nhiên, phần dư từ một mô hình phù hợp sẽ không hoàn toàn có các thuộc tính của chuỗi nhiễu trắng và phương sai của $\hat{\rho}_{e}(h)$ có thể nhỏ hơn $1/n$. Thông tin chi tiết có thể được tìm thấy trong Box và Pierce (1970) và McLeod (1978). Phần chẩn đoán này có thể được xem như là một kiểm tra trực quan của $\hat{\rho}_{e}(h)$ với mối quan tâm chính là độ lệch từ giả định độc lập. 
+
+Vẽ biểu đồ $\hat{\rho}_{e}(h)$, chúng ta có thể thực hiện một bài kiểm tra tổng quát về độ lớn của $\hat{\rho}_{e}(h)$. Ví dụ, mỗi $\hat{\rho_{e}(h)}$ có độ lớn nhỏ, giả sử, mỗi cái chỉ nhỏ hơn một chút so với $2/\sqrt{n}$ về độ lớn, nhưng gọi chung là các giá trị đều lớn. Thống kê Ljung-Box-Pierce Q được đưa ra là 
+\begin{equation}
+Q= n(n+2)\displaystyle\sum_{h=1}^{H}\dfrac{\hat{\rho}_{e}^{2}(h)}{n-h} \label{ct1.192}
+\end{equation}
+có thể được sử dụng để thực hiện một cách kiểm tra như vậy. Giá trị $H$ trong (\ref{ct1.192}) được chọn một cách tùy ý, thông thường, $H = 20$. Theo giả thiết không về tính chính xác của mô hình, khi $(n\rightarrow \infty)$, $Q\sim \chi^{2}_H-p-q$. Do đó, chúng tôi sẽ bác bỏ giả thiết không ở mức $\alpha$ nếu giá trị của $Q$ vượt quá $(1-\alpha)$ của phân phối $\chi^{2}_H-p-q$. Thông tin chi tiết có thể được tìm thấy trong Box và Pierce (1970), Ljung và Box (1978), và Davies và cộng sự (1977).[cite]
+
+Bước cuối cùng của phù hợp mô hình là chọn lựa mô hình. Nghĩa là chọn ra mô hình cuối cùng để dự báo. Các kĩ thuật phổ biến như AIC, AICc và SIC được đưa ra ở phần (\ref{hqcd}) của một mô hình hồi quy.
+\subsection{Mô hình ARIMA theo mùa}
+Trong phần này, chúng tôi sẽ giới thiệu một mô hình cải tiển từ ARIMA cho chuỗi dữ liệu có xu hướng theo mùa và không dừng. Thông thường, sự phụ thuộc vào quá khứ có xu hướng xảy ra mạnh mẽ nhất ở bội số của một số mùa cơ bản tại lag $s$. Ví dụ, dữ liệu có tính mùa vụ theo ngày, tuần, tháng, quý, năm. Sự biến thiên tự nhiên của nhiều quá trình vật lý, sinh học và kinh tế có xu hướng phù hợp với biến động theo mùa. Chính vì điều này, chúng tôi sẽ giới thiệu các đa thức tự hồi quy, trung bình trượt xác định với các lag theo mùa. Mô hình tự hồi quy trung bình trượt theo mùa $ARMA(P,Q)_s$  có dạng 
+\begin{equation}
+\Phi_{P}(B^{s})x_{t}=\varTheta_{Q}(B^{s})w_{t}, \label{ct1.193}
+\end{equation}
+với định nghĩa sau.
+\begin{dn}Các toán tử
+\begin{equation}
+\Phi_ {P} (B^{s}) = 1-\Phi_{1}  B^{s} -\Phi_{2}  B^{2s}-...- \Phi_{P}  B^{s} \label{ct1.194}
+\end{equation}	
+và
+\begin{equation}
+\varTheta_{Q}(B^{s})= 1+ \varTheta_{1}B^{s} + \varTheta_{2}B^{2s}+...+ \varTheta_{Q}B^{Qs} \label{ct1.195}	
+\end{equation}
+trong đó bậc $P$ và $Q$ lần lượt là toán tử tự hồi quy theo mùa và toán tử trung bình trượt theo mùa với chu kì $s$.
+\end{dn}
+
+Tương tự như các đặc tính của các mô hình ARMA không theo mùa, ARMA$(P,Q)_s$ nhân quả theo mùa chỉ khi các nghiệm của $\Phi_ {P} (z^{s})$ nằm ngoài vòng tròn đơn vị, và khả nghịch chỉ khi các nghiệm của $\varTheta_{Q}(z^{s})$ nằm ngoài vòng tròn đơn vị.
+
+Đối với bậc đầu tiên của mô hình MA theo mùa vụ ($s=12$), $x_t=w_t+\Theta w_{t-12}$. Điều này dễ kiểm tra bằng cách
+\begin{align*}
+	\gamma_0 &=(1+\Theta^{2})\sigma^{2}\\
+	\gamma(\pm 12) &=\Theta\sigma^{2}\\
+	\gamma(h) &=0, \hspace{1cm} \text{các trường hợp khác.}
+\end{align*}
+Do đó, mối tương quan duy nhất khác không ngoài lag $0$ là $$\rho(\pm)=\Theta/(1+\Theta^{2}).$$
+
+Đối với bậc đầu tiên của mô hình AR theo mùa $(s=12)$, sử dụng các kỹ thuật mô hình AR(1) không theo mùa, chúng tôi có được
+\begin{align*}
+	\gamma(0) &= \sigma^{2} / (1-\Phi^{2})\\
+	\gamma(\pm12k) &= \sigma^{2}\Phi^{k} / (1-\Phi^{2}) \hspace{1cm} k=1, 2,...\\
+	\gamma(h)&=0, \hspace{1cm} \text{các trường hợp khác.}
+\end{align*}
+Trong trường hợp này, mối tương quan duy nhất khác không là
+$$\rho(\pm12k) =\Phi^{k}, \hspace{1cm} k=0, 1, 2,... .$$
+Những kết quả này có thể được kiểm tra bằng cách sử dụng $\gamma(h)=\Phi\gamma(h-12)$ với $h\geq1$. Ví dụ, nếu $h=1$ thì $\gamma(1)=\Phi\gamma(11)$, nhưng nếu $h=11$ thì chúng ta có $\gamma(11)=\Phi\gamma(1)$. Điều này có nghĩa là $\gamma(11)=\Phi\gamma(1)=0$. Ngoài những kết quả này, PACF còn có các phần mở rộng tương tự từ mô hình không theo mùa sang mô hình theo mùa.
+
+Các tiêu chí để chọn $P$ và $Q$ ban đầu, chúng ta có thể sử dụng các thuộc tính từ hồi quy theo mùa và trung bình trượt của chuỗi được liệt kê trong bảng ({\ref{b2}}). Các tính chất này có thể được coi là sự khái quát hóa các tính chất cho các mô hình không theo mùa được trình bày trong bảng (\ref{b1}).
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|p{3cm}|p{4cm}|p{4cm}|p{4cm}|}
+		\hline 
+&$AR(P)_s$ &$MA(Q)_s$ &$ARMA(P,Q)_s$ \\
+		\hline 
+$ACF^{*}$ &Giảm dần tại các lag $ks$, $k=1, 2, ...,$ &Cắt đứt sau lag $Qs$ & Giảm dần tại các lag $ks$\\
+		\hline 
+$PACF^{*}$ &Cắt đứt sau lag $Ps$ & Giảm dần tại các lag $ks$, k=1, 2,..., & Giảm gần tại các lag $ks$ \\
+		\hline 
+		\multicolumn{4}{|c|}{$^{*}$Các giá trị tại các lag không có tính mùa vụ $h\neq ks$ với $k=1, 2, ...,$ bằng $0$}.\\
+		\hline 
+	\end{tabular}
+	\caption{\textit{Dáng điệu của ACF và PACF cho các mô hình ARMA  nhân quả và khả nghịch theo mùa}}
+	\label{b2} 
+\end{table}
+
+Nói chung, chúng ta có thể kết hợp các toán tử theo mùa và không theo mùa thành mô hình tự hồi quy trung bình trượt theo mùa, được kí hiệu là $ARMA(p,q)\times(P,Q)_s$ và mô hình tổng quát là
+\begin{equation}
+\Phi_ {P} (B^{s})\phi(B)x_{t}= \varTheta_{Q}(B^{s})\theta(B)w_{t}. \label{ct1.196}
+\end{equation}
+Mặc dù các thuộc tính được dự đoán trong bảng (\ref{b2}) không hoàn toàn đúng đối với mô hình rổng quá, dáng điệu của ACF và PACF có xu hướng hiển thị các mẫu thô của mẫu được chỉ định. Trong thực tế, đối với các mô hình hỗn hợp, chúng ta có xu hướng thấy một hỗn hợp các sự kiện được liệt kê trong bảng (\ref{b1}) và (\ref{b2}). Trong các mô hình thích hợp đó, việc tập trung vào các thành phần trung bình tự phát và di chuyển theo mùa đầu tiên thường dẫn đến kết quả khả quan hơn.
+
+Sự không ổn định theo mùa có thể xảy ra, ví dụ, khi quá trình gần như định kỳ trong mùa. Ví dụ, với nhiệt độ trung bình hàng tháng qua các năm, mỗi tháng một sẽ xấp xỉ như nhau, mỗi tháng hai sẽ xấp xỉ như nhau, v.v. Trong trường hợp này, chúng tôi có thể nghĩ rằng nhiệt độ trung bình hàng tháng $x_{t}$ được mô hình hóa là
+\begin{equation}
+x_{t}=S_{t} +w_{t} \label{ct1.197}
+\end{equation}
+
+Trong đó $S_{t}$ là một thành phần theo mùa thay đổi chậm từ năm này sang năm khác, theo một bước ngẫu nhiên
+\begin{equation}
+ S_{t}=S_{t-12}+ v_{t} \label{ct1.198}
+\end{equation}
+Trong mô hình này, $w_{t}$ và $v_{t}$ là các nhiễu trắng không tương thích. Xu hướng dữ liệu tuân theo loại mô hình này sẽ được thể hiện trong một ACF mẫu lớn và phân rã rất chậm với độ trễ $h = 12k$, với $k = 1, 2, ....$ Nếu chúng ta bỏ đi ảnh hưởng của những năm liên tiếp với nhau, chúng ta thấy rằng
+\begin{equation}
+(1-B^{12})x_{t}=x_{t}-x_{t-12}=v_{t}+w_{t}-w_{t-12} \label{ct1.199}
+\end{equation}
+Mô hình này là $MA(1)_{12}$ cố định và ACF của nó sẽ chỉ có cực đại ở độ trễ 12. Nói chung, sự khác biệt theo mùa có thể được chỉ định khi ACF phân rã chậm ở bội số của mùa, nhưng không đáng kể giữa các giai đoạn. Sau đó, sự khác biệt theo mùa của order $D$ được định nghĩa là
+\begin{equation}
+\bigtriangledown_{s}^{D}x_{t}=(1-B^{s})^{D}x_{t}, \label{ct1.200}
+\end{equation}
+trong đó $D = 1, 2, ...$ lấy các giá trị nguyên. Thông thường, $D = 1$ là đủ để có được sự ổn định theo mùa.
+
+Kết hợp những ý tưởng này vào một mô hình chung dẫn đến định nghĩa sau.
+\begin{dn}\textbf{Mô hình tự hồi quy tích hợp trung bình trượt theo mùa (mô hình SARIMA)} của Box và Jenkins (1970) có dạng tổng quát là
+\begin{equation}
+\Phi_ {P} (B^{s})	\phi(B)\bigtriangledown_{s}^{D}\bigtriangledown^{d}x_{t}=\alpha + \varTheta_{Q}(B^{s})\theta(B)w_{t}, \label{ct1.201}
+\end{equation}	
+trong đó $w_{t}$ thường là quá trình nhiễu trắng Gaussian. Mô hình tổng quát được ký hiệu là ARIMA $(p, d, q) \times (P, D, Q )_{s}$. Các thành phần trung bình tự động và trượt thông thường được biểu thị bằng đa thức $\phi(B)$ và $\theta(B)$ của các order $p$ và $q$, tương ứng [xem (\ref{ct1.85}) và (\ref{ct1.100})],
+là toán tử tự phát theo mùa và toán tử trung bình trượt theo mùa của $\Phi_ {P} (B^{s})$ và $\varTheta_{Q}(B^{s})$ [xem (\ref{ct1.194}) và (\ref{ct1.195})] của các order $P$ và $Q$, và các thành phần chênh lệch thông thường và theo mùa bởi $\bigtriangledown^{d}=(1-B)^{d}$ và $\bigtriangledown^{D}_{s}=(1-B^{s})^{D}$
+\end{dn}
+Chọn mô hình thích hợp cho một tập dữ liệu từ mô hình tổng quát (\ref{ct1.201}) là một nhiệm vụ khó khăn và chúng tôi thường nghĩ đầu tiên về việc tìm các toán tử sai phân để thu được một chuỗi dừng và sau đó tìm kiếm mô hình tự hồi quy trung bình trượt hoặc ARMA theo mùa để phù hợp với chuỗi dư. Áp dụng các toán tử sai phân đầu tiên và sau đó xây dưng phần dư từ một chuỗi có chiều dài giảm. Tiếp theo, chúng ta đánh giá phần dư của ACF và PACF. Các đỉnh xuất hiện trong các hàm này thường có thể được loại bỏ bằng cách phù hợp tự hồi quy hoặc trung bình trượt theo các đặc tính chung của bảng (\ref{b1}) và (\ref{b2}). Khi mô hình đã thích hợp, chúng ta áp dụng các kỹ thuật chuẩn đoán được mô tả trong phần (\ref{arima}).
+\section*{Kết luận chương 1}
+Trong chương 1, chúng tôi đã.....
+\end{document}
