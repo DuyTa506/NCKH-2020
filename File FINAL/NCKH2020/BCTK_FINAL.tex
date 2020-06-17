@@ -127,7 +127,7 @@ hoặc các hàm mật độ một chiều tương ứng
 {f}_{t}(x)= \dfrac{\partial{F}_{t}(x)}{\partial x}, \label{ct1.5}
 \end{equation}
 thường cung cấp thông tin để xác định xem liệu một toạ độ cụ thể của chuỗi thời gian có hàm mật độ rõ hay không, chẳng hạn như hàm phân phối chuẩn (Gaussian).
-\begin{dn}\cite{1} \textbf{Hàm trung bình} \textit{được định nghĩa là
+\begin{dn}\cite{8} \textbf{Hàm trung bình} \textit{được định nghĩa là
 \begin{equation}
 \mu_{xt} = E(x_{t}) =  \int_{-\infty}^{\infty} xf_{t}(x) dx, \label{ct1.6}
 \end{equation}
@@ -135,7 +135,7 @@ trong đó $E$ là kỳ vọng. Khi không có sự nhầm lẫn nào về chu�
 \end{dn}
 
 Sự phụ thuộc giữa hai giá trị liền kề $x_{s}$ và $x_{t}$ có thể được đánh giá bằng số, như trong thống kê cổ điển, sử dụng các khái niệm \textit{hiệp phương sai} và \textit{tương quan}. Giả sử phương sai của $x_{t}$ là hữu hạn, chúng ta có định nghĩa sau:
-\begin{dn}\cite{1} \textbf{Hàm tự hiệp phương sai} \textit{được định nghĩa là tích của hai moment
+\begin{dn}\cite{8} \textbf{Hàm tự hiệp phương sai} \textit{được định nghĩa là tích của hai moment
 \begin{equation}
 \gamma_{x}(s,t) =E[(x_{s}-\mu_{s})(x_{t}-\mu_{t})], \label{ct1.11}
 \end{equation}
@@ -148,7 +148,7 @@ Lưu ý rằng $\gamma_{x}(s,t) =\gamma_{x}(t,s)$ với mọi thời điểm $s$
 \end{equation}
 
 \textit{Điều đặc biệt ở hàm tự hiệp phương sai là nó chỉ phụ thuộc vào khoảng chênh lệch thời gian hoặc độ trễ chứ không phụ thuộc vào vị trí của các điểm dọc theo chuỗi.}
-\begin{dn}\cite{1} \textbf{Hàm tự tương quan (ACF)} \textit{được định nghĩa là
+\begin{dn}\cite{8} \textbf{Hàm tự tương quan (ACF)} \textit{được định nghĩa là
 \begin{equation}
 \rho(s,t) = \dfrac{\gamma(s,t)}{\sqrt{\gamma(s,s)\gamma(t,t)}}. \label{ct1.13}
 \end{equation}}
@@ -160,7 +160,7 @@ Trong các định nghĩa trên, rõ ràng hàm tự hiệp phương sai phụ t
 \subsection{Chuỗi có tính dừng}
 
 Chuỗi có tính dừng là một khái niệm rất quan trọng trong phân tích chuỗi thời gian. Nó được chia làm hai loại là \textit{tính dừng ngặt} và \textit{tính dừng yếu}. Chúng tôi sẽ tiến hành giới thiệu khái niệm và một số tính chất quan trọng của chúng.
-\begin{dn}\cite{1, 2} \label{dn1.6}Một \textbf{chuỗi có tính dừng ngặt} \textit{là chuỗi trong đó dáng điệu xác suất của mỗi tập hợp các giá trị
+\begin{dn}\cite{8, 9} \label{dn1.6}Một \textbf{chuỗi có tính dừng ngặt} \textit{là chuỗi trong đó dáng điệu xác suất của mỗi tập hợp các giá trị
 		\begin{align*}
 		\left\lbrace x_{t_{1}}, x_{t_{2}}, \dots, x_{t_{k}}\right\rbrace
 		\end{align*}
@@ -190,7 +190,7 @@ cho mọi thời điểm của $ s $, $ t $ với độ chênh lệch $ h $. Do 
 với mọi $s$, $t$ và $h$. Do đó, \textit{hàm tự hiệp phương sai của quá trình chỉ phụ thuộc vào độ chênh lệch thời gian giữa $s$ và $t$ chứ không dựa trên thời gian thực tế}.
 
 Với một chuỗi thời gian bất kì rất khó để đánh giá tính dừng ngặt của nó. Thay vì áp đặt các điều kiện cho tất cả các phân phối có thể có của một chuỗi thời gian, chúng ta chỉ áp dụng lên hai thời điểm đầu tiên của chuỗi. Khi đó, chúng ta có định nghĩa sau:
-\begin{dn}\cite{1} Một \textbf{chuỗi thời gian $x_t$ có tính dừng yếu} \textit{là một quá trình có phương sai hữu hạn sao cho}
+\begin{dn}\cite{8} Một \textbf{chuỗi thời gian $x_t$ có tính dừng yếu} \textit{là một quá trình có phương sai hữu hạn sao cho}
 	\begin{itemize}
 		\item[(i)]\textit{hàm giá trị trung bình $\mu_{t}$ được định nghĩa trong (\ref{ct1.6}) là hằng số và không phụ thuộc vào thời gian $t$,}
 		\item[(ii)]\textit{hàm hiệp phương sai $ \gamma(s, t)$ được định nghĩa trong (\ref{ct1.11}) chỉ phụ thuộc vào độ sai khác $ \abs{s-t}.$} \label{dntd}
@@ -214,12 +214,12 @@ Ngoài ra, vì hàm hiệp phương sai  $\gamma(s, t)$ của một chuỗi có 
 
 Do vậy, hàm tự hiệp phương sai không phụ thuộc vào đối số $t$ (giả sử $var(x_{t}) =\gamma(0,0) < \infty $). Để thuận tiện, chúng ta sẽ bỏ đối số thứ hai của $\gamma(h,0)$.
 
-\begin{dn}\cite{1} \textbf{Hàm tự hiệp phương sai của chuỗi có tính dừng}\textit{ được viết dưới dạng: 
+\begin{dn}\cite{8} \textbf{Hàm tự hiệp phương sai của chuỗi có tính dừng}\textit{ được viết dưới dạng: 
 		\begin{equation}
 		\gamma(h)= E[(x_{t+h}-\mu)(x_{t}-\mu)] \label{ct1.24}
 		\end{equation}	}
 \end{dn}
-\begin{dn}\cite{1} \textit{Bằng cách sử dụng (\ref{ct1.13}),}  \textbf{hàm tự tương quan (ACF) của chuỗi có tính dừng} \textit{được viết dưới dạng
+\begin{dn}\cite{8} \textit{Bằng cách sử dụng (\ref{ct1.13}),}  \textbf{hàm tự tương quan (ACF) của chuỗi có tính dừng} \textit{được viết dưới dạng
 		\begin{equation}
 		\rho(h)=\frac{\gamma(t+h,t)}{\sqrt{\gamma(t+h,t+h)\gamma(t,t)}}=\dfrac{\gamma(h)}{\gamma(0)}. \label{ct1.25}
 		\end{equation}}
@@ -249,7 +249,7 @@ với mọi $h$. Bởi vì:
 \end{align*}
 
 Khái niệm về tính dừng yếu là cơ sở cho hầu hết các phân tích thực hiện với chuỗi thời gian. Các tính chất cơ bản của hàm trung bình (\ref{ct1.23}) và hàm tự hiệp phương sai (\ref{ct1.24}) được thỏa mãn sẽ xuất hiện các mô hình lý thuyết thực hiện mẫu hợp lý. Cuối cùng, một trường hợp quan trọng, một chuỗi có tính dừng yếu cũng như chuỗi có tính dừng ngặt khi nó là chuỗi chuẩn hoặc Gaussian.
-\begin{dn}\cite{1} \textit{Một quá trình $ \left\lbrace x_{t}\right\rbrace  $ được gọi là} \textbf{quá trình Gaussian} \textit{nếu vector $ \textbf{x}=\left\lbrace x_{t_{1}}, x_{t_{2}}, \dots, x_{t_{k}}\right\rbrace^{'} $ có phân phối chuẩn đa biến, trong đó $t_{1}, t_{2}, \dots, t_{k}$ là các điểm thời gian với mọi $k$ là số nguyên dương.}
+\begin{dn}\cite{8} \textit{Một quá trình $ \left\lbrace x_{t}\right\rbrace  $ được gọi là} \textbf{quá trình Gaussian} \textit{nếu vector $ \textbf{x}=\left\lbrace x_{t_{1}}, x_{t_{2}}, \dots, x_{t_{k}}\right\rbrace^{'} $ có phân phối chuẩn đa biến, trong đó $t_{1}, t_{2}, \dots, t_{k}$ là các điểm thời gian với mọi $k$ là số nguyên dương.}
 \end{dn}
 \subsection{Ước lượng của tương quan}
 Mặc dù lý thuyết của hàm tự tương quan là hữu ích để mô tả các tính chất của các mô hình giả thuyết nhưng hầu hết các phân tích phải được sử dụng dữ liệu được lấy mẫu. Điều này có nghĩa là chỉ có thể ước tính các giá trị trung bình, hàm tự hiệp phương sai, tự tương quan thông qua các điểm được lấy mẫu $x_1, x_2, \dots, x_n$. Một vấn đề được đặt ra là chúng ta thường không có các bản sao của các biến ngẫu nhiên \textit{độc lập và phân phối giống hệt nhau} (iid - independent and identically distributed) của $x_t$ để ước tính hàm hiệp phương sai và hàm tương quan. Tuy nhiên, trong thực tế, giả thiết về tính dừng của mẫu là rất quan trọng. \textit{Chúng ta phải sử dụng giá trị trung bình mẫu để ước tính hàm trung bình và hàm hiệp phương sai}. Theo đó, nếu chuỗi thời gian có tính dừng thì hàm trung bình (\ref{ct1.23}) $\mu_t=\mu$ là hằng số. Do đó, chúng ta có thể ước tính nó theo trung bình mẫu và được viết dưới dạng
@@ -258,13 +258,13 @@ Mặc dù lý thuyết của hàm tự tương quan là hữu ích để mô t�
 \end{equation}
 
 \textit{Hàm tự hiệp phương sai mẫu là công cụ để ước tính hàm tự hiệp phương sai} và được định nghĩa như sau:
-\begin{dn}\cite{1} \textbf{Hàm tự hiệp phương sai mẫu} \textit{được định nghĩa là 
+\begin{dn}\cite{8} \textbf{Hàm tự hiệp phương sai mẫu} \textit{được định nghĩa là 
 		\begin{equation}
 		\widehat{\gamma}(h) = n^{-1}\sum _ {t = 1 } ^ {n-h} (x_{t+h}-\bar{x})(x_{t}-\bar{x}), \label{ct1.38}
 		\end{equation} trong đó $\widehat{\gamma}(-h) = \widehat{\gamma}(h)$ với mọi $h= 0, 1, \dots, n-1$.}
 \end{dn}
 Ước lượng trong (\ref{ct1.38}) thường được ưu tiên hơn là ước lượng thu được bằng cách chia cho $n - h$ vì (\ref{ct1.38}) là một hàm xác định không âm. Điều này có nghĩa là nếu chúng ta viết $\widehat{\Gamma}(-h) =\left\lbrace \widehat{\gamma}(i-j); i, j=1, \dots, n\right\rbrace$ là \textit{ma trận hiệp phương sai mẫu} cỡ $n \times n$ của dữ liệu $\textbf{\textit{x}} = (x_{1}, \dots, x_{n})^{'}$ thì $\widehat{\Gamma}$ là \textit{ma trận xác định không âm}. Vì vậy, nếu chúng ta viết $a = (a_{1}, \dots, a_{n})^{'}$ là một vectơ $n \times 1$ của các hằng số thì $\widehat{var}(a'\textbf{\textit{x}}) = a'\widehat{\varGamma}a\geq 0$. Do đó, tính chất xác định không âm đảm bảo phương sai mẫu của tổ hợp tuyến tính của các biến $x_{t}$ sẽ luôn luôn không âm. Lưu ý rằng, nếu chúng ta không chia cho $n$ và $n - h$ trong (\ref{ct1.38}) thì sẽ mang lại \textit{ước lượng không chệch} của $\gamma(h)$.
-\begin{dn}\cite{1} \textit{Tương tự như (\ref{ct1.25}),} \textbf{hàm tự tương quan mẫu}\textit{ được viết dưới dạng
+\begin{dn}\cite{8} \textit{Tương tự như (\ref{ct1.25}),} \textbf{hàm tự tương quan mẫu}\textit{ được viết dưới dạng
 		\begin{equation}
 		\widehat{\rho}(h)=\dfrac{\widehat{\gamma}(h)}{\widehat{\gamma}(0)}. \label{ct1.39}
 		\end{equation} }
@@ -272,7 +272,7 @@ Mặc dù lý thuyết của hàm tự tương quan là hữu ích để mô t�
 
 \textit{Phân phối mẫu }(sampling distribution) của hàm tự tương quan mẫu có thể đánh giá được nhiều loại dữ liệu từ một chuỗi hoàn toàn ngẫu nhiên, chuỗi nhiễu trắng hay các mối tương quan có ý nghĩa thống kê ở một số độ trễ.
 
-\begin{tc}\cite{1} \textbf{Phân phối mẫu lớn của ACF}\\
+\begin{tc}\cite{8} \textbf{Phân phối mẫu lớn của ACF}\\
 	\textit{Nếu $ x_{t}$ là nhiễu trắng thì ACF mẫu $\widehat{\rho_{x}}(h)$ sẽ có phân phối xấp xỉ phân phối chuẩn với giá trị trung bình bằng $0$  khi $n$ đủ lớn và độ lệch chuẩn được cho bởi
 		\begin{equation}
 		\sigma_{\hat{\rho}_{x}(h)}=\dfrac{1}{\sqrt{n}}, \label{ct1.40}
@@ -302,7 +302,7 @@ Bây giờ chúng ta xem xét một mô hình hồi quy với hệ số $ k $ v�
 \widehat{\sigma}_{k}^{2}=\dfrac{RSS_{k}}{n}, \label{ct1.59}
 \end{equation}
 trong đó $ RSS_{k} $ biểu thị tổng bình phương phần dư theo mô hình hồi quy với $ k $ hệ số. Akaike (1969, 1973, 1974) đề nghị đo lường mức độ phù hợp của mô hình cụ thể này bằng cách chọn ra sai số phù hợp với số lượng tham số trong mô hình. Do đó, chúng ta có định nghĩa sau: 
-\begin{dn}\cite{1} \textbf{Tiêu chuẩn thông tin Akaike (AIC)}\textit{ 
+\begin{dn}\cite{8} \textbf{Tiêu chuẩn thông tin Akaike (AIC)}\textit{ 
 		\begin{equation}
 		AIC= ln (\widehat{\sigma}_{k}^{2}) +\dfrac{n+ 2k}{n} \label{ct1.60}
 		\end{equation}
@@ -310,14 +310,14 @@ trong đó $ RSS_{k} $ biểu thị tổng bình phương phần dư theo mô h�
 \end{dn}
 
 Mô hình tốt nhất khi AIC (Akaike's Information Criterion) tối thiểu. Ý tưởng sơ bộ là làm giảm $\widehat{\sigma}_{k}^{2}$. Tuy nhiên cần lưu ý ngoại trừ trường hợp khi $ \widehat{\sigma}_{k}^{2} $ đơn điệu giảm nhưng $ k $ tăng. Do đó, chúng ta nên xử lý sai số phương sai  bằng một thuật ngữ tỷ lệ thuận với số lượng tham số. Tiêu chuẩn được đưa ra trong (\ref{ct1.60}) không phải là duy nhất. Một tiêu chuẩn khác được đề xuất bởi Sugiura (1978) và mở rộng bởi Hurvich và Tsai (1989) dựa trên kết quả phân phối mẫu nhỏ cho mô hình hồi quy tuyến tính.
-\begin{dn}\cite{1} \textbf{Tiêu chuẩn AIC hiệu chỉnh (AICc)}
+\begin{dn}\cite{8} \textbf{Tiêu chuẩn AIC hiệu chỉnh (AICc)}
 	\textit{\begin{equation}
 		AICc= ln (\widehat{\sigma}_{k}^{2}) +\dfrac{n+ k}{n-k-2} \label{ct1.61}
 		\end{equation} 
 		trong đó $ \widehat{\sigma}_{k}^{2} $ được cho bởi (\ref{ct1.59}), $ k $ là số lượng tham số trong mô hình và $ n $ là cỡ mẫu.}	
 \end{dn}
 Schwarz (1978) đã đưa ra một tiêu chuẩn khác dựa trên các lập luận Bayes là:
-\begin{dn}\cite{1} 	
+\begin{dn}\cite{8} 	
 	\textbf{Tiêu chuẩn thông tin Schwarz (SIC)} 
 	\textit{\begin{equation}
 		SIC= ln (\widehat{\sigma}_{k}^{2}) +\dfrac{kln(n)}{n}, \label{ct1.62}
@@ -338,7 +338,7 @@ trong đó $x_{t}$ là các quan sát, $ \mu_{t} $ biểu thị xu hướng và 
 \end{equation}
 
 Trong trường hợp tổng quát, với mọi chuỗi thời gian, nếu sai phân bậc 1 của $ x_t $ chưa dừng ta tiếp tục lấy sai phân bậc cao hơn. Các nghiên cứu đã chứng minh rằng luôn tồn tại một giá trị $d$ xác định sao cho sai phân bậc $ d $ của $ x_t $ là một chuỗi dừng. Để thuận tiện cho việc ký hiệu, chúng ta dùng định nghĩa sau
-\begin{dn}\cite{1} \textbf{Toán tử backshift} \textit{được viết dưới dạng}
+\begin{dn}\cite{8} \textbf{Toán tử backshift} \textit{được viết dưới dạng}
 	\textit{	\begin{equation}
 		Bx_{t}=x_{t-1} \label{ct1.67}
 		\end{equation}
@@ -358,7 +358,7 @@ và có thể mở rộng khái niệm hơn nữa. Ví dụ, sai phân bậc 2 c
 \end{align*}
 Để kiểm tra điều này, chỉ cần lấy sai phân của sai phân bậc nhất
 $$\nabla(\nabla x_{t})=\nabla (x_{t}-x_{t-1})=(x_{t}-x_{t-1})-(x_{t-1}-x_{t-2}).$$
-\begin{dn}\cite{1} 
+\begin{dn}\cite{8} 
 	\textbf{Sai phân bậc d} \textit{được định nghĩa là
 		\begin{equation}
 		\nabla^{d}=(1-B)^{d}. \label{ct1.70}
@@ -438,7 +438,7 @@ Tiêu chuẩn DF áp dụng cho mô hình (\ref{nqd}) được gọi là tiêu c
 \subsection{Mô hình tự hồi quy}
 
 Ý tưởng chính của mô hình hồi quy là biểu diễn giá trị hiện tại của chuỗi $x_{t}$ thông qua các giá trị trong quá khứ $x_{t-1}, x_{t-2}, \dots, x_{t-p}$, trong đó $p$ là số giá trị trong quá khứ cần thiết để dự báo giá trị hiện tại. Trong phần này, chúng tôi đưa ra phương trình tổng quát của \textit{mô hình tự hồi quy} (AR - Auto-Regressive).
-\begin{dn}\cite{1, 2, 5}
+\begin{dn}\cite{8, 9}
 	\textbf{Mô hình tự hồi quy bậc p}\textit{, ký hiệu là AR($p$), có dạng:
 		\begin{equation}
 		x_{t} = \phi_{1}x_{t-1} + \phi_{2}x_{t-2} + \dots+ \phi_{p}x_{t-p}+ w_{t}, \label{ct1.80}
@@ -462,7 +462,7 @@ trong đó $\phi(B)=1-\phi_{1}B - \phi_{2}B^{2}- \dots- \phi_{p}B^{p}$ là \text
 \subsection{Mô hình trung bình trượt}
 \textit{Mô hình trung bình trượt} (MA - Moving Average) được hiểu đơn giản là tổ hợp tuyến tính của các nhiễu trắng $w_t$, được định nghĩa như sau:
 
-\begin{dn}\cite{1} \textbf{Mô hình trung bình trượt bậc q}\textit{, ký hiệu MA($q$), có dạng
+\begin{dn}\cite{8} \textbf{Mô hình trung bình trượt bậc q}\textit{, ký hiệu MA($q$), có dạng
 		\begin{equation}
 		x_{t}= w_{t}+\theta_{1}w_{t-1}+ \theta_{2}w_{t-2}+ \dots+\theta_{q}w_{t-q}, \label{ct1.100}
 		\end{equation}
@@ -476,7 +476,7 @@ trong đó $ \theta(B)= 1+\theta_{1}B+\theta_{2}B^{2}+\dots+ \theta_{q}B^{q}$ l�
 
 \subsection{Mô hình tự hồi quy trung bình trượt}
 Khi kết hợp hai quá trình tự hồi quy và trung bình trượt lại với nhau sẽ tạo ra một quá trình hỗn hợp gọi là \textit{quá trình tự hồi quy trung bình trượt} (ARMA - Auto-Regressive Moving Average) cho chuỗi thời gian có tính dừng.
-\begin{dn}\cite{1} 
+\begin{dn}\cite{8} 
 	\textit{Một chuỗi thời gian $\{x_{t}; \hspace{0.3cm} t=0,\pm1,\pm2, \dots\}$ là} \textbf{ARMA($p$, $q$)} \textit{nếu nó có tính dừng và có dạng
 		\begin{equation}
 		x_{t}= \phi_{1}x_{t-1}+ \dots+\phi_{p}x_{t-p} + w_{t} + \theta_{1}w_{t-1}+ \dots+ \theta_{q}w_{t-q}, \label{ct1.104}
@@ -605,9 +605,9 @@ Ngoài ra, đặt $x_0^{h-1}$ biểu thị hồi quy của $x_{0}$ trên $\left\
 \begin{equation}
 x_0^{h-1} = \beta_{1}x_{1}+\beta_{2}x_{2}+ \dots+ \beta_{h-1}x_{h-1}. \label{ct1.129}
 \end{equation}
-Các hệ số $\beta_{1}, \dots, \beta_{h-1}$ trong phương trình (\ref{ct1.128}) và (\ref{ct1.129}) là giống nhau. Kết quả này được giải thích trong chương 3, tài liệu tham khảo \cite{1}.
+Các hệ số $\beta_{1}, \dots, \beta_{h-1}$ trong phương trình (\ref{ct1.128}) và (\ref{ct1.129}) là giống nhau. Kết quả này được giải thích trong chương 3, tài liệu tham khảo \cite{8}.
 
-\begin{dn}\cite{1} \textbf{Hàm tự tương quan từng phần (PACF)}\textit{ của một quá trình dừng $x_{t}$, ký hiệu là $\phi_{hh}$, với $h=1, 2, \dots$ có dạng
+\begin{dn}\cite{8} \textbf{Hàm tự tương quan từng phần (PACF)}\textit{ của một quá trình dừng $x_{t}$, ký hiệu là $\phi_{hh}$, với $h=1, 2, \dots$ có dạng
 		\begin{equation}
 		\phi_{11}=corr(x_{1}, x_{0})=\rho(1) \label{ct1.130}
 		\end{equation}	
@@ -643,14 +643,14 @@ $$x_{n+m}^n= E(x_{n+m}\mid x_{n}, x_{n-1}, \dots, x_{1})$$ bởi vì \textit{k�
 \begin{equation}
 E[x_{n+m} - g(\textit{\textbf{x}})]^2, \label{ct1.133}
 \end{equation}
-trong đó $g(\textit{\textbf{x}})$ là một hàm biểu thị các quan sát $\textit{\textbf{x}}$. Điều này được chứng minh chi tiết tại Problem 13, chương 3, tài liệu tham khảo \cite{1}.
+trong đó $g(\textit{\textbf{x}})$ là một hàm biểu thị các quan sát $\textit{\textbf{x}}$. Điều này được chứng minh chi tiết tại Problem 13, chương 3, tài liệu tham khảo \cite{8}.
 
 Đầu tiên, chúng ta sẽ hạn chế sự chú ý đến các yếu tố dự báo là các hàm tuyến tính của dữ liệu. Khi đó, ta có
 \begin{equation}
 x_{n+m}^n =\alpha_{0} + \sum_{k=1}^{n} \alpha_{k} x_{k}, \label{ct1.134}
 \end{equation}
 trong đó $\alpha_{0}, \alpha_{1},\dots, \alpha_{n} $ là các số thực. Dự báo tuyến tính theo (\ref{ct1.134}) mà giảm thiểu sai số dự báo bình phương trung bình (\ref{ct1.133}) được gọi là \textit{dự báo tuyến tính tốt nhất} (BLPs - Best Linear Predictions).
-\begin{tc}\cite{1} \textbf{\label{BLP}Mô hình báo tuyến tính tốt nhất cho các quá trình có tính dừng}\\
+\begin{tc}\cite{8} \textbf{\label{BLP}Mô hình báo tuyến tính tốt nhất cho các quá trình có tính dừng}\\
 	\textit{Cho dữ liệu $x_{1}, \dots, x_{n}$, công cụ dự báo tuyến tính tốt nhất, $x_{n+m}^n= \alpha_{0} + \sum_{k=1}^{n}\alpha_{k} x_{k}$ của $x_{n+m}$, với $m\geq1$ được tìm thấy bằng cách giải
 		\begin{equation}
 		E[(x_{n+m} - x_{n+m}^n)x_{k}] = 0, \hspace{1cm} k=0, 1, \dots, n. \label{ct1.135}
@@ -700,10 +700,10 @@ Nếu chuỗi thời gian là một quá trình AR($p$), với $n\geq p$ thì ta
 \begin{equation}
 x_{n+1}^{n}=\phi_1x_n+\phi_2x_{n-1}+\dots+\phi_px_{n-p+1}. \label{ct3.60}
 \end{equation}
-Điều này được chứng minh chi tiết tại chương 3, tài liệu tham khảo \cite{1}.
+Điều này được chứng minh chi tiết tại chương 3, tài liệu tham khảo \cite{8}.
 
 Đối với các mô hình ARMA tổng quát, các phương trình dự báo sẽ không đơn giản như trường hợp AR. Hơn nữa, đối với $n$ lớn, chúng ta không thể sử dụng (\ref{ct1.141}) bởi vì nó yêu cầu phép nghịch đảo của ma trận cỡ lớn. Tuy nhiên, các nghiệm lặp không đòi hỏi bất kỳ phép nghịch đảo ma trận. Đặc biệt, chúng ta đề cập đến giải pháp đệ quy được đưa ra bởi Levinson (1947) và Durbin (1960).
-\begin{tc}\cite{1} \textbf{Thuật toán  Durbin-Levinson}\\
+\begin{tc}\cite{8} \textbf{Thuật toán  Durbin-Levinson}\\
 	\textit{Phương trình (\ref{ct1.141}) và (\ref{ct3.59}) có thể được giải lặp đi lặp lại như sau: 
 		\begin{equation}
 		\phi_{00}= 0, \hspace{1cm} P_{1}^{0}= \gamma(0). \label{ct1.144}
@@ -719,7 +719,7 @@ x_{n+1}^{n}=\phi_1x_n+\phi_2x_{n-1}+\dots+\phi_px_{n-p+1}. \label{ct3.60}
 		\end{equation}}
 \end{tc}
 
-Một hệ quả quan trọng của thuật toán Durbin-Levinson được thể hiện trong tính chất (\ref{gpl})\begin{tc}\cite{1} \textbf{\label{gpl}Nghiệm lặp cho PACF}\\
+Một hệ quả quan trọng của thuật toán Durbin-Levinson được thể hiện trong tính chất (\ref{gpl})\begin{tc}\cite{8} \textbf{\label{gpl}Nghiệm lặp cho PACF}\\
 	\textit{PACF của quá trình $x_{t}$ có tính dừng có thể thu được bằng phép lặp thông qua (\ref{ct1.145}) là $\phi_{nn}$, với $n= 1, 2, \dots .$}
 \end{tc}
 
@@ -746,7 +746,7 @@ P_{n+m}^{n} = E (x_{n+m}- x_{n+m}^{n})^{2} = \gamma(0) - \varUpsilon_{n}^{(m)^{'
 \end{equation}
 
 Một thuật toán hữu ích khác để tính toán các dự đoán được đưa ra bởi Brockwell và Davis (1991) bằng cách sử dụng thực tế là các đổi mới $x_{t} - x_{t}^{t-1}$ và $x_{s} - x_{s}^{s-1}$ là không tương quan nếu $s \neq t$. Thuật toán này được áp dụng trong trường hợp $x_{t}$ là một chuỗi thời gian có tính dừng với giá trị trung bình bằng $0$.
-\begin{tc}\cite{1} \textbf{Thuật toán đổi mới}\\
+\begin{tc}\cite{8} \textbf{Thuật toán đổi mới}\\
 	\textit{Các ước lượng trước một bước, $x_{t+1}^{t}$ và các sai số bình phương trung bình của chúng, $P_{t+1}^{t}$, có thể được tính toán lặp bởi
 		$$x_{1}^{0}=0, \hspace{1cm} P_{1}^{0} =\gamma(0) $$
 		\begin{equation}
@@ -851,7 +851,7 @@ x_{1-m}^n= \phi_{n1}^{(m)}x_{1}+ \dots+ \phi_{nn}^{(m)}x_{n}, \hspace{1cm} m=1, 
 
 \subsection{\label{arima}Mô hình tự hồi quy tích hợp trung bình trượt}
 Một trong những hạn chế của các mô hình AR, MA và ARMA là chúng không thể xử lý dữ liệu cho chuỗi thời gian không có tính dừng. \textit{Mô hình tự hồi quy tích hợp trung bình trượt} (ARIMA - Autoregressive Integrated Moving Average) đưa ra giải pháp cho vấn đề này bằng cách thêm \textit{quá trình tích hợp} (Integrated) cho mô hình ARMA.
-\begin{dn}\cite{1, 2, 3}
+\begin{dn}\cite{8, 9, 10}
 	\textit{Một quá trình $ x_{t} $ được gọi là} \textbf{ARIMA($p$, $d$, $q$)} \textit{nếu 
 		$$\nabla^{d} x_{t}=(1-B)^{d}x_{t}$$
 		là ARMA($p$, $q$). Mô hình ARIMA($p$, $d$, $q$) có dạng tổng quát là
@@ -878,7 +878,7 @@ Khi đã tìm được mô hình ARIMA($p$, $d$, $q$) phù hợp với chuỗi t
 \subsection{Mô hình ARIMA theo mùa}
 Trong phần này, chúng tôi sẽ giới thiệu một mô hình cải tiến từ ARIMA cho chuỗi dữ liệu có xu hướng theo mùa và không có tính dừng (dữ liệu có tính mùa vụ theo tháng, quý, năm). Mặt khác, sự thay đổi trong tự nhiên của nhiều quá trình vật lý, sinh học, kinh tế có quy luật theo mùa. Do đó, trong một vài trường hợp, \textit{mô hình ARIMA theo mùa (SARIMA - Seasonal Autoregressive Integrated Moving Average)} là một lựa chọn hợp lý. Mô hình ARIMA theo mùa có cấu trúc tương tự như mô hình ARIMA, được hình thành từ các quá trình AR, MA và quá trình tích hợp để đưa chuỗi dữ liệu về chuỗi có tính dừng. 
 
-\begin{dn}\cite{1} \textbf{Mô hình tự hồi quy trung bình trượt theo mùa} ARMA($P$, $Q$)$_s$ \textit{có dạng: 
+\begin{dn}\cite{8} \textbf{Mô hình tự hồi quy trung bình trượt theo mùa} ARMA($P$, $Q$)$_s$ \textit{có dạng: 
 		\begin{equation}
 		\Phi_{P}(B^{s})x_{t}=\varTheta_{Q}(B^{s})w_{t}, \label{ct1.193}
 		\end{equation}
@@ -965,7 +965,7 @@ Mô hình này là MA(1)$_{12}$ có tính dừng và ACF của nó chỉ có c�
 trong đó $D = 1, 2, \dots$. Thông thường, $D = 1$ là đủ để có được sự ổn định theo mùa.
 
 Kết hợp những ý tưởng này vào mô hình tổng quát giúp ta xây dựng mô hình tự hồi quy tích hợp trung bình trượt theo mùa.
-\begin{dn}\cite{1, 2} \textbf{Mô hình tự hồi quy tích hợp trung bình trượt theo mùa}\textit{ của Box và Jenkins (1970) có dạng tổng quát là
+\begin{dn}\cite{8, 9} \textbf{Mô hình tự hồi quy tích hợp trung bình trượt theo mùa}\textit{ của Box và Jenkins (1970) có dạng tổng quát là
 		\begin{equation}
 		\Phi_ {P} (B^{s})	\phi(B)\nabla_{s}^{D}\nabla^{d}x_{t}=\alpha + \varTheta_{Q}(B^{s})\theta(B)w_{t}, \label{ct1.201}
 		\end{equation}	
@@ -977,9 +977,9 @@ Trong toàn bộ Chương 1, chúng tôi đã trình bày lý thuyết cơ sở 
 \chapter{Phân tích chuỗi thời gian bằng mô hình ARIMA với phần mềm R}
 Trong chương này, chúng tôi sẽ trình bày tổng quan về lịch sử của R, các gói lệnh cơ bản và chức năng của chúng, thực hành phân tích dữ liệu chuỗi thời gian bằng mô hình ARIMA với sự hỗ trợ của phần mềm R. Trong mỗi tập dữ liệu phân tích, chúng tôi không chỉ thực hiện xây dựng mô hình ARIMA và phân tích kết quả đầu ra thu được, mà còn sử dụng phần mềm vào việc vẽ các đồ thị cần thiết nhằm trực quan hóa các kết quả phân tích. 
 \section{Tổng quan về phần mềm R và các gói lệnh}
-Nói một cách ngắn gọn, R là một phần mềm sử dụng cho phân tích thống kê và đồ thị. Thật ra, về bản chất, R là ngôn ngữ máy tính đa năng, có thể sử dụng cho nhiều mục tiêu khác nhau, từ tính toán đơn giản, toán học giải trí (recreational mathematics), tính toán ma trận, đến các phân tích thống kê phức tạp. Hơn thế nữa, nó cho phép bạn xây dựng những hàm, những câu lệnh để giải quyết một nhóm các nhiệm vụ phân tích đặc thù nào đó và chia sẻ chúng trên mạng. Chẳng hạn, nếu có một kiểm định mới, một mô hình mới về phương diện lý thuyết và được đăng trên một tạp chí chuyên ngành nào đó, bạn hoàn toàn có thể viết một chương trình nhằm biến kiểm định mới, những mô hình mới chỉ ở dạng lý thuyết kia thành một hàm cụ thể trong R. Nếu được kiểm tra bởi cộng đồng những người sử dụng rằng đúng và không có lỗi, hàm mà bạn viết sẽ được thừa nhận và sử dụng rộng rãi. Vì là một ngôn ngữ, cho nên người ta có thể sử dụng R để phát triển thành các phần mềm chuyên môn cho một vấn đề tính toán cá biệt. Hơn nữa, R còn là một công cụ cho Data Mining, Big Data, Data Visualization và Machine Learning \cite{6, 7}.
+Nói một cách ngắn gọn, R là một phần mềm sử dụng cho phân tích thống kê và đồ thị. Thật ra, về bản chất, R là ngôn ngữ máy tính đa năng, có thể sử dụng cho nhiều mục tiêu khác nhau, từ tính toán đơn giản, toán học giải trí (recreational mathematics), tính toán ma trận, đến các phân tích thống kê phức tạp. Hơn thế nữa, nó cho phép bạn xây dựng những hàm, những câu lệnh để giải quyết một nhóm các nhiệm vụ phân tích đặc thù nào đó và chia sẻ chúng trên mạng. Chẳng hạn, nếu có một kiểm định mới, một mô hình mới về phương diện lý thuyết và được đăng trên một tạp chí chuyên ngành nào đó, bạn hoàn toàn có thể viết một chương trình nhằm biến kiểm định mới, những mô hình mới chỉ ở dạng lý thuyết kia thành một hàm cụ thể trong R. Nếu được kiểm tra bởi cộng đồng những người sử dụng rằng đúng và không có lỗi, hàm mà bạn viết sẽ được thừa nhận và sử dụng rộng rãi. Vì là một ngôn ngữ, cho nên người ta có thể sử dụng R để phát triển thành các phần mềm chuyên môn cho một vấn đề tính toán cá biệt. Hơn nữa, R còn là một công cụ cho Data Mining, Big Data, Data Visualization và Machine Learning \cite{11, 12, 13, 14}.
 
-Hai người sáng tạo ra R là hai nhà thống kê học tên là Ross Ihaka và Robert Gentleman. Kể từ khi R ra đời, rất nhiều nhà nghiên cứu thống kê và toán học trên thế giới ủng hộ và tham gia vào việc phát triển R. Chủ trương của những người sáng tạo ra R là theo định hướng mở rộng (Open Access). Cũng một phần vì chủ trương này mà R hoàn toàn miễn phí. Bất cứ ai ở bất cứ nơi nào trên thế giới đều có thể truy nhập và tải toàn bộ mã nguồn của R về máy tính của mình để sử dụng. Cho đến nay, có rất nhiều nhà thống kê học, toán học, nghiên cứu học trong mọi lĩnh vực đã chuyển sang sử dụng R để phân tích dữ liệu khoa học. Trên toàn cầu, đã có một mạng lưới hơn một triệu người sử dụng R, và con số này đang tăng theo cấp số nhân. Có thể nói trong 5 năm nữa, chúng ta sẽ không cần đến các phần mềm thống kê đắt tiền như SAS, SPSS hay Stata (các phần mềm này giá có thể lên đến 100.000 USD một năm) để phân tích thống kê nữa, vì tất cả các phân tích đó có thể tiến hành bằng R \cite{6, 7}.
+Hai người sáng tạo ra R là hai nhà thống kê học tên là Ross Ihaka và Robert Gentleman. Kể từ khi R ra đời, rất nhiều nhà nghiên cứu thống kê và toán học trên thế giới ủng hộ và tham gia vào việc phát triển R. Chủ trương của những người sáng tạo ra R là theo định hướng mở rộng (Open Access). Cũng một phần vì chủ trương này mà R hoàn toàn miễn phí. Bất cứ ai ở bất cứ nơi nào trên thế giới đều có thể truy nhập và tải toàn bộ mã nguồn của R về máy tính của mình để sử dụng. Cho đến nay, có rất nhiều nhà thống kê học, toán học, nghiên cứu học trong mọi lĩnh vực đã chuyển sang sử dụng R để phân tích dữ liệu khoa học. Trên toàn cầu, đã có một mạng lưới hơn một triệu người sử dụng R, và con số này đang tăng theo cấp số nhân. Có thể nói trong 5 năm nữa, chúng ta sẽ không cần đến các phần mềm thống kê đắt tiền như SAS, SPSS hay Stata (các phần mềm này giá có thể lên đến 100.000 USD một năm) để phân tích thống kê nữa, vì tất cả các phân tích đó có thể tiến hành bằng R \cite{13, 14}.
 
 Vì thế, chúng tôi đã chọn R để phân tích dữ liệu cho đề tài nghiên cứu khoa học này.
 \begingroup\fontsize{10}{5}\selectfont
@@ -1025,7 +1025,7 @@ Vì thế, chúng tôi đã chọn R để phân tích dữ liệu cho đề tà
 \end{longtable}
 \endgroup{} 
 \subsubsection*{Một số gói lệnh cơ bản của R được sử dụng trong bài báo cáo}
-R cung cấp cho chúng ta một "ngôn ngữ" máy tính và một số hàm để làm các phân tích căn bản và đơn giản. Nếu muốn làm những phân tích phức tạp hơn, chúng ta cần phải tải về máy tính một số gói lệnh (package) khác. Package là một phần mềm nhỏ được các nhà thống kê phát triển để giải quyết một số vấn đề cụ thể, và nó có thể chạy trong hệ thống R. Các package này cần phải được tải về máy tính và cài cặt. Trong tài liệu này, chúng tôi sử dụng các gói lệnh được mô tả trong Bảng (\ref{Duong}). Hơn nữa, bạn đọc có thể tìm hiểu chi tiết hơn về cách sử dụng các package và hàm tương ứng bằng cách tham khảo các tài liệu \cite{3, 6, 7, 8}.
+R cung cấp cho chúng ta một "ngôn ngữ" máy tính và một số hàm để làm các phân tích căn bản và đơn giản. Nếu muốn làm những phân tích phức tạp hơn, chúng ta cần phải tải về máy tính một số gói lệnh (package) khác. Package là một phần mềm nhỏ được các nhà thống kê phát triển để giải quyết một số vấn đề cụ thể, và nó có thể chạy trong hệ thống R. Các package này cần phải được tải về máy tính và cài cặt. Trong tài liệu này, chúng tôi sử dụng các gói lệnh được mô tả trong Bảng (\ref{Duong}). Hơn nữa, bạn đọc có thể tìm hiểu chi tiết hơn về cách sử dụng các package và hàm tương ứng bằng cách tham khảo các tài liệu \cite{10, 11, 12, 13, 14, 15, 16}.
 \section{Phân tích và dự báo trên tập dữ liệu COVID-19}
 Trong bối cảnh đại dịch COVID-19 đang lây lan khắp thế giới, việc dự báo số ca nhiễm bệnh mới được xác nhận hằng ngày ra sao và đỉnh điểm của dịch cao nhất khi nào là rất quan trọng. Bởi vì, đại dịch không chỉ làm ảnh hưởng đến các ngành đầu tư tài chính, thương mại dịch vụ, xuất nhập khẩu, sản xuất công nghiệp, hàng không dân dụng, du lịch, năng lượng, giao thông vận tải,... mà còn ảnh hưởng rất lớn đến giới công nghệ quốc tế vì nó làm xáo trộn nghiêm trọng chuỗi cung ứng toàn cầu. Trong phần này, chúng tôi sẽ phân tích tổng quan về dữ liệu COVID-19 trên toàn thế giới, dự báo số ca nhiễm mới COVID-19 tại Mỹ và số ca tử vong mới ở Italy bằng cách sử dụng mô hình ARIMA kết hợp với phần mềm R. Từ kết quả dự báo, chúng tôi đưa ra một cảnh báo có tính lý thuyết và khoa học nhằm gợi ý với các nhà lãnh đạo đưa ra những chính sách, chiến lược tối ưu nhất ứng phó với trận chiến đại dịch này.
 
@@ -1439,7 +1439,7 @@ Kết quả của các lệnh trên được hiển thị ở bảng \ref{b26}.
 		\bottomrule
 	\end{tabular}
 \end{table}
-Quan sát các kết quả thống kê từ bảng \ref{b25} và \ref{b26}, chúng ta thấy được những con số rất khủng khiếp. Tuy nhiên, trung tâm Kiểm soát và Ngăn ngừa Dịch bệnh của châu Âu (ECDC) ngày 7/4 cho biết dịch bệnh viêm đường hô hấp cấp COVID-19 do virus SARS-CoV-2 gây ra đang lây lan và cướp đi sinh mạng của rất nhiều người tại khắp châu Âu, và hiện chưa có dấu hiệu nào cho thấy dịch COVID-19 tại châu lục này đã lên tới đỉnh.
+Quan sát các kết quả thống kê từ bảng \ref{b25} và \ref{b26}, chúng ta thấy được những con số rất khủng khiếp. Tuy nhiên, trung tâm Kiểm soát và Ngăn ngừa Dịch bệnh của châu Âu (ECDC) ngày 7/4 cho biết dịch bệnh viêm đường hô hấp cấp COVID-19 do virus SARS-CoV-2 gây ra đang lây lan và cướp đi sinh mạng của rất nhiều người tại khắp châu Âu, và hiện chưa có dấu hiệu nào cho thấy dịch COVID-19 tại châu lục này đã lên tới đỉnh điểm.
 
 Từ các kết quả phân tích tổng quan ở trên, chúng tôi sẽ tiến hành dự báo số ca nhiễm mới tại Mỹ và số ca tử vong mới tại Ý. Hai quốc gia này lần lượt có số người nhiễm và số ca tử vong cao nhất thế giới. Từ kết quả phân tích được, chúng tôi hy vọng kết quả này là hữu ích để chính phủ các nước có thể kiểm soát dịch bệnh tốt hơn.
 \subsection{Dự báo số ca nhiễm mới và số ca tử vong do COVID-19 gây ra bằng mô hình ARIMA}
@@ -1637,14 +1637,14 @@ Dựa vào bảng \ref{b30} và hình \ref{hu1}, chúng tôi thấy đồ thị 
     \item Bài học lớn nhất từ Dr. Fauci: Nếu ở những nơi ca nhiễm còn thấp (dưới 200 ca) thì việc cách ly, lần dấu vết xem ai lây cho ai, xét nghiệm diện rộng là rất quan trọng. Tuy nhiên, với quy mô xét nghiệm còn hạn chế như ở Mỹ và chưa được thực hiện triệt để như Việt nam. Còn những nơi ca nhiễm đã rất cao và lây lan cộng đồng rồi (tức là đã mất kiểm soát) thì không còn cách nào khác là đóng cửa mọi nơi, mọi người tự cách ly tại nhà để giảm áp lực lên hệ thống y tế.
    \item Chiến lược xét nghiệm cộng đồng là rất cần thiết ngay lúc này. Chúng tôi sẽ ra 2 lý do cho việc làm này như sau
 \begin{itemize}
-	\item \textit{Có bao nhiêu ca nhiễm không có triệu chứng?} Để trả lời câu hỏi có bao nhiêu ca nhiễm mà không biểu hiện triệu chứng, một nhóm nghiên cứu đã phân tích số liệu thu thập từ du thuyền Diamond Princess. Cần nhớ rằng du thuyền Diamond Princess có 3711 hành khách và thủy thủ đoàn, và trong số này có 619 người (17\%) bị nhiễm. Một phân tích sâu hơn cho thấy trong số những ca bị nhiễm, có đến 18\% không hề biểu hiện triệu chứng \cite{13}. Do vậy, các ca nhiễm không biểu hiện triệu chứng nhưng vẫn có thể lây nhiễm. 
-	\item \textit{Những ca nhiễm không phát hiện được}. Một phân tích khác từ Vũ Hán cho ra kết quả rất ngạc nhiên! Theo họ ước tính, có khoảng 59\% những ca bị nhiễm "lang thang" trong cộng đồng. Những người này không hề được xét nghiệm, có lẽ không có triệu chứng, nhưng họ có thể lây nhiễm sang người khác. Điều này có thể giải thích tại sao mức độ lây lan của virus rất nhanh (theo cấp số nhân) khi được phát hiện \cite{14}. Ngoài ra, tập san Science mới công bố một phân tích rất phức tạp cho thấy số ca nhiễm không được phát hiện lên đến 86\% \cite{15}!
+	\item \textit{Có bao nhiêu ca nhiễm không có triệu chứng?} Để trả lời câu hỏi có bao nhiêu ca nhiễm mà không biểu hiện triệu chứng, một nhóm nghiên cứu đã phân tích số liệu thu thập từ du thuyền Diamond Princess. Cần nhớ rằng du thuyền Diamond Princess có 3711 hành khách và thủy thủ đoàn, và trong số này có 619 người (17\%) bị nhiễm. Một phân tích sâu hơn cho thấy trong số những ca bị nhiễm, có đến 18\% không hề biểu hiện triệu chứng \cite{18}. Do vậy, các ca nhiễm không biểu hiện triệu chứng nhưng vẫn có thể lây nhiễm. 
+	\item \textit{Những ca nhiễm không phát hiện được}. Một phân tích khác từ Vũ Hán cho ra kết quả rất ngạc nhiên! Theo họ ước tính, có khoảng 59\% những ca bị nhiễm "lang thang" trong cộng đồng. Những người này không hề được xét nghiệm, có lẽ không có triệu chứng, nhưng họ có thể lây nhiễm sang người khác. Điều này có thể giải thích tại sao mức độ lây lan của virus rất nhanh (theo cấp số nhân) khi được phát hiện \cite{19}. Ngoài ra, tập san Science mới công bố một phân tích rất phức tạp cho thấy số ca nhiễm không được phát hiện lên đến 86\% \cite{20}!
 \end{itemize}
 \end{itemize}
 \subsubsection{Dự báo số ca tử vong mới theo ngày do COVID-19 gây ra ở Italy}
 Trong phần này, chúng tôi đưa ra nguyên nhân dẫn đến số ca tử vong tăng vọt tại Ý và dự báo số ca tử vong mới tại quốc gia này trong 7 ngày tiếp theo bằng mô hình ARIMA.
 
-Tại Italy, Cơ quan Bảo vệ Dân sự xác nhận thêm 3.039 ca dương tính với SARS-CoV-2 trong ngày 7/4. Mặc dù đây là số ca nhiễm mới thấp nhất kể từ ngày 17/3 tại quốc gia này, nhưng số ca tử vong lại tăng lên rất cao. Có thêm 604 ca tử vong do SARS-CoV-2 ở Italy, nâng tổng số bệnh nhân COVID-19 thiệt mạng lên đến 17.127 người - mức cao nhất trên thế giới. Vậy nguyên nhân dẫn đến sự tăng vọt này là gì? Nhóm Ioannidis vừa có một bài báo được đăng trên tạp chí JAMA Int Med đưa ra những quan điểm trả lời cho câu hỏi trên \cite{16}. Theo đó, số ca tử vong ở Ý có sự biến chuyển là vì:
+Tại Italy, Cơ quan Bảo vệ Dân sự xác nhận thêm 3.039 ca dương tính với SARS-CoV-2 trong ngày 7/4. Mặc dù đây là số ca nhiễm mới thấp nhất kể từ ngày 17/3 tại quốc gia này, nhưng số ca tử vong lại tăng lên rất cao. Có thêm 604 ca tử vong do SARS-CoV-2 ở Italy, nâng tổng số bệnh nhân COVID-19 thiệt mạng lên đến 17.127 người - mức cao nhất trên thế giới. Vậy nguyên nhân dẫn đến sự tăng vọt này là gì? Nhóm Ioannidis vừa có một bài báo được đăng trên tạp chí JAMA Int Med đưa ra những quan điểm trả lời cho câu hỏi trên \cite{21}. Theo đó, số ca tử vong ở Ý có sự biến chuyển là vì:
 \begin{itemize}
 	\item Yếu tố lão hóa dân số: Ý có dân số già bậc nhất châu Âu. Gần một phần tư (23\%) dân số của nước này có độ tuổi từ 65 trở lên. Hơn thế, những người này tiền sử bệnh như hô hấp, tim mạch, tiểu đường và ung thư. Do đó, gánh nặng dịch bệnh đã đè lên bệnh trạng sẵn có.
 	\item Hệ thống y tế: mặc dù Ý là nước có hệ thống y tế Nhà nước rất tốt, nhưng số giường bệnh ICU thì rất khiêm tốn (toàn quốc chỉ có 5090 giường, tức 8.4 trên 100,000 dân).
@@ -1774,9 +1774,7 @@ Từ hình \ref{A8}, chúng ta thấy số ca tử vong mới ở Ý có xu hư�
 \section{Dự báo lượng mưa hàng tháng tại trạm quan trắc Quy Nhơn}
 Trong phần này, chúng tôi sẽ phân tích tổng quan lượng mưa tại trạm quan trắc Quy Nhơn và dự báo lượng mưa trung bình hàng tháng cho 2 năm tiếp theo bằng mô hình mô hình tự hồi quy tích hợp trung bình trượt theo mùa (SARIMA).
 
-Lượng mưa là một trong những hiện tượng quan trọng nhất của hệ thống tự nhiên có ảnh hưởng chung đến biến đổi khí hậu. Do đó, việc mô hình hóa và dự báo nó là cần thiết để giải quyết một số vấn đề liên quan đến quy hoạch và quản lí hệ thống tài nguyên nước, công trình thủy lợi, quản lí nông nghiệp, ... . Tuy nhiên, dự báo lượng mưa là khó khăn vì nó có dạng là mô hình phi tuyến tính và thay đổi lớn về cường độ. Cho đến hôm nay, có rất nhiều kỹ thuật đã được sử dụng để dự báo lượng mưa. Trong đó, mô hình ARIMA theo mùa (SARIMA) có nhiều ưu điểm hơn so với các mô hình khác, đặc biệt là so với các mô hình làm mịn theo hàm mũ và mạng noron \cite{17}. Mô hình ARIMA xem xét mối tương quan nối tiếp đó là đặc trưng quan trọng nhất của dữ liệu chuỗi thời gian. Một ưu điểm của mô hình ARIMA là việc sử dụng mô hình ít tham số để mô tả một chuỗi thời gian.
-
-Mô hình ARIMA theo mùa được sử dụng rộng rãi để dự báo khí tượng thủy văn. Rahman và các cộng sự đã có một bài nghiên cứu đánh giá giữa 2 mô hình ARIMA và ANFIS để dự báo thời tiết cho thành phố Dhaka, kết quả cho thấy mô hình ARIMA thực hiện tốt hơn ANFIS \cite{18}. Dizon công bố kết quả nghiên cứu về ARIMA theo mùa là một mô hình rất tốt cho dự báo chuỗi thời gian có tính mùa vụ mạnh \cite{19}. Momani sử dụng thành công mô hình ARIMA để dự báo xu hướng lượng mưa của Jordan \cite{20}. Tại Việt Nam, Nguyễn Hữu Quyền đã có một bài luận văn thạc sĩ khoa học về ứng dụng mô hình động thái ARIMAX để dự báo lượng mưa vụ đông xuân ở một số tỉnh vùng đồng bằng Bắc Bộ \cite{21}. Chính vì vậy, mô hình ARIMA theo mùa có thể được xem là một công cụ hữu ích để dự báo hiện tượng khí tượng thủy văn, đặc biệt là lượng mưa.
+Lượng mưa là một trong những hiện tượng quan trọng nhất của hệ thống tự nhiên có ảnh hưởng chung đến biến đổi khí hậu. Do đó, việc mô hình hóa và dự báo nó là cần thiết để giải quyết một số vấn đề liên quan đến quy hoạch và quản lí hệ thống tài nguyên nước, công trình thủy lợi, quản lí nông nghiệp, ... . Tuy nhiên, dự báo lượng mưa là khó khăn vì nó có dạng là mô hình phi tuyến tính và thay đổi lớn về cường độ. Cho đến hôm nay, có rất nhiều kỹ thuật đã được sử dụng để dự báo lượng mưa. Trong đó, mô hình ARIMA theo mùa (SARIMA) có nhiều ưu điểm hơn so với các mô hình khác, đặc biệt là so với các mô hình làm mịn theo hàm mũ và mạng noron \cite{22}. Mô hình ARIMA xem xét mối tương quan nối tiếp đó là đặc trưng quan trọng nhất của dữ liệu chuỗi thời gian. Một ưu điểm của mô hình ARIMA là việc sử dụng mô hình ít tham số để mô tả một chuỗi thời gian.
 
 Chúng tôi lấy dữ liệu của trạm quan trắc Quy Nhơn từ \textit{Trung tâm dữ liệu khí tượng thủy văn quốc gia} (\url{http://cmh.com.vn/}). Dữ liệu được thống kê từ tháng 1/2000 đến tháng 12/2018,  bạn đọc có thể quan sát số liệu tại bảng \ref{datarainfall}. Tương tự như các ví dụ ở trên, chúng tôi trích xuất dữ liệu của 18 năm đầu (tương ứng với 216 tháng) thành tập "train" và 12 tháng của năm 2018 là tập "test". Dữ liệu lượng mưa hàng tháng là chuỗi thời gian có tính chất mùa vụ. Vì vậy chúng tôi sẽ sử dụng mô hình SARIMA (hay ARIMA theo mùa) với tần số là 12 để dự báo cho 2 năm tiếp theo. Dữ liệu sẽ được phân tích trực tiếp trong R với các gói package được sử dụng như trong phần (\ref{xldlt}).
 \subsection{Tổng quan về đặc điểm lượng mưa tại trạm quan trắc Quy Nhơn}
@@ -1966,8 +1964,8 @@ scale_color_manual(values= vector.color)
 \end{table}
 Quan sát bảng \ref{test_fc} và hình \ref{V8}, chúng ta thấy các tháng thuộc mùa khô (từ tháng 1 đến tháng 8) có sự chênh lệnh lớn bởi vì khí hậu đang thay đổi thất thường và các nhà dự báo thời tiết cũng khó dự báo chính xác được. Sai số lớn vào mùa khô có thể được giải thích như sau:
 \begin{itemize}
-	\item Theo \cite{22}, sự thay đổi của hệ thống khí hậu làm gia tăng biến động của khí hậu trên tất cả quy mô thời gian. Một số quá trình xảy ra trong khoảng thời gian ngắn, như sự phát triển của hệ thống synop trong khí quyển là một trong những nguyên nhân dẫn đến sai số dự báo mùa. Tuy nhiên, sự thay đổi chậm của hệ thống khí hậu lại là nguồn gốc cơ bản cho phép dự báo khí hậu mùa. Nguyên nhân của sự thay đổi này bao gồm sự thay đổi trong khoảng thời gian dài của đại dương, hệ thống tương tác đại dương-khí quyển và các thành phần khác như băng biển, điều kiện bề mặt đất, độ che phủ của tuyết ...
-	\item El Nino và Dao động Nam (SO) được xem là nhân tố tác động lớn nhất đến biến đổi khí hậu, trong đó có lượng mưa. Walker (1924) đã phát hiện ra dao động của khí áp quy mô lớn, từ năm này qua năm khác ở 2 phía Đông và Tây của khu vực xích đạo Thái Bình Dương (Tahiti và Darwin) và được gọi là Dao động Nam. Hơn 40 năm sau, trong công trình nghiên cứu của Jacob Bjerknes (1969) thừa nhận có sự quan hệ chặt chẽ giữa Dao động Nam và sự thay đổi về nhiệt độ bề mặt nước biển trên khu vực Xích Đạo đông Thái Bình Dương. Mối quan hệ này thể hiện sự tương tác giữa đại dương và khí quyển mà biểu hiện của nó chính là hiện tượng ENSO (El Nino–Southern Oscillation). ENSO được dùng để chỉ cả 2 hai hiện tượng El Nino, La Nina và có liên quan với Dao động Nam. ENSO là nhân tố ảnh hưởng lớn nhất đến các dao động khí hậu hàng năm, chính sự kết hợp này là nguồn gốc chính sinh ra dị thường về nhiệt độ và lượng mưa trên phạm vi toàn cầu \cite{22, 23, 24}.
+	\item Theo \cite{23}, sự thay đổi của hệ thống khí hậu làm gia tăng biến động của khí hậu trên tất cả quy mô thời gian. Một số quá trình xảy ra trong khoảng thời gian ngắn, như sự phát triển của hệ thống synop trong khí quyển là một trong những nguyên nhân dẫn đến sai số dự báo mùa. Tuy nhiên, sự thay đổi chậm của hệ thống khí hậu lại là nguồn gốc cơ bản cho phép dự báo khí hậu mùa. Nguyên nhân của sự thay đổi này bao gồm sự thay đổi trong khoảng thời gian dài của đại dương, hệ thống tương tác đại dương-khí quyển và các thành phần khác như băng biển, điều kiện bề mặt đất, độ che phủ của tuyết ...
+	\item El Nino và Dao động Nam (SO) được xem là nhân tố tác động lớn nhất đến biến đổi khí hậu, trong đó có lượng mưa. Walker (1924) đã phát hiện ra dao động của khí áp quy mô lớn, từ năm này qua năm khác ở 2 phía Đông và Tây của khu vực xích đạo Thái Bình Dương (Tahiti và Darwin) và được gọi là Dao động Nam. Hơn 40 năm sau, trong công trình nghiên cứu của Jacob Bjerknes (1969) thừa nhận có sự quan hệ chặt chẽ giữa Dao động Nam và sự thay đổi về nhiệt độ bề mặt nước biển trên khu vực Xích Đạo đông Thái Bình Dương. Mối quan hệ này thể hiện sự tương tác giữa đại dương và khí quyển mà biểu hiện của nó chính là hiện tượng ENSO (El Nino–Southern Oscillation). ENSO được dùng để chỉ cả 2 hai hiện tượng El Nino, La Nina và có liên quan với Dao động Nam. ENSO là nhân tố ảnh hưởng lớn nhất đến các dao động khí hậu hàng năm, chính sự kết hợp này là nguồn gốc chính sinh ra dị thường về nhiệt độ và lượng mưa trên phạm vi toàn cầu \cite{24}.
 \end{itemize}
 Tuy nhiên, các giá trị dự báo cho mùa mưa (tháng 9 đến tháng 12) cho kết quả sai số rất thấp. Điều này phù hợp với đặc điểm lượng mưa tại Quy Nhơn. Do đó, mô hình ARIMA(1,0,0)(2,1,1)$_{12}$ có thể dùng dự báo lượng mưa tại Quy Nhơn. Chúng tôi tiến hành dự báo lượng mưa theo tháng cho 2 năm tiếp theo ở Quy Nhơn.
 \begin{lstlisting}
@@ -2030,7 +2028,7 @@ Trang web cập nhật dữ liệu một cách tự động từ \url{https://gi
 \begin{itemize}
 	\item Overiew: Trong tag này, chúng tôi cho hiển thị tổng số ca nhiễm, tổng số ca phục hồi, tổng số ca tử vong trên toàn thế giới và bảng chi tiết cho từng quốc gia.
 	\item Trend Using ARIMA Model: Trong tag này, chúng tôi sử dụng hàm "auto.arima" để đưa ra xu hướng dịch bệnh cho từng quốc gia với 3 tùy chọn là confirmed, deaths, recovered.
-	\item About: Thông tin về website
+	\item About: Thông tin về website.
 \end{itemize}
 Từ ứng dụng này, chúng tôi có thể tạo ra một trang web tương tự để theo dõi và phân tích các bệnh cụ thể tại Việt Nam.
 
@@ -2142,7 +2140,7 @@ Trong thời gian tới, chúng tôi mong muốn thực hiện các nghiên cứ
 \appendix
 \chapter{Các định lý và thuật toán}
 \section{Thuật toán Hyndman - Khandakar (2008)}
-\begin{algo}\cite{3}\label{H} \textbf{Hyndman - Khandakar (2008)}\\
+\begin{algo}\cite{10}\label{H} \textbf{Hyndman - Khandakar (2008)}\\
 	\begin{itemize}
 		\item Bước 1: Chúng ta chọn một trong 4 mô hình sau để bắt đầu.
 		\begin{itemize}
@@ -2165,7 +2163,7 @@ Trong thời gian tới, chúng tôi mong muốn thực hiện các nghiên cứ
 %%%%%%%%%%%%
 Thuật toán trả về một mô hình thích hợp và được chọn để dự báo.
 \section{\label{TĐSS}Các thước đo đánh giá sai số dự báo}
-Sai số dự báo là chênh lệch giữa giá trị thực tế và giá trị dự báo tương ứng $e_t = Y_t - \hat{Y_t}$. Trong đó, $Y_t$ là giá trị thực tế và $\hat{Y_t}$ là giá trị dự báo. Trong bài báo cáo này, chúng tôi sử dụng các thước đo sai số dự báo sau \cite{3,4}:
+Sai số dự báo là chênh lệch giữa giá trị thực tế và giá trị dự báo tương ứng $e_t = Y_t - \hat{Y_t}$. Trong đó, $Y_t$ là giá trị thực tế và $\hat{Y_t}$ là giá trị dự báo. Trong bài báo cáo này, chúng tôi sử dụng các thước đo sai số dự báo sau \cite{10, 11}:
 \begin{itemize}
 \item Sai số bình phương trung bình (MSE - Mean Squared Error): 
 $$MSE=\frac{1}{n}\sum_{t=1}^{n}(Y_t-\hat{Y_t})^2.$$
@@ -2594,32 +2592,31 @@ kable_styling(font_size=6, latex_options=c("striped", "hold_position", "repeat_h
 \end{table}
 \clearpage
 \begin{thebibliography}{99}
-	\bibitem{1} R. H. Shumway and D. S. Stoffer, \textbf{\textit{Time Series Analysis and Its Applications}}, Springer Publisher, USA(2006).
-	\bibitem{2} G. E. P. Box, G. M. Jenkins, G. C. Reinsel and G. M. Liung, \textbf{\textit{Time Series Analysis: Forecasting and Control, $5^{th}$ edition}}, Publisher Wiley, Canada(2016).
-	\bibitem{3} R. J. Hyndman and G. Athanasopoulos, \textbf{\textit{Forecasting: Principles and Practice, $2^{nd}$ edition}}, OTexts Publisher, USA(2018).
-	\bibitem{4} R. Krispin,  \textbf{\textit{Hands-On Time Series Analysis with R}}, Packt Publisher, UK(2019). 	
-	\bibitem{5} G. James, D. Witten, T. Hastie and R. Tibshirani, \textbf{\textit{An Introduction to Statistical Learning with Applications in R, 1st edition}}, Springer Texts in Statistics, USA(2007)
-	\bibitem{6} Nguyễn Văn Tuấn,  \textbf{\textit{Phân tích dữ liệu với R}}, NXB Tổng hợp T.P Hồ Chí Minh, 2014.
-	\bibitem{7} Nguyễn Chí Dũng, \textbf{\textit{Kinh tế lượng ứng dụng với R}}, Ebook, 2017.
-	\bibitem{8} R. J. Hyndman, \textbf{\textit{Forecasting Functions for Time Series and Linear Models}}, CRAN, 2020.
-	\bibitem{9} Nguyễn Duy Tiến và Vũ ngọc Yên, \textbf{\textit{Lý thuyết xác suất}}, NXB Giáo dục, 2000.
-	\bibitem{10} Luz PM, Mendes BV, Codeco CT, Struchiner CJ and Galvani AP, \textbf{\textit{Time series analysis of dengue incidence in Rio de Janeiro}}, , Am J Trop Med Hyg, Brazil(2008), 79 (6): 933-939.
-	\bibitem{11} Earnest A, Chen MI, Ng D and Leo YS, \textbf{\textit{Using autoregressive integrated moving average(ARIMA) models to predict and monitor the number of beds occupied during a SARS outbreak in a tertiary hospital in Singapore}}, BMC Health Services Research, (2005), 5: 36-10.
-	\bibitem{12}  Li XJ, Kang DM, Cao J and Wang JZ, \textbf{\textit{A time series model in incidence forecasting of hemorrhagic fever with renal syndrome}}, Journal of Shandong University (Health Sciences), (2008), 46 (5): 547-549.
-	\bibitem{13}  K. Mizumoto , K. Kagaya , A. Zarebski and G. Chowell, \textbf{\textit{Estimating the asymptomatic proportion of coronavirus disease 2019 (COVID-19) cases on board the Diamond Princess cruise ship, Yokohama, Japan, 2020}},  Euro Surveill, 2020, 25(10).
-	\bibitem{14} C. Wang, L. Liu, X. Hao, H. Guo, Q. Wang, J. Huang, N. He, H. Yu, X. Lin, A. Pan, S. Wei and T. Wu, \textbf{\textit{Evolving Epidemiology and Impact of Non-pharmaceutical Interventions on the Outbreak of Coronavirus Disease 2019 in Wuhan, China}}, The Preprint Server for Healthy Sciences, 2020.
-	\bibitem{15} R. Li, S. Pei, B. Chen, Y. Song, T. Zhang, W. Yang and J Shaman, \textbf{\textit{Substantial undocumented infection facilitates the rapid dissemination of novel coronavirus (SARS-CoV2)}}, Science, 2020.
-	\bibitem{16} S. Boccia, W. Ricciardi and J. P. A. Ioannidis, \textbf{\textit{What Other Countries Can Learn From Italy During the COVID-19 Pandemic}}, JAMA Intern Med. Published online April 07, 2020.
-	\bibitem{17} Mishra AK, Desai VR. \textit{\textbf{Drought forecasting using stochastic models}}. Stoch. Environ. Res Ris. Assess. 2005;19:326-339.
-	\bibitem{18} M. Rahman, Islam AHMS, Nadvi SYM, R. M. Rahman, \textit{\textbf{Comparative study of ANFIS and ARIMA model for weather forecasting in Dhaka}}. Informatics, Electronics \& Vision (ICIEV), 2013 International Conference on, Dhaka; 2013. p. 1-6.
-    \bibitem{19} Dizon CQ, \textit{\textbf{ARMA modeling of a stochastic process appropriate for the angat reservoir}}. Philipp. Eng. J. 2007;28:1-20
-    \bibitem{20} Momani PENM, \textit{\textbf{Time series analysis model for rainfall data in Jordan: Case study for using time series analysis}}, Am. J. Environ. Sci. 2009;5:599-604.
-    \bibitem{21} Nguyễn Hữu Quyền, \textit{\textbf{Nghiên cứu ứng dụng mô hình ARIMA để dự báo lượng mưa vụ đông xuân ở một số tỉnh vùng Đồng bằng Bắc Bộ}}, Luận văn thạc sĩ khoa học, 2013.		
+		\bibitem{1} Luz PM, Mendes BV, Codeco CT, Struchiner CJ and Galvani AP, \textbf{\textit{Time series analysis of dengue incidence in Rio de Janeiro}}, , Am J Trop Med Hyg, Brazil(2008), 79 (6): 933-939.
+	\bibitem{2} Earnest A, Chen MI, Ng D and Leo YS, \textbf{\textit{Using autoregressive integrated moving average(ARIMA) models to predict and monitor the number of beds occupied during a SARS outbreak in a tertiary hospital in Singapore}}, BMC Health Services Research, (2005), 5: 36-10.
+	\bibitem{3}  Li XJ, Kang DM, Cao J and Wang JZ, \textbf{\textit{A time series model in incidence forecasting of hemorrhagic fever with renal syndrome}}, Journal of Shandong University (Health Sciences), (2008), 46 (5): 547-549.
+	\bibitem{4} M. Rahman, Islam AHMS, Nadvi SYM, R. M. Rahman, \textit{\textbf{Comparative study of ANFIS and ARIMA model for weather forecasting in Dhaka}}. Informatics, Electronics \& Vision (ICIEV), 2013 International Conference on, Dhaka; 2013. p. 1-6.
+	\bibitem{5} Dizon CQ, \textit{\textbf{ARIMA modeling of a stochastic process appropriate for the angat reservoir}}. Philipp. Eng. J. 2007;28:1-20.
+	\bibitem{6} Momani PENM, \textit{\textbf{Time series analysis model for  rainfall data in Jordan: Case study for using time series analysis}}, Am. J. Environ. Sci. 2009;5:599-604.
+	\bibitem{7} Nguyễn Hữu Quyền, \textit{\textbf{Nghiên cứu ứng dụng mô hình ARIMA để dự báo lượng mưa vụ đông xuân ở một số tỉnh vùng Đồng bằng Bắc Bộ}}, Luận văn thạc sĩ khoa học, 2013.	
+	\bibitem{8} R. H. Shumway and D. S. Stoffer, \textbf{\textit{Time Series Analysis and Its Applications}}, Springer Publisher, USA(2006).
+	\bibitem{9} G. E. P. Box, G. M. Jenkins, G. C. Reinsel and G. M. Liung, \textbf{\textit{Time Series Analysis: Forecasting and Control, $5^{th}$ edition}}, Publisher Wiley, Canada(2016).
+	\bibitem{10} R. J. Hyndman and G. Athanasopoulos, \textbf{\textit{Forecasting: Principles and Practice, $2^{nd}$ edition}}, OTexts Publisher, USA(2018).
+	\bibitem{11} R. Krispin,  \textbf{\textit{Hands-On Time Series Analysis with R}}, Packt Publisher, UK(2019). 	
+	\bibitem{12} G. James, D. Witten, T. Hastie and R. Tibshirani, \textbf{\textit{An Introduction to Statistical Learning with Applications in R, 1st edition}}, Springer Texts in Statistics, USA(2007).
+	\bibitem{13} Nguyễn Văn Tuấn,  \textbf{\textit{Phân tích dữ liệu với R}}, NXB Tổng hợp T.P Hồ Chí Minh, 2014.
+	\bibitem{14} Nguyễn Chí Dũng, \textbf{\textit{Kinh tế lượng ứng dụng với R}}, Ebook, 2017.
+	\bibitem{15} Yanchang Zhao, \textbf{\textit{COVID-19 Data Analysis with R – Worldwide}}, RDataMining.com, 2020.	
+	\bibitem{16} R. J. Hyndman, \textbf{\textit{Forecasting Functions for Time Series and Linear Models}}, CRAN, 2020.
+	\bibitem{17} Nguyễn Duy Tiến và Vũ ngọc Yên, \textbf{\textit{Lý thuyết xác suất}}, NXB Giáo dục, 2000.
+	\bibitem{18}  K. Mizumoto , K. Kagaya , A. Zarebski and G. Chowell, \textbf{\textit{Estimating the asymptomatic proportion of coronavirus disease 2019 (COVID-19) cases on board the Diamond Princess cruise ship, Yokohama, Japan, 2020}},  Euro Surveill, 2020, 25(10).
+	\bibitem{19} C. Wang, L. Liu, X. Hao, H. Guo, Q. Wang, J. Huang, N. He, H. Yu, X. Lin, A. Pan, S. Wei and T. Wu, \textbf{\textit{Evolving Epidemiology and Impact of Non-pharmaceutical Interventions on the Outbreak of Coronavirus Disease 2019 in Wuhan, China}}, The Preprint Server for Healthy Sciences, 2020.
+	\bibitem{20} R. Li, S. Pei, B. Chen, Y. Song, T. Zhang, W. Yang and J Shaman, \textbf{\textit{Substantial undocumented infection facilitates the rapid dissemination of novel coronavirus (SARS-CoV2)}}, Science, 2020.
+	\bibitem{21} S. Boccia, W. Ricciardi and J. P. A. Ioannidis, \textbf{\textit{What Other Countries Can Learn From Italy During the COVID-19 Pandemic}}, JAMA Intern Med. Published online April 07, 2020.
 	\bibitem{22} T.N. Stockdale, Alves, G. Boer, M. Deque, Y. Ding, A. Kumar, K. Kumar, W. Landman, S. Mason, P. Nobre, A. Scaife, O. Tomoaki and W.T. Yun, \textbf{\textit{Understanding and Predicting Seasonal-to-Interannual Climate Variability}}, Procedia Environmental Sciences, 2010, 55-80.
 	\bibitem{23} E.M. Rasmusson and T.H. Carpenter, \textbf{\textit{The relationship between eastern equatorial Pacific SSTs and rainfall over India and Sri Lanka}}, Mon. Wea. Rev, 1983, 517-528.
 	\bibitem{24} C.F. Ropelewski and M.S. Halpert, \textbf{\textit{Global and Regional Scale Precipitation Patterns Associated with the El Nino/Southern Oscillation}}, Mon Wea Rev, 1987, 1606-1626.
-	\bibitem{25} Yanchang Zhao, \textbf{\textit{COVID-19 Data Analysis with R – Worldwide}}, RDataMining.com, 2020.	
-	\bibitem{26} Website:\newblock{\textcolor{blue}{\url{https://nguyenquocduong.shinyapps.io/NCKH/}}}.
+	\bibitem{25} Website:\newblock{\textcolor{blue}{\url{https://nguyenquocduong.shinyapps.io/NCKH/}}}.
 	
 
 		

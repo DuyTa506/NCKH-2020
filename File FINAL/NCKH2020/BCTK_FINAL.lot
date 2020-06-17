@@ -1,0 +1,22 @@
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {1.1}{\ignorespaces Xác định $p$ và $q$ cho mô hình ARIMA}}{28}{table.1.1}%
+\contentsline {table}{\numberline {1.2}{\ignorespaces Xác định $P$ và $Q$ cho mô hình ARMA theo mùa}}{38}{table.1.2}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{Các hàm và gói lệnh được sử dụng trong bài báo cáo}}{41}{table.2.1}%
+\contentsline {table}{\numberline {2.2}{\ignorespaces Dữ liệu thô của số ca nhiễm (9 cột đầu tiên)}}{44}{table.2.2}%
+\contentsline {table}{\numberline {2.3}{\ignorespaces Dữ liệu thô COVID-19 tại Việt Nam (10 ngày đầu tiên)}}{46}{table.2.3}%
+\contentsline {table}{\numberline {2.4}{\ignorespaces Top 20 quốc gia có số ca nhiễm cao nhất (7/4/2020)}}{53}{table.2.4}%
+\contentsline {table}{\numberline {2.5}{\ignorespaces Top 20 quốc gia có tỉ lệ tử vong cao nhất (7/4/2020)}}{55}{table.2.5}%
+\contentsline {table}{\numberline {2.6}{\ignorespaces Fit mô hình ARIMA cho dữ liệu số ca nhiễm mới COVID-19 tại Mỹ}}{60}{table.2.6}%
+\contentsline {table}{\numberline {2.7}{\ignorespaces Đánh giá sai số từ mô hình ARIMA(0,2,3)}}{61}{table.2.7}%
+\contentsline {table}{\numberline {2.8}{\ignorespaces Dự báo số ca nhiễm mới COVID-19 tại Mỹ trong 7 ngày tiếp theo}}{62}{table.2.8}%
+\contentsline {table}{\numberline {2.9}{\ignorespaces Đánh giá sai số dự báo số ca tử vong mới ở Ý}}{67}{table.2.9}%
+\contentsline {table}{\numberline {2.10}{\ignorespaces Dự báo số ca tử vong mới tại Ý trong 7 ngày tiếp theo}}{67}{table.2.10}%
+\contentsline {table}{\numberline {2.11}{\ignorespaces Fit mô hình ARIMA theo mùa}}{73}{table.2.11}%
+\contentsline {table}{\numberline {2.12}{\ignorespaces Đối sánh giữa kết quả dự báo và tập test cho lượng mưa}}{75}{table.2.12}%
+\contentsline {table}{\numberline {2.13}{\ignorespaces Dự báo lượng mưa hàng tháng cho 2 năm tiếp theo ở Quy Nhơn}}{76}{table.2.13}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {B.1}{Dữ liệu COVID-19 trên toàn thế giới}}{86}{table.B.1}%
+\contentsline {table}{\numberline {B.2}{Dữ liệu COVID-19 của các quốc gia có dịch (7/4/2020)}}{88}{table.B.2}%
+\contentsline {table}{\numberline {B.3}{\ignorespaces Dữ liệu lượng mưa hàng tháng tại trạm quan trắc Quy Nhơn}}{93}{table.B.3}%
